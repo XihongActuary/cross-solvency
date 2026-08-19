@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6号：再保险风险 Reinsurance Risk | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a href="03-rule1-actual-capital.html" class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html" class="active">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第一支柱</a>
+  <span class="sep">›</span>
+  第6号 再保险风险
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管规则第 6 号 · Pillar I</div>
+  <h1>第6号：再保险风险 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 交易对手违约 + 负债波动</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Reinsurance Risk</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(200,152,60,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(200,152,60,0.4);color:#fdf5e6;">Pillar I · 第一支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">再保资产违约 + 负债波动</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">信用评级差异化因子</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">加法聚合</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="provisions" onclick="switchTab('provisions')">关键条款 Key Provisions</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Calculation Example</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>再保险风险的定义 Definition <span class="en">Reinsurance Risk</span></h2>
+    <p><strong>再保险风险</strong>是指保险公司因再保险安排而面临的<strong>交易对手违约风险</strong>和<strong>再保险信用风险</strong>。当保险公司将部分风险分出给再保险人时，再保险人的偿付能力直接影响保险公司再保安排的有效性——若再保险人违约，保险公司将独自承担全部风险。</p>
+
+    <div class="formula">
+      <span class="label">再保险风险最低资本基本公式</span>
+      <span class="eq">MC<sub>再保</sub></span> = <span class="var">MC<sub>再保资产违约</sub></span> + <span class="var">MC<sub>再保负债波动</sub></span><br>
+      <span class="comment">MC_reinsurance = MC_default + MC_volatility</span><br><br>
+      <span class="comment">两个组成部分采用加法聚合，因为资产违约风险和负债波动风险</span><br>
+      <span class="comment">在性质上不同，不存在显著统计相关性</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">"违约 + 波动"双维度</div>
+      <p>再保险风险的两个维度覆盖了再保险安排的全周期风险：① <strong>再保险资产违约风险</strong>——再保险人未能履行赔付义务，导致应收分保账款损失；② <strong>再保险负债波动风险</strong>——分出业务对负债评估的影响存在不确定性。两者采用加法聚合，因为资产端和负债端的再保险风险性质不同，统计上不显著相关。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>两大组成部分 Two Components <span class="en">Default &amp; Volatility</span></h2>
+
+    <h3>1. 再保险资产违约风险 Reinsurance Asset Default Risk</h3>
+    <p>再保险资产违约风险反映再保险人未能履行赔付义务的风险。保险公司分出业务后，应收分保账款成为资产，再保险人的信用质量直接影响该资产的可回收性。</p>
+
+    <div class="formula">
+      <span class="label">再保险资产违约风险最低资本公式</span>
+      <span class="eq">MC<sub>再保资产违约</sub></span> = 应收分保账款 × <span class="var">再保险人信用风险因子</span><br>
+      <span class="comment">信用风险因子取决于再保险人的信用评级</span><br>
+      <span class="comment">评级越高 → 因子越低 → 资本要求越低</span><br>
+      <span class="comment">评级越低 → 因子越高 → 资本要求越高</span>
+    </div>
+
+    <h3>2. 再保险负债波动风险 Reinsurance Liability Volatility Risk</h3>
+    <p>再保险负债波动风险反映分出业务对负债评估的不确定性影响。分出业务后的净负债评估涉及再保险摊回的假设，这些假设的偏差会导致负债波动。</p>
+
+    <div class="formula">
+      <span class="label">再保险负债波动风险最低资本公式</span>
+      <span class="eq">MC<sub>再保负债波动</sub></span> = 分出业务负债 × <span class="var">波动风险因子</span><br>
+      <span class="comment">波动风险因子通常 0.5%~2%</span><br>
+      <span class="comment">因子取决于分出业务类型和再保险安排结构</span>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">为何采用加法而非矩阵聚合</div>
+      <p>再保险风险的两个组成部分——资产违约风险和负债波动风险——在性质上完全不同：前者是再保险人信用风险（交易对手层面），后者是负债评估的不确定性（精算假设层面）。两者之间不存在显著的统计相关性，因此采用<strong>直接加法</strong>而非相关系数矩阵聚合。这与非寿险巨灾风险的加法处理逻辑类似。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>再保险风险在保险风险中的位置 Position in Insurance Risk <span class="en">Link to Rules 4, 5 &amp; 2</span></h2>
+    <p>再保险风险是保险风险最低资本（MC<sub>保险</sub>）的第三个组成部分，与寿险保险风险（第5号）和非寿险保险风险（第4号）并列。</p>
+
+    <div class="formula">
+      <span class="label">保险风险最低资本构成</span>
+      <span class="eq">MC<sub>保险</sub></span> = <span class="var">MC<sub>寿险</sub></span>（第5号） + <span class="var">MC<sub>非寿险</sub></span>（第4号） + <span class="var">MC<sub>再保</sub></span>（第6号）<br>
+      <span class="comment">三者采用加法聚合</span><br><br>
+      <span class="comment">MC<sub>可资本化</sub> = √(MC<sub>保险</sub>² + MC<sub>市场</sub>² + MC<sub>信用</sub>² + 交叉项)（第2号）</span><br>
+      <span class="comment">MC = MC<sub>可资本化</sub> × (1 + k)（第2号）</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">再保险风险的特殊性</div>
+      <p>再保险风险与寿险/非寿险保险风险的性质不同——寿险和非寿险保险风险反映的是<strong>直接承保业务</strong>的风险偏差，而再保险风险反映的是<strong>再保险安排</strong>引入的额外风险。再保险本身是一种风险转移工具，但在转移风险的同时引入了交易对手（再保险人）的信用风险。因此再保险风险是"风险管理的风险"。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>与第7号规则的衔接 Link to Rule 7 <span class="en">Look-Through for Reinsurance</span></h2>
+    <p>再保险风险的计量还需考虑再保险合同的<strong>穿透计量</strong>（第7号规则）。对于复杂的再保险安排（如转分保、再保险合同中的嵌套结构），需要穿透至最终的风险承担方，按其信用质量计量风险。</p>
+
+    <div class="callout warning">
+      <div class="title">"应穿尽穿"原则对再保险的影响</div>
+      <p>二期第7号规则要求对再保险安排实施"应穿尽穿"——对于转分保（再保险人将业务再次分出给其他再保险人），需穿透至最终再保险人，按最终再保险人的信用评级计量违约风险。无法穿透的再保险安排适用<strong>惩罚性风险因子</strong>，倒逼保险公司选择可穿透的再保险结构。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 关键条款 Key Provisions ============== -->
+<div class="tab-content" id="tab-provisions" style="display:none;">
+
+  <div class="section">
+    <h2>再保险资产违约风险 Reinsurance Asset Default Risk <span class="en">Counterparty Credit Risk</span></h2>
+    <p>再保险资产违约风险最低资本以<strong>应收分保账款</strong>为基础，乘以再保险人信用风险因子。因子取决于再保险人的信用评级。</p>
+
+    <div class="formula">
+      <span class="label">再保险资产违约风险最低资本公式</span>
+      <span class="eq">MC<sub>再保资产违约</sub></span> = 应收分保账款 × <span class="var">再保险人信用风险因子</span><br>
+      <span class="comment">应收分保账款 = 再保险人欠分出人的分保赔款和分保费用</span><br>
+      <span class="comment">若有多家再保险人，按各家信用评级分别计算后加总</span>
+    </div>
+
+    <h3>再保险人信用风险因子表 Counterparty Credit Factors</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">再保险人信用评级</th>
+          <th style="width:20%">信用风险因子</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AAA级</strong></td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-green);">0.5%</td>
+          <td>最高信用质量，违约概率极低</td>
+        </tr>
+        <tr>
+          <td><strong>AA级</strong></td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-teal);">1.0%</td>
+          <td>高信用质量，违约概率很低</td>
+        </tr>
+        <tr>
+          <td><strong>A级</strong></td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-blue);">2.0%</td>
+          <td>中高信用质量，违约概率较低</td>
+        </tr>
+        <tr>
+          <td><strong>BBB级</strong></td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">4.0%</td>
+          <td>中等信用质量，违约概率中等</td>
+        </tr>
+        <tr>
+          <td><strong>BB级</strong></td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-red);">8.0%</td>
+          <td>低信用质量，违约概率较高</td>
+        </tr>
+        <tr>
+          <td><strong>未评级</strong></td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-red);background:#fcebeb;">10.0%</td>
+          <td>无外部评级，适用惩罚性因子</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout danger">
+      <div class="title">未评级再保险人的惩罚性因子</div>
+      <p>未评级再保险人适用 10% 的惩罚性信用风险因子——是AAA级再保险人的 <strong>20倍</strong>。这是二期的重要改革，旨在倒逼保险公司选择有外部评级的再保险人，或要求未评级再保险人提供担保品（信用证、现金担保等）以降低资本要求。</p>
+    </div>
+
+    <div class="callout info">
+      <div class="title">因子差异化的原理</div>
+      <p>信用风险因子随评级下降呈<strong>倍数递增</strong>：AAA→AA翻倍（0.5%→1.0%），AA→A翻倍（1.0%→2.0%），A→BBB翻倍（2.0%→4.0%），BBB→BB翻倍（4.0%→8.0%）。这种倍数递增反映了低评级再保险人违约概率的非线性上升——评级每下降一级，违约概率大约翻倍。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>再保险负债波动风险 Reinsurance Liability Volatility Risk <span class="en">Reserve Volatility</span></h2>
+    <p>再保险负债波动风险最低资本以<strong>分出业务负债</strong>为基础，乘以波动风险因子。</p>
+
+    <div class="formula">
+      <span class="label">再保险负债波动风险最低资本公式</span>
+      <span class="eq">MC<sub>再保负债波动</sub></span> = 分出业务负债 × <span class="var">波动风险因子</span><br>
+      <span class="comment">分出业务负债 = 分出业务对应的准备金</span><br>
+      <span class="comment">波动风险因子约 0.5%~2%</span><br>
+      <span class="comment">因子取决于分出业务类型（比例/非比例）和再保险结构</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">负债波动风险的来源</div>
+      <p>分出业务负债的波动来源于：① <strong>再保险摊回的不确定性</strong>——再保险人按约定比例摊回赔款，但摊回金额的精算估计存在偏差；② <strong>再保险合同条款的复杂性</strong>——特别是非比例再保险（如超赔合约）中，摊回金额的计算依赖复杂参数，不确定性更大；③ <strong>再保险人偿付能力变化</strong>——再保险人偿付能力恶化可能导致摊回预期下调。</p>
+    </div>
+
+    <h3>波动风险因子（典型值）Volatility Risk Factors</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">分出业务类型</th>
+          <th style="width:20%">波动风险因子</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>比例再保险（成数合约）</td>
+          <td style="font-family:var(--font-mono);">0.5%</td>
+          <td>结构简单，波动性低</td>
+        </tr>
+        <tr>
+          <td>比例再保险（溢额合约）</td>
+          <td style="font-family:var(--font-mono);">0.8%</td>
+          <td>结构相对简单</td>
+        </tr>
+        <tr>
+          <td>非比例再保险（超赔合约）</td>
+          <td style="font-family:var(--font-mono);">1.5%</td>
+          <td>结构复杂，波动性中等</td>
+        </tr>
+        <tr>
+          <td>非比例再保险（巨灾超赔）</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">2.0%</td>
+          <td>结构最复杂，波动性最高</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>再保险合同的穿透计量 Look-Through for Reinsurance <span class="en">Link to Rule No.7</span></h2>
+    <p>再保险风险的计量还需考虑再保险合同的<strong>穿透计量</strong>（第7号规则）。对于复杂的再保险安排，需要穿透至最终的风险承担方。</p>
+
+    <div class="callout warning">
+      <div class="title">穿透计量的核心要求</div>
+      <p style="margin-bottom:6px;">二期对再保险安排实施"应穿尽穿"原则，核心要求包括：</p>
+      <ul>
+        <li><strong>转分保穿透：</strong>再保险人将业务转分给其他再保险人时，需穿透至最终再保险人，按最终再保险人的信用评级计量违约风险</li>
+        <li><strong>再保险合同嵌套：</strong>对于包含多层结构的再保险合同，需穿透至各层风险承担方分别计量</li>
+        <li><strong>无法穿透的惩罚：</strong>无法穿透的再保险安排适用惩罚性风险因子（远高于正常水平），倒逼保险公司选择可穿透的再保险结构</li>
+        <li><strong>担保品抵扣：</strong>再保险人提供的担保品（信用证、现金担保、信托资产等）可抵扣应收分保账款，降低违约风险敞口</li>
+      </ul>
+    </div>
+
+    <div class="formula">
+      <span class="label">穿透后的再保险资产违约风险公式</span>
+      <span class="eq">MC<sub>再保资产违约</sub></span> = Σ(应收分保账款<sub>i</sub> - 担保品<sub>i</sub>) × <span class="var">最终再保险人<sub>i</sub>信用因子</span><br>
+      <span class="comment">对每家最终再保险人 i 分别计算后加总</span><br>
+      <span class="comment">担保品可抵扣净敞口，降低资本要求</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期改革概览 Phase II Reforms <span class="en">Key Changes in Reinsurance Risk</span></h2>
+    <p>C-ROSS 二期在再保险风险计量方面进行了多项重要改革，核心方向是<strong>更严格的认可标准、更审慎的风险因子、更透明的穿透计量</strong>——强化对未评级再保险人的惩罚、强调穿透原则、区分境内外再保险人风险。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">改革领域</th>
+          <th style="width:36%">一期做法</th>
+          <th>二期改革</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>再保险资产认可标准</strong></td>
+          <td>认可标准相对宽松</td>
+          <td><strong>更加严格</strong>，对再保险人资质要求提高</td>
+        </tr>
+        <tr>
+          <td><strong>未评级再保险人</strong></td>
+          <td>因子较高但无专项惩罚</td>
+          <td><strong>新增惩罚性因子</strong>（10%）</td>
+        </tr>
+        <tr>
+          <td><strong>再保险风险因子</strong></td>
+          <td>因子相对较低</td>
+          <td><strong>整体上调</strong>，更加审慎</td>
+        </tr>
+        <tr>
+          <td><strong>穿透计量</strong></td>
+          <td>穿透要求有限</td>
+          <td><strong>强调"应穿尽穿"</strong>原则</td>
+        </tr>
+        <tr>
+          <td><strong>境外再保险人</strong></td>
+          <td>与境内统一因子</td>
+          <td><strong>区分境内外</strong>再保险人风险因子</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化1：再保险资产认可标准更加严格 Stricter Recognition Standards <span class="en">Tighter Admitted Asset Rules</span></h2>
+    <div class="callout danger">
+      <div class="title">一期问题</div>
+      <p>一期规则下，再保险资产的认可标准相对宽松——即使再保险人信用质量较差，只要满足基本的合约要求，应收分保账款即可全额认可。这导致部分保险公司通过低质量再保险人安排"纸面分保"——表面分出风险，实际再保险人无力赔付，风险仍留在原保险公司。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期对再保险资产的认可标准进行了<strong>更加严格</strong>的规定：① 再保险人须满足最低资本充足率要求；② 应收分保账款按再保险人信用质量差异化认可——低评级或未评级再保险人的应收分保账款须打折认可；③ 要求提供担保品的再保险安排享受更高认可比例。这些措施提高了再保险资产的真实质量。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化2：新增未评级再保险人惩罚性因子 Unrated Reinsurer Penalty <span class="en">10% Punitive Factor</span></h2>
+    <div class="callout warning">
+      <div class="title">改革背景</div>
+      <p>一期对未评级再保险人的风险因子虽高于评级再保险人，但差距不够大，未能有效阻止保险公司使用未评级再保险人。部分公司通过未评级的关联再保险人进行风险转移安排，实际上风险仍在集团内部，再保险的分散效果存疑。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期对未评级再保险人适用<strong>10%的惩罚性信用风险因子</strong>——是AAA级再保险人的20倍。这一惩罚性因子使得使用未评级再保险人的资本成本极高，倒逼保险公司：① 选择有外部评级的再保险人；② 要求未评级再保险人提供充足担保品；③ 减少对未评级再保险人的依赖。</p>
+    </div>
+
+    <div class="formula">
+      <span class="label">未评级再保险人惩罚效果对比</span>
+      <span class="comment">假设应收分保账款 = 10,000 万</span><br><br>
+      AAA级：MC = 10,000 × 0.5% = <strong style="color:var(--c-green);">50 万</strong><br>
+      未评级：MC = 10,000 × 10% = <strong style="color:var(--c-red);">1,000 万</strong><br><br>
+      <span class="comment">差异 = 950 万，惩罚效果显著</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化3：再保险风险因子整体上调 Factor Increase <span class="en">More Prudent Capital</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期对再保险风险的各项因子进行了<strong>整体上调</strong>：① 再保险人信用风险因子各评级档次均有所上升；② 负债波动风险因子适度上调；③ 因子调整使得再保险风险最低资本整体上升，更审慎地反映再保险安排的风险。上调幅度在10%-30%之间，因评级档次和业务类型而异。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化4：强调"应穿尽穿"原则 Look-Through Principle <span class="en">Mandatory Penetration</span></h2>
+    <div class="callout warning">
+      <div class="title">一期问题</div>
+      <p>一期对再保险安排的穿透要求有限，部分保险公司通过转分保和复杂再保险结构隐藏最终风险承担方。例如：A保险公司将业务分给B再保险人，B又将业务转分给C再保险人（C可能信用质量较差），但在一期的计量框架下，A公司仅按B再保险人的评级计量违约风险，未能反映C的真实信用质量。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期通过第7号规则强调<strong>"应穿尽穿"</strong>原则：① 转分保须穿透至最终再保险人，按最终再保险人信用评级计量；② 复杂再保险结构须逐层穿透；③ 无法穿透的再保险安排适用惩罚性因子；④ 鼓励保险公司选择结构简单、可穿透的再保险安排。这使得再保险风险的计量更加真实透明。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化5：境外再保险人风险因子区分 Onshore vs Offshore Factors <span class="en">Jurisdiction-Based Differentiation</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期对<strong>境外再保险人</strong>的风险因子进行区分：① 境外再保险人须满足注册地监管机构的偿付能力要求，并经中国监管认可；② 境外再保险人的信用风险因子可能略高于同等评级的境内再保险人，反映跨境监管协调的额外风险；③ 对注册在低监管标准地区的境外再保险人施加额外风险因子。这一改革促进了中国再保险市场的规范发展。</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">再保险人类型</th>
+          <th style="width:20%">AAA级因子</th>
+          <th style="width:20%">未评级因子</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>境内再保险人</td>
+          <td style="font-family:var(--font-mono);">0.5%</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);">10.0%</td>
+          <td>中国境内注册的再保险人</td>
+        </tr>
+        <tr>
+          <td>境外再保险人（高监管标准地区）</td>
+          <td style="font-family:var(--font-mono);">0.5%</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);">10.0%</td>
+          <td>注册在高监管标准地区的境外再保险人</td>
+        </tr>
+        <tr>
+          <td>境外再保险人（低监管标准地区）</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">0.8%</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);font-weight:600;">12.0%</td>
+          <td>注册在低监管标准地区，施加额外因子</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Calculation Example ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>计算案例：西红人寿 — 再保险风险最低资本 Worked Example <span class="en">Xihong Life Insurance</span></h2>
+
+    <div class="callout info">
+      <div class="title">公司背景 Company Background</div>
+      <p><strong>西红人寿保险公司</strong>（Xihong Life Insurance Co., Ltd.），继续第2号和第5号案例的分析。<br>
+      评估日期：<strong>2024年12月31日</strong> &nbsp;|&nbsp; 单位：<strong>万元</strong><br>
+      <span style="color:var(--c-text-muted);">本案例衔接第5号案例的寿险保险风险（MC<sub>寿险</sub> = 14,200万）和第2号案例的保险风险最低资本，计算再保险风险和完整的保险风险汇总。</span></p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">教学说明 Educational Note</div>
+      <p><strong>本案例为简化的教学示例</strong>，仅演示再保险风险的核心计算逻辑和保险风险汇总。实际计算中需对每家再保险人逐一计算，并考虑穿透计量和担保品抵扣。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>再保险安排数据 Reinsurance Arrangement Data <span class="en">2024 Year-End</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">项目</th>
+          <th style="width:15%">金额(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>应收分保账款合计</td>
+          <td style="text-align:right;font-weight:600;">12,000</td>
+          <td>再保险人欠西红人寿的分保赔款和费用</td>
+        </tr>
+        <tr>
+          <td>其中：AAA级再保人</td>
+          <td style="text-align:right;">6,000</td>
+          <td>主要再保险人，信用质量最高</td>
+        </tr>
+        <tr>
+          <td>其中：AA级再保人</td>
+          <td style="text-align:right;">4,000</td>
+          <td>次要再保险人，信用质量较高</td>
+        </tr>
+        <tr>
+          <td>其中：未评级再保人</td>
+          <td style="text-align:right;color:var(--c-red);">2,000</td>
+          <td>未提供外部评级的再保险人</td>
+        </tr>
+        <tr>
+          <td>分出业务负债</td>
+          <td style="text-align:right;font-weight:600;">30,000</td>
+          <td>分出业务对应的准备金</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">1</span>
+      <span class="cs-title">再保险资产违约风险 MC<sub>再保资产违约</sub></span>
+    </div>
+    <p style="font-size:13px;">应收分保账款按再保险人信用评级分别计算后加总。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">再保险人</th>
+          <th style="width:18%">应收分保(万)</th>
+          <th style="width:15%">信用因子</th>
+          <th style="width:15%">MC(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AAA级再保人</td>
+          <td style="text-align:right;">6,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);color:var(--c-green);">0.5%</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-green);">30</td>
+          <td>最高信用质量</td>
+        </tr>
+        <tr>
+          <td>AA级再保人</td>
+          <td style="text-align:right;">4,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);color:var(--c-teal);">1.0%</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-teal);">40</td>
+          <td>高信用质量</td>
+        </tr>
+        <tr style="background:#fcebeb;">
+          <td>未评级再保人</td>
+          <td style="text-align:right;">2,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);color:var(--c-red);font-weight:700;">10.0%</td>
+          <td style="text-align:right;font-weight:700;color:var(--c-red);">200</td>
+          <td>惩罚性因子</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>合计</strong></td>
+          <td style="text-align:right;font-weight:600;">12,000</td>
+          <td></td>
+          <td style="text-align:right;font-weight:700;font-size:15px;color:var(--c-primary-dark);">270</td>
+          <td><strong>加总</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>再保资产违约</sub> = MC<sub>AAA</sub> + MC<sub>AA</sub> + MC<sub>未评级</sub><br>
+      &nbsp;&nbsp;= 6,000 × 0.5% + 4,000 × 1.0% + 2,000 × 10.0%<br>
+      &nbsp;&nbsp;= 30 + 40 + 200<br>
+      &nbsp;&nbsp;= <strong>270 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>再保资产违约</sub> = 270 万元</div>
+    <div class="cs-note">注：未评级再保险人虽仅占应收分保账款的16.7%（2,000/12,000），却贡献了74.1%的违约风险资本（200/270）。建议西红人寿减少对未评级再保险人的依赖。</div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">2</span>
+      <span class="cs-title">再保险负债波动风险 MC<sub>再保负债波动</sub></span>
+    </div>
+    <p style="font-size:13px;">以分出业务负债为基础，乘以波动风险因子。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      分出业务负债 = 30,000 万<br>
+      波动风险因子 = 1.0%（假设为比例再保险）<br><br>
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>再保负债波动</sub> = 分出业务负债 × 波动风险因子<br>
+      &nbsp;&nbsp;= 30,000 × 1.0%<br>
+      &nbsp;&nbsp;= <strong>300 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>再保负债波动</sub> = 300 万元</div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="calc-step" style="border:2px solid var(--c-accent);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-accent);">3</span>
+      <span class="cs-title">再保险风险最低资本汇总 MC<sub>再保</sub></span>
+    </div>
+    <p style="font-size:13px;">两部分采用加法聚合。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>再保</sub> = MC<sub>再保资产违约</sub> + MC<sub>再保负债波动</sub><br>
+      &nbsp;&nbsp;= 270 + 300<br>
+      &nbsp;&nbsp;= <strong style="color:var(--c-teal);font-size:16px;">570 万</strong>
+    </div>
+    <div class="cs-result" style="font-size:16px;">MC<sub>再保</sub> = 570 万元</div>
+
+    <table style="margin-top:14px;">
+      <thead>
+        <tr>
+          <th style="width:30%">项目</th>
+          <th style="width:20%">金额(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MC<sub>再保资产违约</sub></td>
+          <td style="text-align:right;font-weight:600;color:var(--c-amber);">270</td>
+          <td>AAA 30 + AA 40 + 未评级 200</td>
+        </tr>
+        <tr>
+          <td>MC<sub>再保负债波动</sub></td>
+          <td style="text-align:right;font-weight:600;color:var(--c-amber);">300</td>
+          <td>30,000 × 1.0%</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>MC<sub>再保</sub> 合计</strong></td>
+          <td style="text-align:right;font-weight:700;font-size:16px;color:var(--c-primary-dark);">570</td>
+          <td><strong>加法聚合</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="cs-note">注：再保险风险的加法聚合不含分散效应——资产违约风险和负债波动风险在性质上不同，统计上不显著相关。</div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="calc-step" style="border:2px solid var(--c-teal);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-teal);">4</span>
+      <span class="cs-title">保险风险汇总（衔接第5号和第2号）Insurance Risk Aggregation</span>
+    </div>
+    <p style="font-size:13px;">将寿险保险风险（第5号）、非寿险保险风险（第4号）和再保险风险（第6号）汇总，得到完整的保险风险最低资本。</p>
+
+    <div class="callout info">
+      <div class="title">来自前序案例的数据</div>
+      <p>
+      MC<sub>寿险</sub>（第5号）= <strong>14,200 万</strong>（死亡4,000 + 长寿2,700 + 疾病5,000 + 退保2,500 + 费用1,200，经5×5矩阵聚合）<br>
+      MC<sub>非寿险</sub>（第4号）= <strong>0 万</strong>（西红人寿为纯寿险公司，无非寿险业务）<br>
+      MC<sub>再保</sub>（第6号，本案例）= <strong>570 万</strong>
+      </p>
+    </div>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">保险风险最低资本汇总：</span><br>
+      MC<sub>保险</sub> = MC<sub>寿险</sub> + MC<sub>非寿险</sub> + MC<sub>再保</sub><br>
+      &nbsp;&nbsp;= 14,200 + 0 + 570<br>
+      &nbsp;&nbsp;= <strong style="color:var(--c-teal);font-size:16px;">14,770 万</strong>
+    </div>
+
+    <table style="margin-top:14px;">
+      <thead>
+        <tr>
+          <th style="width:25%">风险类别</th>
+          <th style="width:15%">规则号</th>
+          <th style="width:18%">MC(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>寿险保险风险</td>
+          <td style="text-align:center;">第5号</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-purple);">14,200</td>
+          <td>死亡+长寿+疾病+退保+费用 聚合</td>
+        </tr>
+        <tr>
+          <td>非寿险保险风险</td>
+          <td style="text-align:center;">第4号</td>
+          <td style="text-align:right;color:var(--c-text-muted);">0</td>
+          <td>纯寿险公司，无非寿险业务</td>
+        </tr>
+        <tr>
+          <td>再保险风险</td>
+          <td style="text-align:center;">第6号</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-amber);">570</td>
+          <td>资产违约270 + 负债波动300</td>
+        </tr>
+        <tr style="background:var(--c-teal-light);">
+          <td><strong>MC<sub>保险</sub> 合计</strong></td>
+          <td></td>
+          <td style="text-align:right;font-weight:700;font-size:16px;color:var(--c-teal);">14,770</td>
+          <td><strong>加法聚合</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="cs-note">注：对于纯寿险公司（如西红人寿），MC<sub>保险</sub> ≈ MC<sub>寿险</sub> + MC<sub>再保</sub> = 14,770 万。再保险风险占保险风险的 3.9%（570/14,770）。</div>
+  </div>
+
+  <!-- Final Summary -->
+  <div class="calc-step" style="border:2px solid var(--c-primary);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-primary);">5</span>
+      <span class="cs-title">完整偿付能力链条回顾 Full Solvency Chain Review</span>
+    </div>
+    <p style="font-size:13px;">将再保险风险纳入完整偿付能力计算链条，回顾第1号至第6号的数值关系。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:12%">规则号</th>
+          <th style="width:25%">计算内容</th>
+          <th style="width:18%">结果(万)</th>
+          <th>在充足率中的位置</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>第1号</strong></td>
+          <td>实际资本 = 认可资产 - 认可负债</td>
+          <td style="text-align:right;font-weight:600;">57,000</td>
+          <td><strong>分子</strong></td>
+        </tr>
+        <tr>
+          <td><strong>第3号</strong></td>
+          <td>寿险合同负债 = BEL + RM + 未决赔款</td>
+          <td style="text-align:right;font-weight:600;">4,950</td>
+          <td>分子中认可负债的子项</td>
+        </tr>
+        <tr>
+          <td><strong>第5号</strong></td>
+          <td>寿险保险风险（5项子风险聚合）</td>
+          <td style="text-align:right;font-weight:600;">14,200</td>
+          <td>分母中保险风险的主项</td>
+        </tr>
+        <tr>
+          <td><strong>第6号</strong></td>
+          <td>再保险风险（资产违约 + 负债波动）</td>
+          <td style="text-align:right;font-weight:600;">570</td>
+          <td>分母中保险风险的附加项</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>第4+5+6号</strong></td>
+          <td>MC<sub>保险</sub> = MC<sub>寿险</sub> + MC<sub>非寿险</sub> + MC<sub>再保</sub></td>
+          <td style="text-align:right;font-weight:700;color:var(--c-primary-dark);">14,770</td>
+          <td>分母中保险风险维度合计</td>
+        </tr>
+        <tr>
+          <td><strong>第2号</strong></td>
+          <td>最低资本 = MC<sub>可资本化</sub> × (1 + k)</td>
+          <td style="text-align:right;font-weight:600;">20,081</td>
+          <td><strong>分母</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout success" style="margin-top:14px;">
+      <div class="title">完整闭环验证</div>
+      <p>第1号→第3号→第5号→第6号→第2号构成完整的偿付能力计算链条：</p>
+      <ul>
+        <li><strong>第1号（分子）：</strong>实际资本 57,000 万元</li>
+        <li><strong>第3号（负债）：</strong>寿险合同负债 4,950 万元（影响分子中认可负债）</li>
+        <li><strong>第5号+第6号（保险风险）：</strong>MC<sub>保险</sub> = 14,200 + 570 = 14,770 万元（分母中保险风险维度）</li>
+        <li><strong>第2号（分母）：</strong>最低资本 20,081 万元（含保险+市场+信用+控制风险）</li>
+      </ul>
+      <p style="margin-top:8px;">
+        <strong>综合偿付能力充足率</strong> = 57,000 / 20,081 = <strong>284%</strong><br>
+        <strong>核心偿付能力充足率</strong> = 46,800 / 20,081 = <strong>233%</strong>
+      </p>
+      <p style="margin-top:8px;">西红人寿偿付能力充足，远高于监管要求（核心≥50%、综合≥100%）。再保险风险（570万）占保险风险的3.9%，占最低资本的2.8%，比例较小但不可忽视——主要风险来源是未评级再保险人的惩罚性因子（200万）。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号 第6号：再保险风险<br>
+  参考：EIOPA Solvency II Counterparty Default Risk、IAIS Reinsurance Risk Guidance</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+// Tab Switching
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Save last active tab
+  localStorage.setItem('cross_rule6_activeTab', tabId);
+}
+
+// Progress Tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule6';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+
+  // Restore last active tab
+  var savedTab = localStorage.getItem('cross_rule6_activeTab');
+  if (savedTab && document.getElementById('tab-' + savedTab)) {
+    switchTab(savedTab);
+  }
+})();
+</script>
+
+</body>
+</html>
