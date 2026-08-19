@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第14号：资本规划 Capital Planning | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html" class="active">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+    <a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第二支柱</a>
+  <span class="sep">›</span>
+  第14号 资本规划
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II &middot; 监管规则第 14 号 &middot; Pillar II</div>
+  <h1>第14号：资本规划 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 三年滚动资本补充与管理规划</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Capital Planning</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(83,74,183,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(83,74,183,0.4);color:var(--c-purple-light);">Pillar II &middot; 第二支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">三年滚动</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">资本补充方案</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">压力测试联动</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="methodology" onclick="switchTab('methodology')">规划方法 Methodology</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Case Study</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>资本规划的定义 Definition <span class="en">Capital Planning</span></h2>
+    <p><strong>资本规划</strong>是保险公司基于业务发展规划、风险评估结果和压力测试结论，对未来一定期间内（至少3年）的资本需求、资本来源和资本结构进行系统安排的管理制度。资本规划是第二支柱的核心组成，将"静态的偿付能力充足率"转化为"动态的资本管理前瞻性规划"。</p>
+
+    <div class="callout info">
+      <div class="title">资本规划的核心问题</div>
+      <p>资本规划回答三个前瞻性问题：<br>
+      ① <strong>"未来需要多少资本？"</strong>——基于业务增长和风险变化预测最低资本走势<br>
+      ② <strong>"资本从哪里来？"</strong>——内生资本（利润留存）与外生资本（增资、发行资本工具）的组合<br>
+      ③ <strong>"资本结构是否合理？"</strong>——核心一级/核心二级/附属一级/附属二级资本的比例</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>资本规划与压力测试的关系 <span class="en">Link to Stress Testing</span></h2>
+    <p>资本规划与压力测试（第10号）紧密联动。压力测试揭示极端情景下的资本缺口，资本规划据此制定资本补充方案。</p>
+
+    <div class="formula">
+      <span class="label">资本规划流程</span><br>
+      <span class="eq">Step 1</span> 业务规划 &#8594; 预测未来3年保费规模、产品结构<br>
+      <span class="eq">Step 2</span> 风险评估 &#8594; 基于业务规划预测最低资本走势<br>
+      <span class="eq">Step 3</span> 压力测试 &#8594; 识别极端情景下的资本缺口<br>
+      <span class="eq">Step 4</span> 资本来源规划 &#8594; 设计内生+外生资本补充方案<br>
+      <span class="eq">Step 5</span> 资本结构优化 &#8594; 确保核心/附属资本比例合理<br>
+      <span class="eq">Step 6</span> 董事会审议 &#8594; 报送监管，季度更新
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>三年滚动机制 Three-Year Rolling Mechanism <span class="en">Rolling Plan</span></h2>
+    <p>资本规划采用<strong>三年滚动</strong>机制：每年编制未来3年的资本规划，每年至少更新一次。滚动机制确保规划始终覆盖未来3年，而非一次性静态规划。第一年规划最详细（含季度分解），第二、三年为方向性规划。</p>
+
+    <div class="callout warning">
+      <div class="title">资本规划的触发条件</div>
+      <p>以下情况需额外编制资本补充计划：<br>
+      ① 压力测试情景下偿付能力充足率低于100%<br>
+      ② 预计未来3年偿付能力充足率将低于150%（监管预警线）<br>
+      ③ SARMRA评估结果为C/D类<br>
+      ④ 业务规模快速增长导致最低资本增速超过资本增速<br>
+      ⑤ 监管要求的其他情形</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 规划方法 Methodology ============== -->
+<div class="tab-content" id="tab-methodology" style="display:none;">
+
+  <div class="section">
+    <h2>资本需求预测 Capital Requirement Forecast <span class="en">MC Projection</span></h2>
+    <p>资本需求预测基于业务发展规划，预测未来3年最低资本走势。预测需考虑以下驱动因素：</p>
+    <table>
+      <thead>
+        <tr><th>驱动因素</th><th>影响方向</th><th>预测方法</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>保费规模增长</td><td>MC上升</td><td>基于业务规划的增长率推算</td></tr>
+        <tr><td>产品结构变化</td><td>不确定</td><td>按产品线分别测算风险暴露</td></tr>
+        <tr><td>资产配置调整</td><td>不确定</td><td>基于战略资产配置(SAA)测算</td></tr>
+        <tr><td>再保险安排变化</td><td>不确定</td><td>按分保前/后风险净额测算</td></tr>
+        <tr><td>SARMRA评分变化</td><td>MC可能上升</td><td>按控制风险MC加征系数预测</td></tr>
+        <tr><td>监管参数调整</td><td>不确定</td><td>基于监管政策趋势判断</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>资本来源规划 Capital Source Planning <span class="en">Sources</span></h2>
+    <table>
+      <thead>
+        <tr><th>来源类型</th><th>具体方式</th><th>资本级别</th><th>时效性</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>内生资本</strong></td>
+          <td>利润留存（不分红或降低分红率）</td>
+          <td>核心一级</td>
+          <td>持续</td>
+        </tr>
+        <tr>
+          <td><strong>外生资本——股权</strong></td>
+          <td>股东增资、定向增发</td>
+          <td>核心一级</td>
+          <td>需审批，6-12月</td>
+        </tr>
+        <tr>
+          <td><strong>外生资本——债务工具</strong></td>
+          <td>资本补充债券（10年以上）</td>
+          <td>附属一级/二级</td>
+          <td>需审批，3-6月</td>
+        </tr>
+        <tr>
+          <td><strong>外生资本——混合工具</strong></td>
+          <td>永续债、次级可转债</td>
+          <td>附属一级</td>
+          <td>需审批，3-6月</td>
+        </tr>
+        <tr>
+          <td><strong>资本释放</strong></td>
+          <td>调整资产配置（降低高风险资产）</td>
+          <td>不影响级别</td>
+          <td>较快</td>
+        </tr>
+        <tr>
+          <td><strong>资本释放</strong></td>
+          <td>增加再保险（降低净自留风险）</td>
+          <td>不影响级别</td>
+          <td>较快</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">资本来源优先序</div>
+      <p>资本规划应优先考虑内生资本（利润留存），其次为资本释放（资产配置调整、再保险安排），最后才考虑外生资本（增资、发行债务工具）。内生资本成本最低且不稀释股权，应作为第一选择。外生资本应作为压力情景下的"应急预案"。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>资本结构管理 Capital Structure Management <span class="en">Tiering</span></h2>
+    <p>资本规划需确保资本结构合理——核心一级资本占比足够高，附属资本不超过监管上限。</p>
+
+    <table>
+      <thead>
+        <tr><th>资本级别</th><th>工具</th><th>监管上限</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>核心一级</td><td>实收资本、资本公积、未分配利润、保单未来盈余（&gt;30年部分）</td><td>无上限</td></tr>
+        <tr><td>核心二级</td><td>保单未来盈余（10-30年部分）</td><td>核心资本内&le;35%</td></tr>
+        <tr><td>附属一级</td><td>永续债、保单未来盈余（5-10年部分）</td><td>附属资本&le;核心资本100%</td></tr>
+        <tr><td>附属二级</td><td>资本补充债券、次级可转债、保单未来盈余（&lt;5年部分）</td><td>附属二级&le;核心资本50%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期核心变化 Key Changes in Phase II</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>资本规划期限明确为3年</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期明确资本规划覆盖未来至少3年，采用滚动更新机制。一期为"原则上3年"，弹性较大。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>与压力测试强联动</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期要求资本规划必须基于压力测试结论编制，明确极端情景下的资本补充方案，而非仅做正常情景规划。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>保单未来盈余分级纳入</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期将保单未来盈余按剩余期限分四级计入不同资本层级，资本规划需考虑盈余期限结构对资本级别的影响。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>资本补充工具标准化</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期明确了各类资本补充工具的合格标准（永续债、资本补充债券等），资本规划可据此设计具体工具。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>与IRR联动</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期将资本规划质量纳入SARMRA评估和IRR评级，资本规划不力的公司可能在SARMRA和IRR中扣分。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>报告频率提升</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期要求资本规划随偿付能力季度报告报送，更新频率从年度提升至季度。
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Case Study ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>西红人寿三年资本规划 <span class="en">Xihong Life 3-Year Capital Plan</span></h2>
+    <p>以<strong>西红人寿保险公司</strong>为例，展示三年滚动资本规划的编制过程。</p>
+    <p><strong>基准数据（当前年度）：</strong>实际资本 57,000 万元、最低资本 20,081 万元、综合充足率 284%、核心充足率 233%。</p>
+  </div>
+
+  <div class="section">
+    <h2>Step 1：资本需求预测 <span class="en">MC Projection</span></h2>
+
+    <table>
+      <thead>
+        <tr><th>项目</th><th>当前年度</th><th>第1年</th><th>第2年</th><th>第3年</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>保费收入</td><td>50,000</td><td>55,000 (+10%)</td><td>60,500 (+10%)</td><td>66,550 (+10%)</td>
+        </tr>
+        <tr>
+          <td>最低资本（正常情景）</td><td>20,081</td><td>22,089 (+10%)</td><td>24,298 (+10%)</td><td>26,728 (+10%)</td>
+        </tr>
+        <tr>
+          <td>最低资本（压力情景）</td><td>—</td><td>25,000</td><td>28,000</td><td>31,000</td>
+        </tr>
+        <tr>
+          <td>实际资本（正常情景）</td><td>57,000</td><td>63,000</td><td>70,000</td><td>77,000</td>
+        </tr>
+        <tr>
+          <td>实际资本（压力情景）</td><td>—</td><td>54,000</td><td>56,000</td><td>58,000</td>
+        </tr>
+        <tr style="background:var(--c-green-light);">
+          <td style="font-weight:700;">综合充足率（正常）</td><td style="font-weight:700;">284%</td><td style="font-weight:700;">285%</td><td style="font-weight:700;">288%</td><td style="font-weight:700;">288%</td>
+        </tr>
+        <tr style="background:var(--c-amber-light);">
+          <td style="font-weight:700;">综合充足率（压力）</td><td style="font-weight:700;">—</td><td style="font-weight:700;color:var(--c-amber);">216%</td><td style="font-weight:700;color:var(--c-amber);">200%</td><td style="font-weight:700;color:var(--c-amber);">187%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);">注：正常情景假设利润留存使实际资本年增约6,000万；压力情景取第10号压力测试中逆周期叠加情景的结果（资本侵蚀+最低资本上升）。</p>
+  </div>
+
+  <div class="section">
+    <h2>Step 2：资本缺口分析 <span class="en">Gap Analysis</span></h2>
+
+    <div class="formula">
+      <span class="label">压力情景资本缺口</span><br>
+      <span style="color:var(--c-accent);">监管目标充足率 = 150%（监管预警线）</span><br><br>
+      第1年压力缺口 = 25,000 &times; 150% - 54,000 = 37,500 - 54,000 = <strong>-16,500万（盈余）</strong><br>
+      第2年压力缺口 = 28,000 &times; 150% - 56,000 = 42,000 - 56,000 = <strong>-14,000万（盈余）</strong><br>
+      第3年压力缺口 = 31,000 &times; 150% - 58,000 = 46,500 - 58,000 = <strong>-11,500万（盈余）</strong><br>
+      <span class="comment">负值表示实际资本超过监管目标（150%），无资本缺口</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">缺口分析结论</div>
+      <p>即使压力情景下，西红人寿未来3年的偿付能力充足率均高于100%（监管底线），且高于150%（预警线）。因此<strong>无需启动外生资本补充</strong>，维持现有利润留存策略即可。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Step 3：资本来源规划 <span class="en">Capital Source Plan</span></h2>
+
+    <table>
+      <thead>
+        <tr><th>资本来源</th><th>第1年</th><th>第2年</th><th>第3年</th><th>合计</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>利润留存</td>
+          <td>6,000</td><td>7,000</td><td>7,000</td><td>20,000</td>
+        </tr>
+        <tr>
+          <td>资产配置优化释放</td>
+          <td>0</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        <tr>
+          <td>再保险安排优化</td>
+          <td>0</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        <tr>
+          <td>外生资本（增资/发债）</td>
+          <td>0</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        <tr style="background:var(--c-teal-light);">
+          <td style="font-weight:700;">资本补充合计</td>
+          <td style="font-weight:700;">6,000</td><td style="font-weight:700;">7,000</td><td style="font-weight:700;">7,000</td><td style="font-weight:700;color:var(--c-teal);">20,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>西红人寿资本规划以<strong>内生资本（利润留存）</strong>为主要来源，无需外生资本补充。年利润约8,000万元，分红率25%（2,000万），留存6,000万元用于补充资本。随着利润增长，第2-3年留存额可增至7,000万元。</p>
+  </div>
+
+  <div class="section">
+    <h2>Step 4：应急预案 Contingency Plan <span class="en">— Stress Scenario</span></h2>
+
+    <div class="callout warning">
+      <div class="title">极端情景下的资本补充预案</div>
+      <p>假设第2年发生极端事件（如股票暴跌50%+利率大幅上升），实际资本可能降至45,000万元，最低资本升至30,000万元：</p>
+      <p>极端充足率 = 45,000 / 30,000 = <strong>150%</strong>（恰在预警线）<br>
+      监管目标缺口 = 30,000 &times; 150% - 45,000 = <strong>0万</strong>（刚好达标）<br>
+      但如进一步恶化（实际资本降至40,000万），充足率 = 133%，低于预警线，需启动应急预案。</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>应急方案</th><th>可补充资本</th><th>时效</th><th>资本级别</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>暂停分红</td><td>+2,000/年</td><td>立即</td><td>核心一级</td></tr>
+        <tr><td>降低高风险资产配置</td><td>+3,000</td><td>1-3月</td><td>释放资本</td></tr>
+        <tr><td>增加再保险分出</td><td>+2,000</td><td>1-2月</td><td>降低MC</td></tr>
+        <tr><td>发行资本补充债券</td><td>+5,000</td><td>3-6月</td><td>附属二级</td></tr>
+        <tr><td>股东增资</td><td>+10,000</td><td>6-12月</td><td>核心一级</td></tr>
+        <tr style="background:var(--c-teal-light);">
+          <td style="font-weight:700;">应急预案合计</td>
+          <td style="font-weight:700;color:var(--c-teal);">+12,000</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>应急预案可补充约12,000万元资本，足以将充足率从133%提升至约173%（(40,000+12,000)/30,000），恢复至预警线以上。</p>
+  </div>
+
+  <div class="section">
+    <h2>Step 5：资本结构检查 <span class="en">Structure Check</span></h2>
+    <table>
+      <thead>
+        <tr><th>资本级别</th><th>当前金额</th><th>占比</th><th>监管上限</th><th>达标</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>核心一级</td><td>42,000</td><td>73.7%</td><td>无上限</td><td style="color:var(--c-green);">YES</td></tr>
+        <tr><td>核心二级</td><td>4,740</td><td>8.3%</td><td>核心资本内&le;35%</td><td style="color:var(--c-green);">YES</td></tr>
+        <tr><td>附属一级</td><td>5,260</td><td>9.2%</td><td>附属&le;核心100%</td><td style="color:var(--c-green);">YES</td></tr>
+        <tr><td>附属二级</td><td>5,000</td><td>8.8%</td><td>附属二级&le;核心50%</td><td style="color:var(--c-green);">YES</td></tr>
+        <tr style="background:var(--c-green-light);">
+          <td colspan="2" style="font-weight:700;">合计</td>
+          <td style="font-weight:700;">57,000</td>
+          <td></td>
+          <td style="font-weight:700;color:var(--c-green);">全部达标</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>西红人寿资本结构合理：核心一级资本占比73.7%，核心二级占比8.3%（核心资本内限额35%约束下），附属资本占比18%，附属二级&le;核心50%约束下有充足空间。</p>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 &middot; 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（&Iota;）》银保监发〔2021〕51号 第14号：资本规划<br>
+  参考：Basel III Capital Planning、Solvency II ORSA Forward-Looking Assessment</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('[id^="tab-"]');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Progress tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule14';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
