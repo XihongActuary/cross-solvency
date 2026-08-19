@@ -1,0 +1,3 @@
+# Python (temporary scripts)
+*.py
+__pycache__/
