@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4号：非寿险保险风险最低资本 Non-Life Insurance Risk | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a href="03-rule1-actual-capital.html" class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html" class="active">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第一支柱</a>
+  <span class="sep">›</span>
+  第4号 非寿险保险风险
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管规则第 4 号 · Pillar I</div>
+  <h1>第4号：非寿险保险风险最低资本 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 保费 / 准备金 / 巨灾三维度计量</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Non-Life Insurance Risk Minimum Capital</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(200,152,60,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(200,152,60,0.4);color:#fdf5e6;">Pillar I · 第一支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">保费风险 + 准备金风险 + 巨灾风险</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">因子法 + 情景法</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">险种级相关系数聚合</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="provisions" onclick="switchTab('provisions')">关键条款 Key Provisions</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Calculation Example</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>非寿险保险风险的定义 Definition <span class="en">Non-Life Insurance Risk</span></h2>
+    <p><strong>非寿险保险风险最低资本</strong>是对非寿险业务的<strong>保费风险</strong>、<strong>准备金风险</strong>和<strong>巨灾风险</strong>计量的最低资本要求。它是保险风险最低资本（MC<sub>保险</sub>）的重要组成部分，与寿险保险风险最低资本并列，共同构成保险风险维度。</p>
+
+    <div class="formula">
+      <span class="label">非寿险保险风险最低资本基本公式</span>
+      <span class="eq">MC<sub>非寿险</sub></span> = √( <span class="var">MC<sub>保费</sub></span>² + <span class="var">MC<sub>准备金</sub></span>² + 2×<span class="var">ρ</span>×<span class="var">MC<sub>保费</sub></span>×<span class="var">MC<sub>准备金</sub></span> ) + <span class="var">MC<sub>巨灾</sub></span><br>
+      <span class="comment">MC_nonlife = √(MC_premium² + MC_reserve² + 2×ρ×MC_premium×MC_reserve) + MC_cat</span><br><br>
+      <span class="comment">ρ: 保费风险与准备金风险相关系数（按险种不同，0~0.5）</span><br>
+      <span class="comment">巨灾风险与保费/准备金风险不相关，采用加法聚合</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">"保费 + 准备金 + 巨灾"三维度</div>
+      <p>非寿险保险风险的独特之处在于：保费风险反映<strong>承保定价风险</strong>（保费是否足以覆盖赔付），准备金风险反映<strong>已发生赔案的不确定性</strong>（准备金是否充足），巨灾风险反映<strong>极端事件冲击</strong>。三者覆盖了非寿险经营的全周期风险——从定价到理赔到极端场景。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>三大子风险 Three Sub-Risks <span class="en">Premium / Reserve / Catastrophe</span></h2>
+
+    <h3>1. 保费风险 Premium Risk <span class="en">— 因子法 Factor Approach</span></h3>
+    <p>保费风险反映未来承保年度的赔付支出偏离定价假设的风险。以<strong>已赚保费或自留保费</strong>为基础，使用风险因子法计量。</p>
+
+    <div class="formula">
+      <span class="label">保费风险最低资本公式</span>
+      <span class="eq">MC<sub>保费</sub></span> = max(净已赚保费, 净自留保费) × <span class="var">RF</span> × <span class="var">货币兑换因子</span><br>
+      <span class="comment">RF = 风险因子，按险种类型、公司规模（大/中小公司）差异化</span><br>
+      <span class="comment">货币兑换因子 = 1.0（人民币业务），外币业务按汇率折算</span>
+    </div>
+
+    <h3>2. 准备金风险 Reserve Risk <span class="en">— 因子法 Factor Approach</span></h3>
+    <p>准备金风险反映已赚保费期段的已发生赔案在未来结算时偏离准备金假设的风险。以<strong>未到期责任准备金和未决赔款准备金</strong>为基础。</p>
+
+    <div class="formula">
+      <span class="label">准备金风险最低资本公式</span>
+      <span class="eq">MC<sub>准备金</sub></span> = (未到期责任准备金 + 未决赔款准备金) × <span class="var">RF</span><br>
+      <span class="comment">RF = 准备金风险因子，按险种类型差异化</span>
+    </div>
+
+    <h3>3. 巨灾风险 Catastrophe Risk <span class="en">— 事件情景法 Event Scenario Approach</span></h3>
+    <p>巨灾风险反映极端自然灾害或人为灾害造成的超额赔付风险。采用<strong>事件情景法</strong>，对必测情景（台风/洪水/地震）逐一评估净损失。</p>
+
+    <div class="formula">
+      <span class="label">巨灾风险最低资本公式</span>
+      <span class="eq">MC<sub>巨灾</sub></span> = max(各情景下净损失 × <span class="var">巨灾因子</span>)<br>
+      <span class="comment">必测情景：台风、洪水、地震（按地域选择适用情景）</span><br>
+      <span class="comment">各情景取最大值，反映最不利巨灾情景的资本要求</span>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">巨灾风险为何用"加法"而非"矩阵聚合"</div>
+      <p>保费风险与准备金风险之间存在一定相关性（同一险种的定价和理赔经验相关），用相关系数矩阵聚合。而巨灾风险是<strong>低频高损</strong>事件，与日常经营的保费/准备金风险几乎不相关，因此巨灾风险最低资本采用<strong>直接加法</strong>叠加在聚合后的保费+准备金风险之上。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>非寿险业务类型 Non-Life Business Types <span class="en">Insurance Categories</span></h2>
+    <p>C-ROSS II 将非寿险业务分为以下主要险种类型，各险种适用不同的风险因子和聚合规则：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:15%">险种</th>
+          <th style="width:20%">英文</th>
+          <th style="width:15%">代码</th>
+          <th>特点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>车险</strong></td>
+          <td class="en-text">Motor Insurance</td>
+          <td style="font-family:var(--font-mono);">MOT</td>
+          <td>保费规模最大，风险因子相对较低（大数法则效应强）</td>
+        </tr>
+        <tr>
+          <td><strong>企财险</strong></td>
+          <td class="en-text">Enterprise Property</td>
+          <td style="font-family:var(--font-mono);">EPR</td>
+          <td>企业财产保险，风险因子中等</td>
+        </tr>
+        <tr>
+          <td><strong>家财险</strong></td>
+          <td class="en-text">Household Property</td>
+          <td style="font-family:var(--font-mono);">HPR</td>
+          <td>家庭财产保险，规模较小</td>
+        </tr>
+        <tr>
+          <td><strong>责任险</strong></td>
+          <td class="en-text">Liability Insurance</td>
+          <td style="font-family:var(--font-mono);">LIA</td>
+          <td>长尾业务，准备金风险因子较高</td>
+        </tr>
+        <tr>
+          <td><strong>工程险</strong></td>
+          <td class="en-text">Engineering</td>
+          <td style="font-family:var(--font-mono);">ENG</td>
+          <td>建工险/安装险，巨灾风险暴露大</td>
+        </tr>
+        <tr>
+          <td><strong>货运险</strong></td>
+          <td class="en-text">Cargo / Freight</td>
+          <td style="font-family:var(--font-mono);">CAR</td>
+          <td>货物运输保险</td>
+        </tr>
+        <tr>
+          <td><strong>船舶险</strong></td>
+          <td class="en-text">Marine / Hull</td>
+          <td style="font-family:var(--font-mono);">MAR</td>
+          <td>船壳险，单一大标的集中度高</td>
+        </tr>
+        <tr>
+          <td><strong>农险</strong></td>
+          <td class="en-text">Agriculture</td>
+          <td style="font-family:var(--font-mono);">AGR</td>
+          <td>农业保险，巨灾风险显著，含政策性补贴</td>
+        </tr>
+        <tr>
+          <td><strong>健康险</strong></td>
+          <td class="en-text">Health Insurance</td>
+          <td style="font-family:var(--font-mono);">HEA</td>
+          <td>短期健康险（非寿险口径）</td>
+        </tr>
+        <tr>
+          <td><strong>意外险</strong></td>
+          <td class="en-text">Accident Insurance</td>
+          <td style="font-family:var(--font-mono);">ACC</td>
+          <td>意外伤害保险，风险因子较低</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>聚合层级 Aggregation Hierarchy <span class="en">Line-of-Business Level → Cross-LOB</span></h2>
+    <p>非寿险保险风险最低资本采用<strong>两步聚合</strong>架构：先在各险种内部聚合保费风险与准备金风险（含巨灾加法），再跨险种聚合。</p>
+
+    <div class="formula">
+      <span class="label">两步聚合架构</span>
+      <span class="comment">第一步：险种内聚合（以车险为例）</span><br>
+      <span class="eq">MC<sub>车险</sub></span> = √( MC<sub>保费(车)</sub>² + MC<sub>准备金(车)</sub>² + 2×ρ<sub>车</sub>×MC<sub>保费(车)</sub>×MC<sub>准备金(车)</sub> ) + MC<sub>巨灾(车)</sub><br><br>
+      <span class="comment">第二步：跨险种聚合（车险 × 企财险 × ...）</span><br>
+      <span class="eq">MC<sub>非寿险</sub></span> = √( <span class="var">MC<sub>非寿险</sub><sup>T</sup></span> × <span class="var">Corr<sub>非寿险</sub></span> × <span class="var">MC<sub>非寿险</sub></span> )<br>
+      <span class="comment">MC<sub>非寿险</sub> = [MC<sub>车险</sub>, MC<sub>企财</sub>, MC<sub>责任</sub>, ...]<sup>T</sup></span><br>
+      <span class="comment">Corr<sub>非寿险</sub> 为险种间相关系数矩阵（通常0.25）</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">分散效应的两层体现</div>
+      <p>非寿险保险风险的分散效应在两个层级体现：① <strong>险种内</strong>——保费风险与准备金风险的相关系数 ρ &lt; 1，聚合后低于简单加总；② <strong>跨险种</strong>——不同险种（车险、企财险等）的赔付经验不完全相关，跨险种聚合后进一步降低总资本要求。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 关键条款 Key Provisions ============== -->
+<div class="tab-content" id="tab-provisions" style="display:none;">
+
+  <div class="section">
+    <h2>保费风险最低资本 Premium Risk MC <span class="en">Factor-Based Calculation</span></h2>
+    <p>保费风险最低资本以<strong>净已赚保费或净自留保费</strong>为基础，乘以风险因子和货币兑换因子计算。</p>
+
+    <div class="formula">
+      <span class="label">保费风险最低资本公式</span>
+      <span class="eq">MC<sub>保费</sub></span> = max(净已赚保费, 净自留保费) × <span class="var">RF</span> × <span class="var">货币兑换因子</span><br>
+      <span class="comment">净已赚保费 = 已赚保费 - 分出保费摊回</span><br>
+      <span class="comment">净自留保费 = 自留保费 - 分出保费</span><br>
+      <span class="comment">取两者较大值，体现审慎原则</span>
+    </div>
+
+    <h3>风险因子 RF 按险种和公司规模差异化 Risk Factors by Line &amp; Size</h3>
+    <p>风险因子 RF 根据<strong>险种类型</strong>和<strong>公司规模</strong>（大型公司 / 中小型公司）差异化设定。大公司因子略低于中小公司，体现<strong>规模效应</strong>——大公司数据量大、定价精度高、理赔管理能力强。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">险种</th>
+          <th style="width:18%">大公司 RF</th>
+          <th style="width:18%">中小公司 RF</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>车险</strong></td>
+          <td style="font-family:var(--font-mono);">0.083</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">0.113</td>
+          <td>车险数据量大，大数法则效应强，因子较低</td>
+        </tr>
+        <tr>
+          <td><strong>企财险</strong></td>
+          <td style="font-family:var(--font-mono);">0.098</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">0.146</td>
+          <td>企业财产，单标的风险较大</td>
+        </tr>
+        <tr>
+          <td><strong>家财险</strong></td>
+          <td style="font-family:var(--font-mono);">0.080</td>
+          <td style="font-family:var(--font-mono);">0.110</td>
+          <td>家庭财产，风险相对分散</td>
+        </tr>
+        <tr>
+          <td><strong>责任险</strong></td>
+          <td style="font-family:var(--font-mono);">0.120</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-red);">0.155</td>
+          <td>长尾业务，准备金不确定性大</td>
+        </tr>
+        <tr>
+          <td><strong>工程险</strong></td>
+          <td style="font-family:var(--font-mono);">0.105</td>
+          <td style="font-family:var(--font-mono);">0.145</td>
+          <td>巨灾暴露大，因子偏高</td>
+        </tr>
+        <tr>
+          <td><strong>货运险</strong></td>
+          <td style="font-family:var(--font-mono);">0.090</td>
+          <td style="font-family:var(--font-mono);">0.120</td>
+          <td>运输货物保险</td>
+        </tr>
+        <tr>
+          <td><strong>船舶险</strong></td>
+          <td style="font-family:var(--font-mono);">0.110</td>
+          <td style="font-family:var(--font-mono);">0.150</td>
+          <td>单一大标的，集中度高</td>
+        </tr>
+        <tr>
+          <td><strong>农险</strong></td>
+          <td style="font-family:var(--font-mono);">0.130</td>
+          <td style="font-family:var(--font-mono);">0.170</td>
+          <td>巨灾风险显著</td>
+        </tr>
+        <tr>
+          <td><strong>健康险</strong></td>
+          <td style="font-family:var(--font-mono);">0.090</td>
+          <td style="font-family:var(--font-mono);">0.120</td>
+          <td>短期健康险（非寿险口径）</td>
+        </tr>
+        <tr>
+          <td><strong>意外险</strong></td>
+          <td style="font-family:var(--font-mono);">0.060</td>
+          <td style="font-family:var(--font-mono);">0.080</td>
+          <td>意外伤害，风险因子最低</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">规模效应的原理</div>
+      <p>大公司因子低于中小公司，原因在于：① <strong>数据充分性</strong>——大公司业务量大，历史经验数据充足，定价精度更高；② <strong>理赔管理能力</strong>——大公司理赔体系更完善，赔付率波动更小；③ <strong>风险分散</strong>——大公司业务地域分布更广，单一区域灾害冲击相对较小。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>准备金风险最低资本 Reserve Risk MC <span class="en">Reserve-Based Factor Approach</span></h2>
+    <p>准备金风险最低资本以<strong>未到期责任准备金与未决赔款准备金之和</strong>为基础，乘以准备金风险因子。</p>
+
+    <div class="formula">
+      <span class="label">准备金风险最低资本公式</span>
+      <span class="eq">MC<sub>准备金</sub></span> = (未到期责任准备金 + 未决赔款准备金) × <span class="var">RF</span><br>
+      <span class="comment">未到期责任准备金 = 1/365法或24法计提的未赚保费</span><br>
+      <span class="comment">未决赔款准备金 = 已报告未决 + IBNR</span>
+    </div>
+
+    <h3>准备金风险因子（典型值）Reserve Risk Factors</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">险种</th>
+          <th style="width:18%">大公司 RF</th>
+          <th style="width:18%">中小公司 RF</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>车险</strong></td>
+          <td style="font-family:var(--font-mono);">0.023</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">0.030</td>
+          <td>短尾业务，准备金不确定性小</td>
+        </tr>
+        <tr>
+          <td><strong>企财险</strong></td>
+          <td style="font-family:var(--font-mono);">0.030</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">0.038</td>
+          <td>中等尾长</td>
+        </tr>
+        <tr>
+          <td><strong>责任险</strong></td>
+          <td style="font-family:var(--font-mono);">0.050</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-red);">0.065</td>
+          <td>长尾业务，准备金不确定性最大</td>
+        </tr>
+        <tr>
+          <td><strong>工程险</strong></td>
+          <td style="font-family:var(--font-mono);">0.035</td>
+          <td style="font-family:var(--font-mono);">0.045</td>
+          <td>中等尾长</td>
+        </tr>
+        <tr>
+          <td><strong>意外险</strong></td>
+          <td style="font-family:var(--font-mono);">0.015</td>
+          <td style="font-family:var(--font-mono);">0.020</td>
+          <td>短尾业务，因子最低</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">长尾业务的准备金风险</div>
+      <p>责任险等长尾业务的准备金风险因子显著高于车险等短尾业务，因为长尾业务的赔案结算周期长（可达10-20年），IBNR占比大，最终赔付金额不确定性极高。这正是责任险成为非寿险中资本消耗最高险种之一的原因。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>巨灾风险最低资本 Catastrophe Risk MC <span class="en">Scenario-Based Approach</span></h2>
+    <p>巨灾风险最低资本基于<strong>事件情景法</strong>（Event Scenario Approach），对必测巨灾情景逐一评估净损失，取最大值作为资本要求。</p>
+
+    <div class="formula">
+      <span class="label">巨灾风险最低资本公式</span>
+      <span class="eq">MC<sub>巨灾</sub></span> = max(各情景下净损失 × <span class="var">巨灾因子</span>)<br>
+      <span class="comment">= max(Loss_台风 × CF, Loss_洪水 × CF, Loss_地震 × CF, ...)</span><br><br>
+      <span class="comment">巨灾因子 CF 通常为 1.0（净损失已反映再保后敞口）</span>
+    </div>
+
+    <h3>必测情景 Mandatory Scenarios</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:15%">情景</th>
+          <th style="width:20%">英文</th>
+          <th style="width:15%">适用区域</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>台风</strong></td>
+          <td class="en-text">Typhoon</td>
+          <td>东南沿海</td>
+          <td>广东、福建、浙江、海南等沿海地区</td>
+        </tr>
+        <tr>
+          <td><strong>洪水</strong></td>
+          <td class="en-text">Flood</td>
+          <td>全国</td>
+          <td>主要江河流域（长江、黄河、珠江等）</td>
+        </tr>
+        <tr>
+          <td><strong>地震</strong></td>
+          <td class="en-text">Earthquake</td>
+          <td>西南/西北</td>
+          <td>四川、云南、新疆等地震带</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">情景法 vs. 概率模型</div>
+      <p>C-ROSS II 采用情景法而非完整的巨灾概率模型（如CAT模型），原因在于：① <strong>可操作性</strong>——情景法计算相对简单，适合中国保险业当前发展阶段；② <strong>监管可控</strong>——监管可直接设定情景参数，确保不同公司结果可比；③ <strong>审慎性</strong>——取各情景最大值，确保覆盖最不利场景。随着行业数据积累，未来可能逐步引入概率模型。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>险种内与跨险种聚合 Intra-LOB &amp; Cross-LOB Aggregation <span class="en">Correlation Matrix</span></h2>
+    <p>非寿险保险风险采用<strong>分险种聚合后再跨险种聚合</strong>的两步架构。</p>
+
+    <h3>第一步：险种内聚合</h3>
+    <p>在每个险种内部，将保费风险与准备金风险通过相关系数 ρ 聚合，再直接加上巨灾风险：</p>
+
+    <div class="formula">
+      <span class="label">险种内聚合公式（以险种 i 为例）</span>
+      <span class="eq">MC<sub>i</sub></span> = √( <span class="var">MC<sub>保费(i)</sub></span>² + <span class="var">MC<sub>准备金(i)</sub></span>² + 2×<span class="var">ρ<sub>i</sub></span>×<span class="var">MC<sub>保费(i)</sub></span>×<span class="var">MC<sub>准备金(i)</sub></span> ) + <span class="var">MC<sub>巨灾(i)</sub></span><br>
+      <span class="comment">ρ<sub>i</sub>：险种 i 的保费-准备金相关系数，通常 0.25</span>
+    </div>
+
+    <h3>第二步：跨险种聚合</h3>
+    <p>将各险种的聚合结果通过<strong>险种间相关系数矩阵</strong>进一步聚合：</p>
+
+    <div class="formula">
+      <span class="label">跨险种聚合公式</span>
+      <span class="eq">MC<sub>非寿险</sub></span> = √( <span class="var">MC<sup>T</sup></span> × <span class="var">Corr<sub>非寿险</sub></span> × <span class="var">MC</span> )<br>
+      <span class="comment">MC = [MC<sub>车险</sub>, MC<sub>企财</sub>, MC<sub>责任</sub>, ...]<sup>T</sup></span><br>
+      <span class="comment">Corr<sub>非寿险</sub> 为险种间相关系数矩阵，非对角线元素通常 0.25</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">聚合架构总结</div>
+      <p>非寿险保险风险的聚合逻辑可以概括为：<strong>"因子法算单项 → 矩阵聚合同类 → 加法叠加强尾 → 矩阵聚合跨类"</strong>。即：因子法计算各险种的保费/准备金风险 → 矩阵聚合各险种的保费+准备金 → 加法叠加巨灾 → 矩阵聚合各险种。这套架构兼顾了审慎性和可操作性。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期改革概览 Phase II Reforms <span class="en">Key Changes in Non-Life Insurance Risk</span></h2>
+    <p>C-ROSS 二期在非寿险保险风险计量方面进行了多项重要改革，核心方向是<strong>更加审慎、更加细化、引导高质量发展</strong>——上调风险因子、新增恶化/折扣因子、细化巨灾情景。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">改革领域</th>
+          <th style="width:36%">一期做法</th>
+          <th>二期改革</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>重疾恶化因子</strong></td>
+          <td>无专项恶化因子</td>
+          <td><strong>新增重疾恶化因子</strong>，引导科学发展重疾险</td>
+        </tr>
+        <tr>
+          <td><strong>绿色债券折扣</strong></td>
+          <td>无差异化政策</td>
+          <td><strong>新增绿色债券折扣</strong>，非寿险也有适用</td>
+        </tr>
+        <tr>
+          <td><strong>保费风险因子</strong></td>
+          <td>因子相对较低</td>
+          <td><strong>整体上调</strong>，更加审慎</td>
+        </tr>
+        <tr>
+          <td><strong>科技保险折扣</strong></td>
+          <td>无专项政策</td>
+          <td><strong>新增科技保险公司保险风险折扣10%</strong></td>
+        </tr>
+        <tr>
+          <td><strong>巨灾风险情景</strong></td>
+          <td>情景较粗</td>
+          <td><strong>情景更加细化</strong>，覆盖更多灾害类型</td>
+        </tr>
+        <tr>
+          <td><strong>未到期责任准备金</strong></td>
+          <td>1/24法或1/365法</td>
+          <td><strong>评估方法调整</strong>，与现金流更匹配</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化1：新增重疾恶化因子 CI Deterioration Factor <span class="en">Non-Life Health Insurance</span></h2>
+    <div class="callout danger">
+      <div class="title">改革背景</div>
+      <p>中国重大疾病发生率持续上升，一期非寿险口径下的短期健康险未充分考虑这一趋势，导致健康险最低资本计提不足。部分公司的重疾险/短期健康险业务出现赔付率超标。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期在非寿险健康险的疾病风险最低资本计量中<strong>新增重疾恶化因子</strong>，对短期健康险业务施加额外的资本要求。恶化因子根据行业重疾发生率的历史趋势和未来预期确定，引导保险公司科学定价、审慎经营重疾险业务。</p>
+    </div>
+
+    <div class="formula">
+      <span class="label">重疾恶化因子示意</span>
+      <span class="eq">MC<sub>疾病(非寿)</sub></span> = 净风险保额 × RF<sub>疾病</sub> × (1 + <span class="var">恶化因子</span>)<br>
+      <span class="comment">恶化因子根据重疾发生率趋势确定，监管定期更新</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化2：新增绿色债券折扣 Green Bond Discount <span class="en">Policy-Driven Capital Relief</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期引入<strong>绿色债券折扣</strong>机制。虽然绿色债券折扣主要影响市场风险和信用风险最低资本，但非寿险公司投资绿色债券同样适用——对于将绿色债券纳入投资组合的非寿险公司，相关资产的信用风险和市场风险因子可享受折扣，间接降低整体最低资本。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">政策意图</div>
+      <p>通过资本折扣引导非寿险公司（尤其是大型财险公司）将资金配置向绿色产业倾斜，实现偿付能力监管与国家"双碳"战略的协同。这是 C-ROSS II 从纯风险导向向"风险+政策"双导向的重要转变。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化3：保费风险因子整体上调 Premium Risk Factor Increase <span class="en">More Prudent Capital</span></h2>
+    <div class="callout warning">
+      <div class="title">改革背景</div>
+      <p>近年来非寿险行业赔付率波动加大，尤其是车险综合改革（2020年车险综改）后车险赔付率显著上升，原有保费风险因子未能充分覆盖实际风险。部分险种的定价偏离实际风险水平，资本计提不足。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期对非寿险各险种的<strong>保费风险因子整体上调</strong>，提高资本要求的审慎性。上调幅度因险种而异：车险上调幅度适中（因数据量大），责任险等长尾业务上调幅度较大（因不确定性高）。这使得非寿险公司的保险风险最低资本整体上升，但更真实地反映了风险水平。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化4：新增科技保险折扣 Tech Insurance Discount <span class="en">10% Capital Relief</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期对<strong>科技保险公司</strong>的保险风险最低资本给予<strong>10%折扣</strong>。科技保险公司是指经监管部门认定的、以科技保险为主要业务的保险公司。折扣适用于保费风险和准备金风险最低资本，降低科技保险公司的资本压力。</p>
+    </div>
+    <div class="formula">
+      <span class="label">科技保险折扣公式</span>
+      <span class="eq">MC<sub>科技保险</sub></span> = <span class="var">MC<sub>保费</sub></span> × (1 - 10%) + <span class="var">MC<sub>准备金</sub></span> × (1 - 10%) + <span class="var">MC<sub>巨灾</sub></span><br>
+      <span class="comment">折扣仅适用于保费风险和准备金风险，巨灾风险不享受折扣</span>
+    </div>
+    <div class="callout success">
+      <div class="title">政策意图</div>
+      <p>通过资本折扣引导保险公司发展科技保险业务，服务科技创新国家战略。科技保险承保的是科技企业的研发设备、知识产权等特殊风险，具有风险复杂、赔付不确定的特点，折扣体现了监管对其发展的支持。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化5：巨灾风险情景细化 Catastrophe Scenarios Refinement <span class="en">More Granular Scenarios</span></h2>
+    <div class="callout warning">
+      <div class="title">一期问题</div>
+      <p>一期巨灾情景较为粗略，主要覆盖台风、洪水、地震三大类，情景参数设定较为简化，未能充分反映不同地区、不同灾种的风险差异。部分区域性灾害（如冰冻雨雪、干旱）未纳入必测情景。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期对巨灾风险情景进行了<strong>细化</strong>：① 细化各情景的灾害参数（如台风路径、强度等级、洪水重现期等）；② 增加区域性灾害情景（如冰冻雨雪、泥石流等）；③ 要求公司结合自身业务地域分布选择适用情景；④ 提高情景参数的动态更新频率，反映气候变化趋势。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化6：未到期责任准备金评估方法调整 UPR Assessment Adjustment <span class="en">Cash-Flow-Oriented Approach</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期对非寿险未到期责任准备金的评估方法进行了<strong>调整</strong>：从一期的主要采用1/24法或1/365法（按时间比例分摊保费），向更加贴近现金流实质的方法转变。对于风险在整个保险期间内非均匀分布的产品（如货运险、建筑工程险），允许采用风险分布法（RDP）计提未到期责任准备金，使准备金更真实地反映风险敞口。</p>
+    </div>
+    <div class="callout warning">
+      <div class="title">对准备金风险的影响</div>
+      <p>未到期责任准备金评估方法调整后，部分险种的准备金规模可能发生变化，进而影响准备金风险最低资本的计算基础。总体而言，新方法使准备金更加审慎，准备金风险最低资本基础更加准确。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Calculation Example ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>计算案例：西红财险 — 非寿险保险风险最低资本 Worked Example <span class="en">Xihong Property Insurance</span></h2>
+
+    <div class="callout info">
+      <div class="title">公司背景 Company Background</div>
+      <p><strong>西红财险</strong>（Xihong Property Insurance Co., Ltd.），是<strong>西红保险集团</strong>旗下的非寿险子公司，主营车险、企财险等非寿险业务。<br>
+      评估日期：<strong>2024年12月31日</strong> &nbsp;|&nbsp; 单位：<strong>万元</strong><br>
+      <span style="color:var(--c-text-muted);">本案例演示非寿险保险风险最低资本（MC<sub>非寿险</sub>）的完整计算流程。</span></p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">教学说明 Educational Note</div>
+      <p><strong>本案例为简化的教学示例</strong>，仅演示核心计算逻辑。实际计算中需对每个险种逐项计算，并按完整的相关系数矩阵聚合。本案例以车险和企财险两个主要险种为例。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>业务数据汇总 Business Data Summary <span class="en">2024 Year-End</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">险种</th>
+          <th style="width:18%">净已赚保费(万)</th>
+          <th style="width:18%">未到期准备金(万)</th>
+          <th style="width:18%">未决赔款准备金(万)</th>
+          <th>公司规模</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>车险</strong></td>
+          <td style="text-align:right;font-weight:600;">80,000</td>
+          <td style="text-align:right;">30,000</td>
+          <td style="text-align:right;">15,000</td>
+          <td>中小公司</td>
+        </tr>
+        <tr>
+          <td><strong>企财险</strong></td>
+          <td style="text-align:right;font-weight:600;">20,000</td>
+          <td style="text-align:right;">5,000</td>
+          <td style="text-align:right;">3,000</td>
+          <td>中小公司</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">1</span>
+      <span class="cs-title">车险保费风险最低资本 MC<sub>保费(车险)</sub></span>
+    </div>
+    <p style="font-size:13px;">车险保费风险以净已赚保费为基础，乘以风险因子。西红财险属于"中小公司"类型。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      净已赚保费 = 80,000 万<br>
+      车险风险因子 RF = 0.113（中小公司）<br>
+      货币兑换因子 = 1.0（人民币业务）<br><br>
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>保费(车险)</sub> = max(净已赚保费, 净自留保费) × RF × 货币兑换因子<br>
+      &nbsp;&nbsp;= 80,000 × 0.113 × 1.0<br>
+      &nbsp;&nbsp;= <strong>9,040 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>保费(车险)</sub> = 9,040 万元</div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">2</span>
+      <span class="cs-title">车险准备金风险最低资本 MC<sub>准备金(车险)</sub></span>
+    </div>
+    <p style="font-size:13px;">车险准备金风险以未到期责任准备金和未决赔款准备金之和为基础。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      未到期责任准备金 = 30,000 万<br>
+      未决赔款准备金 = 15,000 万<br>
+      准备金合计 = 30,000 + 15,000 = 45,000 万<br>
+      车险准备金风险因子 RF = 0.030（中小公司）<br><br>
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>准备金(车险)</sub> = (未到期责任准备金 + 未决赔款准备金) × RF<br>
+      &nbsp;&nbsp;= (30,000 + 15,000) × 0.030<br>
+      &nbsp;&nbsp;= 45,000 × 0.030<br>
+      &nbsp;&nbsp;= <strong>1,350 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>准备金(车险)</sub> = 1,350 万元</div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">3</span>
+      <span class="cs-title">车险保费+准备金聚合 MC<sub>车险</sub>（含巨灾）</span>
+    </div>
+    <p style="font-size:13px;">将车险的保费风险与准备金风险通过相关系数 ρ 聚合，再叠加车险巨灾风险。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      MC<sub>保费(车险)</sub> = 9,040 万<br>
+      MC<sub>准备金(车险)</sub> = 1,350 万<br>
+      相关系数 ρ = 0.25<br><br>
+      <span style="color:var(--c-accent);">聚合计算：</span><br>
+      MC<sub>车险(保费+准备金)</sub> = √(MC<sub>保费</sub>² + MC<sub>准备金</sub>² + 2×ρ×MC<sub>保费</sub>×MC<sub>准备金</sub>)<br>
+      &nbsp;&nbsp;= √(9,040² + 1,350² + 2×0.25×9,040×1,350)<br>
+      &nbsp;&nbsp;= √(81,721,600 + 1,822,500 + 6,102,000)<br>
+      &nbsp;&nbsp;= √(89,646,100)<br>
+      &nbsp;&nbsp;≈ <strong>9,468 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>车险(保费+准备金)</sub> = 9,468 万元</div>
+    <div class="cs-note">注：简单加总 9,040 + 1,350 = 10,390 万，聚合后 9,468 万，分散效应约 8.9%。</div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">4</span>
+      <span class="cs-title">企财险保费风险最低资本 MC<sub>保费(企财)</sub></span>
+    </div>
+    <p style="font-size:13px;">企财险保费风险同样以净已赚保费为基础，适用企财险风险因子。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      净已赚保费 = 20,000 万<br>
+      企财险风险因子 RF = 0.146（中小公司）<br>
+      货币兑换因子 = 1.0<br><br>
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>保费(企财)</sub> = 20,000 × 0.146 × 1.0<br>
+      &nbsp;&nbsp;= <strong>2,920 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>保费(企财)</sub> = 2,920 万元</div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">5</span>
+      <span class="cs-title">企财险准备金风险最低资本 MC<sub>准备金(企财)</sub></span>
+    </div>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      未到期责任准备金 = 5,000 万<br>
+      未决赔款准备金 = 3,000 万<br>
+      准备金合计 = 5,000 + 3,000 = 8,000 万<br>
+      企财险准备金风险因子 RF = 0.038（中小公司）<br><br>
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>准备金(企财)</sub> = (5,000 + 3,000) × 0.038<br>
+      &nbsp;&nbsp;= 8,000 × 0.038<br>
+      &nbsp;&nbsp;= <strong>304 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>准备金(企财)</sub> = 304 万元</div>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">6</span>
+      <span class="cs-title">企财险聚合 MC<sub>企财</sub></span>
+    </div>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      MC<sub>保费(企财)</sub> = 2,920 万<br>
+      MC<sub>准备金(企财)</sub> = 304 万<br>
+      相关系数 ρ = 0.25<br><br>
+      <span style="color:var(--c-accent);">聚合计算：</span><br>
+      MC<sub>企财(保费+准备金)</sub> = √(2,920² + 304² + 2×0.25×2,920×304)<br>
+      &nbsp;&nbsp;= √(8,526,400 + 92,416 + 444,160)<br>
+      &nbsp;&nbsp;= √(9,062,976)<br>
+      &nbsp;&nbsp;≈ <strong>3,000 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>企财(保费+准备金)</sub> = 3,000 万元</div>
+    <div class="cs-note">注：简单加总 2,920 + 304 = 3,224 万，聚合后约 3,000 万，分散效应约 6.9%。</div>
+  </div>
+
+  <!-- Step 7 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">7</span>
+      <span class="cs-title">巨灾风险最低资本 MC<sub>巨灾</sub></span>
+    </div>
+    <p style="font-size:13px;">基于事件情景法，对必测情景（台风、洪水）逐一评估净损失，取最大值。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">情景</th>
+          <th style="width:20%">净损失(万)</th>
+          <th style="width:15%">巨灾因子</th>
+          <th style="width:20%">资本要求(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>台风情景</td>
+          <td style="text-align:right;">5,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">1.0</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-red);">5,000</td>
+          <td>东南沿海台风路径情景</td>
+        </tr>
+        <tr>
+          <td>洪水情景</td>
+          <td style="text-align:right;">3,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">1.0</td>
+          <td style="text-align:right;font-weight:600;">3,000</td>
+          <td>长江流域百年一遇洪水</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>巨灾</sub> = max(5,000 × 1.0, 3,000 × 1.0)<br>
+      &nbsp;&nbsp;= max(5,000, 3,000)<br>
+      &nbsp;&nbsp;= <strong>5,000 万</strong>
+    </div>
+    <div class="cs-result">MC<sub>巨灾</sub> = 5,000 万元</div>
+    <div class="cs-note">注：巨灾情景取最大值，反映最不利巨灾情景的资本要求。西红财险业务主要在东南沿海，台风情景损失最大。</div>
+  </div>
+
+  <!-- Step 8 -->
+  <div class="calc-step" style="border:2px solid var(--c-accent);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-accent);">8</span>
+      <span class="cs-title">非寿险保险风险最低资本汇总 MC<sub>非寿险</sub></span>
+    </div>
+    <p style="font-size:13px;">将车险和企财险的聚合结果（含各自巨灾）通过跨险种相关系数矩阵聚合，再叠加整体巨灾风险。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      MC<sub>车险</sub> = 9,468 万（保费+准备金聚合后）<br>
+      MC<sub>企财</sub> = 3,000 万（保费+准备金聚合后）<br>
+      车险与企财险相关系数 = 0.25<br>
+      MC<sub>巨灾</sub> = 5,000 万<br><br>
+      <span style="color:var(--c-accent);">第一步：跨险种聚合（不含巨灾）</span><br>
+      MC<sub>非寿险(不含巨灾)</sub> = √(MC<sub>车险</sub>² + MC<sub>企财</sub>² + 2×ρ×MC<sub>车险</sub>×MC<sub>企财</sub>)<br>
+      &nbsp;&nbsp;= √(9,468² + 3,000² + 2×0.25×9,468×3,000)<br>
+      &nbsp;&nbsp;= √(89,643,024 + 9,000,000 + 14,202,000)<br>
+      &nbsp;&nbsp;= √(112,845,024)<br>
+      &nbsp;&nbsp;≈ <strong>10,665 万</strong><br><br>
+      <span style="color:var(--c-accent);">第二步：叠加巨灾风险</span><br>
+      MC<sub>非寿险</sub> = MC<sub>非寿险(不含巨灾)</sub> + MC<sub>巨灾</sub><br>
+      &nbsp;&nbsp;= 10,665 + 5,000<br>
+      &nbsp;&nbsp;= <strong style="color:var(--c-teal);font-size:16px;">15,665 万</strong>
+    </div>
+    <div class="cs-result" style="font-size:16px;">MC<sub>非寿险</sub> = 15,665 万元</div>
+    <div class="cs-note">注：车险和企财险简单加总（不含巨灾）为 9,468 + 3,000 = 12,468 万，跨险种聚合后 10,665 万（分散效应约 14.5%），叠加巨灾后最终 MC<sub>非寿险</sub> = 15,665 万。</div>
+  </div>
+
+  <!-- Summary Table -->
+  <div class="calc-step" style="border:2px solid var(--c-teal);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-teal);">9</span>
+      <span class="cs-title">非寿险保险风险最低资本汇总表 Summary Table</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">项目</th>
+          <th style="width:15%">保费风险MC</th>
+          <th style="width:15%">准备金风险MC</th>
+          <th style="width:15%">聚合后MC</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>车险</td>
+          <td style="text-align:right;color:var(--c-purple);">9,040</td>
+          <td style="text-align:right;color:var(--c-purple);">1,350</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-purple);">9,468</td>
+          <td>ρ=0.25聚合</td>
+        </tr>
+        <tr>
+          <td>企财险</td>
+          <td style="text-align:right;color:var(--c-blue);">2,920</td>
+          <td style="text-align:right;color:var(--c-blue);">304</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-blue);">3,000</td>
+          <td>ρ=0.25聚合</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>跨险种聚合(不含巨灾)</strong></td>
+          <td colspan="2"></td>
+          <td style="text-align:right;font-weight:700;color:var(--c-primary-dark);">10,665</td>
+          <td>ρ=0.25跨险种聚合</td>
+        </tr>
+        <tr>
+          <td>巨灾风险</td>
+          <td colspan="2"></td>
+          <td style="text-align:right;font-weight:600;color:var(--c-red);">5,000</td>
+          <td>max(台风5,000, 洪水3,000)</td>
+        </tr>
+        <tr style="background:var(--c-teal-light);">
+          <td><strong>MC<sub>非寿险</sub> 合计</strong></td>
+          <td colspan="2"></td>
+          <td style="text-align:right;font-weight:700;font-size:16px;color:var(--c-teal);">15,665</td>
+          <td><strong>最终结果</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout success" style="margin-top:14px;">
+      <div class="title">案例总结</div>
+      <p>西红财险 2024 年非寿险保险风险最低资本 = <strong>15,665 万元</strong>，构成如下：</p>
+      <ul>
+        <li><strong>车险</strong>：保费风险 9,040 + 准备金风险 1,350 → 聚合后 9,468 万（占比 60.5%）</li>
+        <li><strong>企财险</strong>：保费风险 2,920 + 准备金风险 304 → 聚合后 3,000 万（占比 19.2%）</li>
+        <li><strong>巨灾风险</strong>：5,000 万（台风情景，占比 31.9%）</li>
+      </ul>
+      <p style="margin-top:8px;">车险是非寿险保险风险的主要来源，巨灾风险占比显著。西红财险可考虑：① 加强再保安排分散巨灾风险；② 优化车险定价降低保费风险因子；③ 扩展业务线分散跨险种风险。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号 第4号：非寿险保险风险最低资本<br>
+  参考：EIOPA Solvency II Non-Life Underwriting Risk、中国银保监会非寿险风险因子表</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+// Tab Switching
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Save last active tab
+  localStorage.setItem('cross_rule4_activeTab', tabId);
+}
+
+// Progress Tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule4';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+
+  // Restore last active tab
+  var savedTab = localStorage.getItem('cross_rule4_activeTab');
+  if (savedTab && document.getElementById('tab-' + savedTab)) {
+    switchTab(savedTab);
+  }
+})();
+</script>
+
+</body>
+</html>
