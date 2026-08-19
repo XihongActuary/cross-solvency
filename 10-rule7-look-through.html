@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第7号：穿透计量 Look-Through Measurement | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html" class="active">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第一支柱</a>
+  <span class="sep">›</span>
+  第7号 穿透计量
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管规则第 7 号 · Pillar I</div>
+  <h1>第7号：穿透计量 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 应穿尽穿 · 穿透到底</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Look-Through Measurement / Pass-Through Measurement</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(200,152,60,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(200,152,60,0.4);color:#fdf5e6;">Pillar I · 第一支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">应穿尽穿</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">穿透到底</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">非基础资产</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">底层风险因子</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="provisions" onclick="switchTab('provisions')">关键条款 Key Provisions</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Calculation Example</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>穿透计量的定义 Definition <span class="en">Look-Through Measurement</span></h2>
+    <p><strong>穿透计量</strong>是指对保险公司投资的非基础资产，通过穿透到底层基础资产，分别按照基础资产的类型和风险特征计量最低资本。穿透计量是C-ROSS二期最重要的创新之一，旨在解决非基础资产"黑箱"问题——确保资本要求真实反映底层资产风险，而非简单使用综合性因子。</p>
+
+    <div class="formula">
+      <span class="label">穿透计量基本公式</span>
+      <span class="eq">MC<sub>非基础资产</sub></span> = Σ( <span class="var">MC<sub>底层资产_i</sub></span> ) + <span class="var">MC<sub>未穿透部分</sub></span><br>
+      <span class="comment">对每个底层基础资产 i 分别按第8号(市场风险)和第9号(信用风险)计量</span><br>
+      <span class="comment">未穿透部分适用惩罚性风险因子</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">"应穿尽穿、穿透到底"原则</div>
+      <p>二期穿透计量的核心原则是<strong>"应穿尽穿、穿透到底"</strong>——所有非基础资产必须穿透到底层基础资产，分别按照基础资产的类型和风险特征计量最低资本。无法穿透的部分适用惩罚性风险因子，倒逼保险公司主动获取底层资产信息。这一原则比Solvency II的穿透要求更加激进。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>基础资产与非基础资产 Basic Assets vs Non-Basic Assets <span class="en">Asset Classification</span></h2>
+
+    <h3>基础资产 Basic Assets <span class="en">— 可直接计量</span></h3>
+    <p>基础资产是指可以直接投资的、具有明确风险因子的资产。基础资产无需穿透，直接按照第8号（市场风险）和第9号（信用风险）规则计量最低资本。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">资产类型</th>
+          <th style="width:15%">风险因子来源</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>银行存款</td>
+          <td>第9号 信用风险</td>
+          <td>交易对手违约风险，按银行信用评级差异化因子</td>
+        </tr>
+        <tr>
+          <td>国债</td>
+          <td>第8号 市场风险</td>
+          <td>利率风险，无信用风险（主权信用）</td>
+        </tr>
+        <tr>
+          <td>政策性金融债</td>
+          <td>第8号 市场风险</td>
+          <td>利率风险，视同主权信用</td>
+        </tr>
+        <tr>
+          <td>地方政府债</td>
+          <td>第8号 市场风险</td>
+          <td>利率风险，视同主权信用</td>
+        </tr>
+        <tr>
+          <td>企业债</td>
+          <td>第8号 + 第9号</td>
+          <td>利率风险 + 利差风险，按信用评级差异化因子</td>
+        </tr>
+        <tr>
+          <td>股票</td>
+          <td>第8号 市场风险</td>
+          <td>权益价格风险，区分蓝筹/非蓝筹</td>
+        </tr>
+        <tr>
+          <td>基金（公募）</td>
+          <td>第8号 + 第9号</td>
+          <td>可穿透或按综合因子</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>非基础资产 Non-Basic Assets <span class="en">— 需要穿透</span></h3>
+    <p>非基础资产是指不能直接适用风险因子的资产，需要穿透到底层基础资产才能计量最低资本。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">资产类型</th>
+          <th style="width:15%">穿透要求</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>资管产品（银行理财）</td>
+          <td>必须穿透</td>
+          <td>需获取底层资产清单</td>
+        </tr>
+        <tr>
+          <td>资管产品（券商资管）</td>
+          <td>必须穿透</td>
+          <td>需获取底层资产清单</td>
+        </tr>
+        <tr>
+          <td>资管产品（保险资管）</td>
+          <td>必须穿透</td>
+          <td>需获取底层资产清单</td>
+        </tr>
+        <tr>
+          <td>信托计划</td>
+          <td>必须穿透</td>
+          <td>需获取底层资产清单</td>
+        </tr>
+        <tr>
+          <td>私募基金</td>
+          <td>必须穿透</td>
+          <td>需获取底层资产清单</td>
+        </tr>
+        <tr>
+          <td>基础设施债权计划</td>
+          <td>必须穿透</td>
+          <td>需穿透至底层项目</td>
+        </tr>
+        <tr>
+          <td>非上市股权投资</td>
+          <td>必须穿透</td>
+          <td>需穿透至被投资企业</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>三种穿透方法 Three Look-Through Methods <span class="en">Full / Factor / Consistency</span></h2>
+
+    <h3>1. 完全穿透法 Full Look-Through <span class="en">— 穿透到底层所有基础资产</span></h3>
+    <p>完全穿透法要求穿透到底层所有基础资产，逐项按照基础资产的风险因子计量最低资本。这是最精确的穿透方法，也是监管鼓励的方法。</p>
+
+    <div class="formula">
+      <span class="label">完全穿透法公式</span>
+      <span class="eq">MC<sub>非基础资产</sub></span> = Σ( <span class="var">MC<sub>底层资产_i</sub></span> )<br>
+      <span class="comment">MC<sub>底层资产_i</sub> = 按第8号(市场风险)和第9号(信用风险)分别计量</span><br>
+      <span class="comment">要求前十大底层资产占比 ≥ 80%</span>
+    </div>
+
+    <h3>2. 风险因子法 Risk Factor Method <span class="en">— 对无法穿透部分使用综合性风险因子</span></h3>
+    <p>对于无法完全穿透的部分，使用综合性风险因子计量最低资本。该因子通常高于实际穿透后的因子水平，具有惩罚性质。</p>
+
+    <div class="formula">
+      <span class="label">风险因子法公式（无法穿透部分）</span>
+      <span class="eq">MC<sub>未穿透</sub></span> = 未穿透账面价值 × <span class="var">惩罚性风险因子</span><br>
+      <span class="comment">惩罚性因子 = 最高风险因子（相当于未评级 + 高波动）</span><br>
+      <span class="comment">通常远高于实际穿透后的资本要求</span>
+    </div>
+
+    <h3>3. 一致性原则 Consistency Principle <span class="en">— 穿透后与直接持有一致</span></h3>
+    <p>穿透后的底层资产风险因子应与直接持有相同类型基础资产的风险因子保持一致——即穿透后计量的最低资本，与保险公司直接投资该底层资产时的最低资本相同。这一原则确保了穿透计量的公平性和一致性。</p>
+
+    <div class="callout success">
+      <div class="title">一致性原则的激励效果</div>
+      <p>一致性原则意味着穿透后不会增加额外的资本惩罚——只要底层资产清晰可穿透，穿透计量的结果与直接投资相同。这激励保险公司主动获取底层资产信息，选择可穿透的投资结构，而非接受惩罚性因子。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>与第8号和第9号规则的衔接 Link to Rules 8 &amp; 9 <span class="en">Bottom-Up Measurement</span></h2>
+    <p>穿透计量本身不产生独立的风险因子——它的作用是将非基础资产"拆解"为底层基础资产，然后按照第8号（市场风险）和第9号（信用风险）规则分别计量。因此，第7号是第8号和第9号的"前置规则"。</p>
+
+    <div class="formula">
+      <span class="label">穿透计量在最低资本中的位置</span>
+      <span class="eq">MC<sub>非基础资产</sub></span> = Σ( MC<sub>底层_i, 市场</sub> + MC<sub>底层_i, 信用</sub> )<br>
+      <span class="comment">底层市场风险 → 汇入第8号 MC市场</span><br>
+      <span class="comment">底层信用风险 → 汇入第9号 MC信用</span><br><br>
+      <span class="comment">MC<sub>可资本化</sub> = √(MC<sub>保险</sub>² + MC<sub>市场</sub>² + MC<sub>信用</sub>² + 交叉项)（第2号）</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">第7号的定位</div>
+      <p>第7号穿透计量不产生独立的最低资本——它是市场风险（第8号）和信用风险（第9号）的<strong>输入规则</strong>。通过穿透，非基础资产的风险被"分配"到市场风险和信用风险维度，然后参与第2号的聚合。因此，穿透计量的结果体现在 MC<sub>市场</sub> 和 MC<sub>信用</sub> 中，而非单独列示。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 关键条款 Key Provisions ============== -->
+<div class="tab-content" id="tab-provisions" style="display:none;">
+
+  <div class="section">
+    <h2>穿透计量核心要求 Look-Through Requirements <span class="en">Core Provisions</span></h2>
+    <p>二期第7号规则对穿透计量提出了系统性的要求，覆盖穿透范围、穿透深度、穿透频率和穿透质量等维度。</p>
+
+    <div class="callout warning">
+      <div class="title">穿透计量核心要求</div>
+      <p style="margin-bottom:6px;">保险公司必须满足以下穿透计量要求：</p>
+      <ul>
+        <li><strong>底层资产清单获取：</strong>保险公司必须获取非基础资产的基础资产清单，包括底层资产的类型、账面价值、占比等信息</li>
+        <li><strong>分别计量：</strong>对底层资产按照第8号（市场风险）和第9号（信用风险）规则分别计量最低资本</li>
+        <li><strong>前十大底层资产占比 ≥ 80%：</strong>资管产品前十大底层资产占该产品总资产的比例应不低于80%</li>
+        <li><strong>无法穿透部分的惩罚：</strong>无法穿透部分按最高风险因子计量（惩罚性）</li>
+        <li><strong>穿透层级限制：</strong>穿透层级一般不超过3层</li>
+        <li><strong>穿透频率：</strong>至少每季度进行一次穿透计量</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>穿透率要求 Penetration Ratio <span class="en">80% Threshold</span></h2>
+    <p>二期对资管产品的穿透率提出了明确的量化要求——前十大底层资产占比应不低于80%。这是衡量穿透质量的关键指标。</p>
+
+    <div class="formula">
+      <span class="label">穿透率计算</span>
+      <span class="eq">穿透率</span> = 前十大底层资产账面价值 / 资管产品总账面价值<br>
+      <span class="comment">要求：穿透率 ≥ 80%</span><br>
+      <span class="comment">剩余 ≤ 20% 的部分若无法穿透 → 按惩罚性因子计量</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">穿透情况</th>
+          <th style="width:20%">穿透率</th>
+          <th style="width:25%">风险因子处理</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>完全穿透</td>
+          <td style="font-family:var(--font-mono);color:var(--c-green);">100%</td>
+          <td>全部按底层实际因子</td>
+          <td>最理想状态，无惩罚</td>
+        </tr>
+        <tr>
+          <td>高穿透率</td>
+          <td style="font-family:var(--font-mono);color:var(--c-teal);">80%~100%</td>
+          <td>穿透部分按实际因子，未穿透部分按惩罚因子</td>
+          <td>满足监管最低要求</td>
+        </tr>
+        <tr>
+          <td>低穿透率</td>
+          <td style="font-family:var(--font-mono);color:var(--c-amber);">50%~80%</td>
+          <td>穿透部分按实际因子，未穿透部分按惩罚因子</td>
+          <td>未满足80%要求，需改进</td>
+        </tr>
+        <tr style="background:#fcebeb;">
+          <td>完全未穿透</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);font-weight:700;">0%</td>
+          <td style="color:var(--c-red);font-weight:600;">全部按最高风险因子</td>
+          <td>惩罚性因子，资本成本极高</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>非基础资产的风险因子惩罚 Punitive Risk Factors <span class="en">Penalty for Non-Penetration</span></h2>
+    <p>对于无法穿透的部分，二期设定了惩罚性风险因子——远高于实际穿透后的资本要求，倒逼保险公司主动穿透。</p>
+
+    <div class="formula">
+      <span class="label">惩罚性风险因子机制</span>
+      <span class="comment">完全未穿透：使用最高风险因子（相当于未评级 + 高波动）</span><br>
+      <span class="eq">MC<sub>完全未穿透</sub></span> = 账面价值 × <span class="var">最高风险因子</span><br><br>
+      <span class="comment">部分穿透：穿透部分按实际因子，未穿透部分按惩罚因子</span><br>
+      <span class="eq">MC<sub>非基础资产</sub></span> = Σ(MC<sub>底层资产_i</sub>) + MC<sub>未穿透部分</sub><br>
+      <span class="comment">MC<sub>未穿透部分</sub> = 未穿透账面价值 × 惩罚性风险因子</span>
+    </div>
+
+    <div class="callout danger">
+      <div class="title">惩罚性因子的效果</div>
+      <p>惩罚性因子通常为正常风险因子的 <strong>3~5倍</strong>。例如，非基础资产的综合惩罚性市场风险因子约为0.30~0.50，而穿透后底层资产的实际因子通常在0.05~0.25之间。这意味着不穿透的资本成本远高于穿透后的资本成本，经济激励非常显著。</p>
+    </div>
+
+    <h3>典型惩罚性风险因子</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">风险类型</th>
+          <th style="width:20%">正常因子（穿透后）</th>
+          <th style="width:20%">惩罚因子（未穿透）</th>
+          <th>倍数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>市场风险-利率</td>
+          <td style="font-family:var(--font-mono);">0.08</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);">0.30</td>
+          <td style="color:var(--c-red);font-weight:600;">3.75×</td>
+        </tr>
+        <tr>
+          <td>市场风险-权益</td>
+          <td style="font-family:var(--font-mono);">0.20~0.40</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);">0.50</td>
+          <td style="color:var(--c-red);font-weight:600;">1.25~2.5×</td>
+        </tr>
+        <tr>
+          <td>信用风险-利差</td>
+          <td style="font-family:var(--font-mono);">0.003~0.15</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);">0.15</td>
+          <td style="color:var(--c-red);font-weight:600;">1~50×</td>
+        </tr>
+        <tr>
+          <td>信用风险-违约</td>
+          <td style="font-family:var(--font-mono);">0.005~0.10</td>
+          <td style="font-family:var(--font-mono);color:var(--c-red);">0.10</td>
+          <td style="color:var(--c-red);font-weight:600;">1~20×</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>穿透层级与频率 Penetration Depth &amp; Frequency <span class="en">Layers &amp; Timeline</span></h2>
+
+    <h3>穿透层级限制 <span class="en">≤ 3 Layers</span></h3>
+    <p>穿透层级一般不超过3层。对于多层嵌套的资管产品（如"保险资管→券商资管→信托计划→底层资产"），需逐层穿透至底层基础资产。超过3层的嵌套结构适用额外的惩罚性因子。</p>
+
+    <div class="callout warning">
+      <div class="title">多层嵌套的穿透要求</div>
+      <p style="margin-bottom:6px;">对于多层嵌套结构，需逐层穿透：</p>
+      <ul>
+        <li><strong>第1层：</strong>保险公司 → 资管产品（如保险资管计划）</li>
+        <li><strong>第2层：</strong>资管产品 → 子资管产品（如券商资管、信托计划）</li>
+        <li><strong>第3层：</strong>子资管产品 → 底层基础资产（国债、股票、企业债等）</li>
+        <li><strong>超过3层：</strong>适用额外惩罚性因子， discouraged</li>
+      </ul>
+    </div>
+
+    <h3>穿透频率 <span class="en">At Least Quarterly</span></h3>
+    <p>穿透计量至少每季度进行一次。保险公司应在每季度末获取最新的底层资产清单，更新穿透计量结果。对于底层资产变动频繁的资管产品，建议提高穿透频率。</p>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期改革概览 Phase II Reforms <span class="en">Key Changes in Look-Through Measurement</span></h2>
+    <p>C-ROSS二期第7号穿透计量规则是<strong>全新增设</strong>的规则——偿二代一期没有专门的穿透计量规则。第7号是二期最重要的创新之一，建立了系统性的穿透计量框架，"应穿尽穿"原则比Solvency II更加激进。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">改革领域</th>
+          <th style="width:36%">一期做法</th>
+          <th>二期改革</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>穿透计量规则</strong></td>
+          <td>无专门规则</td>
+          <td><strong>新增第7号规则</strong>（全新设立）</td>
+        </tr>
+        <tr>
+          <td><strong>"应穿尽穿"原则</strong></td>
+          <td>无系统性穿透要求</td>
+          <td><strong>应穿尽穿、穿透到底</strong>（比Solvency II更激进）</td>
+        </tr>
+        <tr>
+          <td><strong>嵌套结构穿透</strong></td>
+          <td>多层嵌套无逐层穿透要求</td>
+          <td><strong>多层嵌套需逐层穿透</strong>（≤3层）</td>
+        </tr>
+        <tr>
+          <td><strong>长期股权投资</strong></td>
+          <td>可穿透至子公司</td>
+          <td><strong>100%全额扣除</strong>（不再穿透）</td>
+        </tr>
+        <tr>
+          <td><strong>非上市股权因子</strong></td>
+          <td>因子相对较低</td>
+          <td><strong>风险因子大幅提升</strong>（0.40）</td>
+        </tr>
+        <tr>
+          <td><strong>惩罚性因子</strong></td>
+          <td>无系统性惩罚</td>
+          <td><strong>惩罚性因子引导主动穿透</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化1：二期新增规则 New Rule in Phase II <span class="en">Most Important Innovation</span></h2>
+    <div class="callout danger">
+      <div class="title">一期问题</div>
+      <p>偿二代一期没有专门的穿透计量规则，保险公司投资的非基础资产（资管产品、信托计划等）通常使用综合性风险因子计量最低资本。这导致两个问题：① 底层资产风险未被真实反映——低风险底层资产和高风险底层资产使用相同的综合因子，资本要求与实际风险不匹配；② 保险公司缺乏动力获取底层资产信息，非基础资产成为"黑箱"。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期新增第7号穿透计量规则，是二期最重要的创新之一。规则建立了系统性的穿透计量框架，要求所有非基础资产"应穿尽穿、穿透到底"，按照底层基础资产的类型和风险特征分别计量最低资本。这一改革使资本要求真实反映底层资产风险，大幅提升了偿付能力监管的精确性。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化2："应穿尽穿"比Solvency II更激进 More Aggressive Than Solvency II <span class="en">Stricter Than EU</span></h2>
+    <div class="callout info">
+      <div class="title">与Solvency II对比</div>
+      <p>Solvency II也鼓励穿透计量，但允许保险公司在无法穿透时使用综合性风险因子，且惩罚力度有限。二期第7号的"应穿尽穿"原则更加激进——对无法穿透的部分适用<strong>惩罚性风险因子</strong>（最高风险因子），经济惩罚显著。这使得中国保险公司在非基础资产投资中面临比欧洲保险公司更强的穿透激励。</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">对比维度</th>
+          <th style="width:35%">Solvency II</th>
+          <th>C-ROSS II 第7号</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>穿透原则</td>
+          <td>鼓励穿透，允许不穿透</td>
+          <td><strong>应穿尽穿</strong>（强制性）</td>
+        </tr>
+        <tr>
+          <td>无法穿透处理</td>
+          <td>综合因子（惩罚有限）</td>
+          <td><strong>最高风险因子</strong>（惩罚性强）</td>
+        </tr>
+        <tr>
+          <td>穿透率要求</td>
+          <td>无明确量化要求</td>
+          <td><strong>前十大底层 ≥ 80%</strong></td>
+        </tr>
+        <tr>
+          <td>穿透层级</td>
+          <td>无明确限制</td>
+          <td><strong>≤ 3层</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化3：嵌套结构逐层穿透 Nested Structure Penetration <span class="en">Layer-by-Layer</span></h2>
+    <div class="callout warning">
+      <div class="title">一期问题</div>
+      <p>一期对多层嵌套结构（如"保险资管→券商资管→信托→底层资产"）没有逐层穿透要求，保险公司通常只按第一层资管产品的综合因子计量，底层风险被掩盖。部分保险公司通过多层嵌套隐藏高风险底层资产，规避资本要求。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期要求多层嵌套结构<strong>逐层穿透</strong>至底层基础资产，穿透层级一般不超过3层。超过3层的嵌套结构适用额外惩罚性因子。这一改革有效遏制了通过多层嵌套规避资本要求的行为，简化了投资结构。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化4：长期股权投资100%全额扣除 Long-Term Equity 100% Deduction <span class="en">No Look-Through for Subsidiaries</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期对长期股权投资（子公司投资）的处理从一期的"可穿透至子公司"改为<strong>100%全额扣除</strong>——不再穿透，直接从实际资本中全额扣除。这一改革的原因是：子公司投资的风险与保险公司自身投资风险性质不同，穿透可能重复计算资本；全额扣除更审慎，避免集团内部资本重复计算。</p>
+    </div>
+
+    <div class="formula">
+      <span class="label">长期股权投资处理对比</span>
+      <span class="comment">一期：可穿透至子公司，按子公司资产计量</span><br>
+      <span class="eq">一期：MC<sub>长期股权</sub></span> = 穿透至子公司资产分别计量<br><br>
+      <span class="comment">二期：100%全额扣除，不再穿透</span><br>
+      <span class="eq">二期：实际资本</span> = 认可资产 - 认可负债 - <span class="var">长期股权投资(全额扣除)</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化5：非上市股权风险因子大幅提升 Non-Listed Equity Factor Increase <span class="en">Higher Capital for Illiquid Equity</span></h2>
+    <div class="callout warning">
+      <div class="title">改革背景</div>
+      <p>一期非上市股权投资的风险因子相对较低，未能充分反映非上市股权的流动性风险和估值不确定性。部分保险公司大量投资非上市股权，资本要求偏低。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期将非上市股权投资的权益价格风险因子大幅提升至 <strong>0.40</strong>（一期约0.25~0.30），显著高于上市股票的0.20（蓝筹）和0.30（其他）。这一改革更审慎地反映了非上市股权的流动性折价和估值不确定性风险。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化6：惩罚性因子引导主动穿透 Penalty Factors Guide Proactive Penetration <span class="en">Economic Incentive</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期通过惩罚性因子设计，建立了"不穿透即受罚"的经济激励机制：① 完全未穿透部分使用最高风险因子，资本成本极高；② 部分穿透时，未穿透部分按惩罚因子计量，穿透部分按实际因子计量——穿透越多，资本节省越多；③ 惩罚性因子使不穿透的经济成本远高于获取底层信息的成本，倒逼保险公司主动穿透。</p>
+    </div>
+
+    <div class="callout success">
+      <div class="title">政策效果</div>
+      <p>自二期实施以来，保险公司对非基础资产的穿透率显著提升。行业数据显示，主要保险公司的资管产品穿透率已从二期初的50%~60%提升至80%以上，底层资产透明度大幅改善。穿透计量已成为保险公司投资决策的重要考量——投资经理在选择资管产品时，优先考虑可穿透的产品结构。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Calculation Example ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>计算案例：西红人寿 — 穿透计量最低资本 Worked Example <span class="en">Xihong Life Insurance</span></h2>
+
+    <div class="callout info">
+      <div class="title">公司背景 Company Background</div>
+      <p><strong>西红人寿保险公司</strong>（Xihong Life Insurance Co., Ltd.），继续前序案例的分析。<br>
+      评估日期：<strong>2024年12月31日</strong> &nbsp;|&nbsp; 单位：<strong>万元</strong><br>
+      <span style="color:var(--c-text-muted);">本案例演示西红人寿投资组合中一只资管产品的穿透计量全过程，展示穿透后资本节省效果。</span></p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">教学说明 Educational Note</div>
+      <p><strong>本案例为简化的教学示例</strong>，仅演示穿透计量的核心逻辑。实际计算中需对所有非基础资产逐一穿透，并考虑多层嵌套和穿透率要求。</p>
+    </div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">1</span>
+      <span class="cs-title">资管产品概况 Asset Management Product Overview</span>
+    </div>
+    <p style="font-size:13px;">西红人寿投资组合中含一只券商集合资管计划，需进行穿透计量。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">项目</th>
+          <th style="width:25%">数值</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>资管产品账面价值</td>
+          <td style="text-align:right;font-weight:600;">40,000 万</td>
+          <td>西红人寿持有的账面价值</td>
+        </tr>
+        <tr>
+          <td>产品类型</td>
+          <td>券商集合资管计划</td>
+          <td>非基础资产，需穿透</td>
+        </tr>
+        <tr>
+          <td>穿透状态</td>
+          <td style="color:var(--c-teal);font-weight:600;">已获取底层资产清单</td>
+          <td>前十大底层资产占比 95%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">2</span>
+      <span class="cs-title">底层资产清单 Bottom-Up Asset List</span>
+    </div>
+    <p style="font-size:13px;">穿透获取该资管产品的底层资产清单如下：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">底层资产</th>
+          <th style="width:18%">账面价值(万)</th>
+          <th style="width:12%">占比</th>
+          <th>资产类型</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>国债</td>
+          <td style="text-align:right;">12,000</td>
+          <td style="text-align:center;">30%</td>
+          <td>基础资产 — 利率风险</td>
+        </tr>
+        <tr>
+          <td>企业债(AAA)</td>
+          <td style="text-align:right;">8,000</td>
+          <td style="text-align:center;">20%</td>
+          <td>基础资产 — 利率 + 信用</td>
+        </tr>
+        <tr>
+          <td>上市股票</td>
+          <td style="text-align:right;">10,000</td>
+          <td style="text-align:center;">25%</td>
+          <td>基础资产 — 权益价格</td>
+        </tr>
+        <tr>
+          <td>非上市股权</td>
+          <td style="text-align:right;">5,000</td>
+          <td style="text-align:center;">12.5%</td>
+          <td>基础资产 — 权益价格(高因子)</td>
+        </tr>
+        <tr>
+          <td>银行存款</td>
+          <td style="text-align:right;">3,000</td>
+          <td style="text-align:center;">7.5%</td>
+          <td>基础资产 — 信用(交易对手)</td>
+        </tr>
+        <tr style="background:#fcebeb;">
+          <td>无法穿透部分</td>
+          <td style="text-align:right;color:var(--c-red);">2,000</td>
+          <td style="text-align:center;color:var(--c-red);">5%</td>
+          <td style="color:var(--c-red);">惩罚性风险因子</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>合计</strong></td>
+          <td style="text-align:right;font-weight:700;">40,000</td>
+          <td style="text-align:center;font-weight:700;">100%</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="cs-note">注：穿透率 = (40,000 - 2,000) / 40,000 = 95% ≥ 80%，满足监管要求。无法穿透的5%按惩罚性因子计量。</div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">3</span>
+      <span class="cs-title">各底层资产市场风险最低资本 Market Risk MC</span>
+    </div>
+    <p style="font-size:13px;">对每个底层资产按照第8号（市场风险）规则分别计量。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">底层资产</th>
+          <th style="width:15%">账面价值(万)</th>
+          <th style="width:15%">风险因子</th>
+          <th style="width:15%">MC(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>国债</td>
+          <td style="text-align:right;">12,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0.08</td>
+          <td style="text-align:right;font-weight:600;">960</td>
+          <td>利率风险因子</td>
+        </tr>
+        <tr>
+          <td>企业债(AAA)</td>
+          <td style="text-align:right;">8,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0.08</td>
+          <td style="text-align:right;font-weight:600;">640</td>
+          <td>利率风险因子</td>
+        </tr>
+        <tr>
+          <td>上市股票</td>
+          <td style="text-align:right;">10,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0.25</td>
+          <td style="text-align:right;font-weight:600;">2,500</td>
+          <td>权益价格风险因子</td>
+        </tr>
+        <tr>
+          <td>非上市股权</td>
+          <td style="text-align:right;">5,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);color:var(--c-amber);">0.40</td>
+          <td style="text-align:right;font-weight:600;">2,000</td>
+          <td>非上市因子更高</td>
+        </tr>
+        <tr>
+          <td>银行存款</td>
+          <td style="text-align:right;">3,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0</td>
+          <td style="text-align:right;color:var(--c-text-muted);">0</td>
+          <td>无市场风险</td>
+        </tr>
+        <tr style="background:#fcebeb;">
+          <td>无法穿透部分</td>
+          <td style="text-align:right;">2,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);color:var(--c-red);font-weight:700;">0.50</td>
+          <td style="text-align:right;font-weight:700;color:var(--c-red);">1,000</td>
+          <td>惩罚性因子</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>市场风险MC合计</strong></td>
+          <td colspan="3" style="text-align:right;font-weight:700;font-size:15px;color:var(--c-primary-dark);">7,100</td>
+          <td><strong>960+640+2,500+2,000+0+1,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">4</span>
+      <span class="cs-title">各底层资产信用风险最低资本 Credit Risk MC</span>
+    </div>
+    <p style="font-size:13px;">对每个底层资产按照第9号（信用风险）规则分别计量。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">底层资产</th>
+          <th style="width:15%">账面价值(万)</th>
+          <th style="width:15%">风险因子</th>
+          <th style="width:15%">MC(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>国债</td>
+          <td style="text-align:right;">12,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0</td>
+          <td style="text-align:right;color:var(--c-text-muted);">0</td>
+          <td>主权信用，无信用风险</td>
+        </tr>
+        <tr>
+          <td>企业债(AAA)</td>
+          <td style="text-align:right;">8,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0.005</td>
+          <td style="text-align:right;font-weight:600;">40</td>
+          <td>AAA利差风险因子</td>
+        </tr>
+        <tr>
+          <td>上市股票</td>
+          <td style="text-align:right;">10,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0</td>
+          <td style="text-align:right;color:var(--c-text-muted);">0</td>
+          <td>权益无信用风险</td>
+        </tr>
+        <tr>
+          <td>非上市股权</td>
+          <td style="text-align:right;">5,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0.02</td>
+          <td style="text-align:right;font-weight:600;">100</td>
+          <td>非上市股权信用因子</td>
+        </tr>
+        <tr>
+          <td>银行存款</td>
+          <td style="text-align:right;">3,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);">0</td>
+          <td style="text-align:right;color:var(--c-text-muted);">0</td>
+          <td>简化处理(见第9号)</td>
+        </tr>
+        <tr style="background:#fcebeb;">
+          <td>无法穿透部分</td>
+          <td style="text-align:right;">2,000</td>
+          <td style="text-align:center;font-family:var(--font-mono);color:var(--c-red);font-weight:700;">0.10</td>
+          <td style="text-align:right;font-weight:700;color:var(--c-red);">200</td>
+          <td>惩罚性因子</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>信用风险MC合计</strong></td>
+          <td colspan="3" style="text-align:right;font-weight:700;font-size:15px;color:var(--c-primary-dark);">340</td>
+          <td><strong>0+40+0+100+0+200</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="calc-step" style="border:2px solid var(--c-accent);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-accent);">5</span>
+      <span class="cs-title">资管产品穿透计量汇总 Aggregation</span>
+    </div>
+    <p style="font-size:13px;">将市场风险MC和信用风险MC按相关系数矩阵聚合（ρ=0.25），得到穿透后资管产品的最低资本。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      MC<sub>市场</sub> = 7,100 万<br>
+      MC<sub>信用</sub> = 340 万<br>
+      ρ<sub>市场,信用</sub> = 0.25<br><br>
+      <span style="color:var(--c-accent);">计算：</span><br>
+      MC<sub>资管产品(穿透)</sub> = √(MC<sub>市场</sub>² + MC<sub>信用</sub>² + 2×ρ×MC<sub>市场</sub>×MC<sub>信用</sub>)<br>
+      &nbsp;&nbsp;= √(7,100² + 340² + 2×0.25×7,100×340)<br>
+      &nbsp;&nbsp;= √(50,410,000 + 115,600 + 1,207,000)<br>
+      &nbsp;&nbsp;= √(51,732,600)<br>
+      &nbsp;&nbsp;≈ <strong style="color:var(--c-teal);font-size:16px;">7,192 万</strong>
+    </div>
+    <div class="cs-result" style="font-size:16px;">MC<sub>资管产品(穿透)</sub> ≈ 7,180 万元（取整）</div>
+    <div class="cs-note">注：穿透后该资管产品的最低资本约为7,180万元，包含市场风险7,100万和信用风险340万，经相关系数0.25聚合。</div>
+  </div>
+
+  <!-- Step 6 -->
+  <div class="calc-step" style="border:2px solid var(--c-teal);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-teal);">6</span>
+      <span class="cs-title">与不穿透对比 — 穿透节省 Capital Saving</span>
+    </div>
+    <p style="font-size:13px;">对比穿透计量与不穿透（按非基础资产综合因子）的资本要求，展示穿透的经济激励。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">不穿透（按综合惩罚因子）：</span><br>
+      MC<sub>不穿透</sub> = 账面价值 × 综合惩罚因子<br>
+      &nbsp;&nbsp;= 40,000 × 0.30<br>
+      &nbsp;&nbsp;= <strong>12,000 万</strong><br><br>
+      <span style="color:var(--c-accent);">穿透后：</span><br>
+      MC<sub>穿透</sub> ≈ <strong>7,180 万</strong><br><br>
+      <span style="color:var(--c-accent);">穿透节省：</span><br>
+      节省 = MC<sub>不穿透</sub> - MC<sub>穿透</sub><br>
+      &nbsp;&nbsp;= 12,000 - 7,180<br>
+      &nbsp;&nbsp;= <strong style="color:var(--c-teal);font-size:16px;">4,820 万</strong><br><br>
+      <span style="color:var(--c-accent);">节省比例：</span><br>
+      &nbsp;&nbsp;= 4,820 / 12,000<br>
+      &nbsp;&nbsp;= <strong style="color:var(--c-teal);">40%</strong>
+    </div>
+
+    <table style="margin-top:14px;">
+      <thead>
+        <tr>
+          <th style="width:25%">计量方式</th>
+          <th style="width:20%">MC(万)</th>
+          <th style="width:20%">节省(万)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#fcebeb;">
+          <td>不穿透（综合因子0.30）</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-red);">12,000</td>
+          <td style="text-align:center;color:var(--c-text-muted);">—</td>
+          <td>惩罚性综合因子</td>
+        </tr>
+        <tr style="background:var(--c-teal-light);">
+          <td><strong>穿透后</strong></td>
+          <td style="text-align:right;font-weight:700;color:var(--c-teal);">7,180</td>
+          <td style="text-align:right;font-weight:700;color:var(--c-teal);">4,820</td>
+          <td><strong>节省40%</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout success" style="margin-top:14px;">
+      <div class="title">穿透计量的经济激励</div>
+      <p>穿透计量为西红人寿节省了 <strong>4,820万元</strong> 的最低资本（节省比例40%）。这意味着穿透后该资管产品占用的资本大幅降低，释放的资本可用于其他业务发展。惩罚性因子与穿透后实际因子的巨大差异，形成了强有力的经济激励——保险公司主动获取底层资产信息的成本远低于不穿透的资本惩罚。</p>
+    </div>
+
+    <div class="callout info" style="margin-top:10px;">
+      <div class="title">与其他规则的衔接</div>
+      <p>穿透后的市场风险MC（7,100万）和信用风险MC（340万）分别汇入第8号（MC<sub>市场</sub>）和第9号（MC<sub>信用</sub>）的总量中，参与第2号的最终聚合。穿透计量本身不产生独立的最低资本——它是市场风险和信用风险的<strong>前置分配规则</strong>。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号 第7号：穿透计量<br>
+  参考：EIOPA Solvency II Look-Through Approach、IAIS Investment Risk Guidance</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('[id^="tab-"]');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Progress tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule7';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
