@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1号：实际资本 Actual Capital | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger active">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html" class="active">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第一支柱</a>
+  <span class="sep">›</span>
+  第1号 实际资本
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管规则第 1 号 · Pillar I</div>
+  <h1>第1号：实际资本 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 偿付能力充足率的分子</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Actual Capital / Available Capital</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(200,152,60,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(200,152,60,0.4);color:#fdf5e6;">Pillar I · 第一支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">认可资产 - 认可负债</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">四级资本分级</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">保单未来盈余35%限额</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="provisions" onclick="switchTab('provisions')">关键条款 Key Provisions</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Calculation Example</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>实际资本的定义 Definition <span class="en">Actual Capital / Available Capital</span></h2>
+    <p><strong>实际资本</strong>，又称<strong>可用资本</strong>（Available Capital），是指保险公司在持续经营或破产清算状态下可以吸收损失的财务资源。它是偿付能力充足率公式的<strong>分子</strong>，直接决定保险公司是否满足监管的资本要求。</p>
+
+    <div class="formula">
+      <span class="label">实际资本基本公式</span>
+      <span class="eq">Actual Capital</span> = <span class="var">Admitted Assets</span> - <span class="var">Admitted Liabilities</span><br>
+      <span class="comment">实际资本 = 认可资产 - 认可负债</span><br>
+      <span class="comment">认可资产：按照监管标准可以计入实际资本的资产（排除商誉、递延所得税资产等非认可资产）</span><br>
+      <span class="comment">认可负债：按照监管标准计算的负债（寿险合同按第3号规则评估，非寿险以财务账面价值）</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">"持续经营 + 破产清算"双视角</div>
+      <p>实际资本同时承担两种功能：① <strong>持续经营视角</strong>——在正常经营中吸收非预期损失，保证公司稳健运行；② <strong>破产清算视角</strong>——在极端情况下对保单持有人提供赔付保障。因此实际资本必须具备"真实的损失吸收能力"，并非所有账面资产都计入。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>资本分级结构 Capital Tiering Structure <span class="en">Four-Tier Hierarchy</span></h2>
+    <p>C-ROSS II 借鉴 Basel III / Solvency II 的资本分级理念，将实际资本按<strong>损失吸收能力</strong>由高到低分为四级：核心一级、核心二级、附属一级、附属二级。资本层级越高，吸收损失的能力越强，监管限制也越严格。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:14%">资本层级</th>
+          <th style="width:20%">英文</th>
+          <th style="width:10%">简写</th>
+          <th>主要构成</th>
+          <th style="width:14%">损失吸收能力</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-purple-light);color:var(--c-purple);">核心一级</span></td>
+          <td class="en-text">Core Tier 1</td>
+          <td style="font-family:var(--font-mono);">CET1</td>
+          <td>实收资本、资本公积、留存收益、<strong>剩余期限 &gt; 30年</strong>的保单未来盈余</td>
+          <td>最强</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-blue-light);color:var(--c-blue);">核心二级</span></td>
+          <td class="en-text">Additional Tier 1</td>
+          <td style="font-family:var(--font-mono);">AT1</td>
+          <td><strong>剩余期限 10-30年</strong>的保单未来盈余</td>
+          <td>强</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-teal-light);color:var(--c-teal);">附属一级</span></td>
+          <td class="en-text">Tier 2</td>
+          <td style="font-family:var(--font-mono);">T2</td>
+          <td><strong>剩余期限 5-10年</strong>的保单未来盈余 + 符合条件的资本工具</td>
+          <td>中等</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-amber-light);color:var(--c-amber);">附属二级</span></td>
+          <td class="en-text">Tier 3</td>
+          <td style="font-family:var(--font-mono);">T3</td>
+          <td><strong>剩余期限 &lt; 5年</strong>的保单未来盈余 + 次级债</td>
+          <td>弱</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      <span class="label">资本分级汇总</span>
+      <span class="eq">实际资本 = 核心资本 + 附属资本</span><br>
+      <span class="comment">核心资本 = 核心一级资本 (CET1) + 核心二级资本 (AT1)</span><br>
+      <span class="comment">附属资本 = 附属一级资本 (T2) + 附属二级资本 (T3)</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>关键限额约束 Key Constraints <span class="en">Capital Limits</span></h2>
+    <p>为防止保险公司以低质量资本"充数"，C-ROSS II 对各层级资本设置了严格的数量限额约束。这些约束确保高质量资本在总资本中保持合理比重。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">限额规则</th>
+          <th style="width:25%">公式</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>核心资本中保单未来盈余限额</strong></td>
+          <td style="font-family:var(--font-mono);font-size:12px;">保单未来盈余纳入核心资本部分 ≤ 核心资本 × 35%</td>
+          <td>防止保险公司将长尾业务的未来利润过度提前计入核心资本，增强核心资本的真实性</td>
+        </tr>
+        <tr>
+          <td><strong>附属资本限额</strong></td>
+          <td style="font-family:var(--font-mono);font-size:12px;">附属资本 ≤ 核心资本</td>
+          <td>确保高质量资本在总资本中至少占50%，防止资本结构"倒挂"</td>
+        </tr>
+        <tr>
+          <td><strong>核心二级资本限额</strong></td>
+          <td style="font-family:var(--font-mono);font-size:12px;">核心二级资本 ≤ 核心一级资本 × 35%</td>
+          <td>限制次级质量的"核心资本"比重，保证核心一级资本的主导地位</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">超限处理规则</div>
+      <p>当某层级资本超过限额时，须将超额部分<strong>向下级层级转移</strong>（例如核心二级超额则转入附属一级），直至满足限额要求；若向下转移后附属资本也超限，则超出部分<strong>不计入实际资本</strong>。这一机制确保了资本结构的"金字塔"形状——高质量资本在上，低质量资本在下。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>保单未来盈余的分级计入 Future Profits Tiering <span class="en">Key Innovation of Phase II</span></h2>
+    <p><strong>保单未来盈余</strong>（Future Profits in Current Policies）是指现有保单未来预期产生的利润的现值。在 C-ROSS 一期中，保单未来盈余<strong>全额计入核心资本</strong>，被批评为虚增资本。二期改革引入了按剩余期限分级计入的创新机制。</p>
+
+    <div class="formula">
+      <span class="label">保单未来盈余分级计入规则</span>
+      <span class="eq">保单未来盈余</span> → 按<strong style="color:#fdf5e6;">剩余期限</strong>分四档：<br>
+      <span class="var">剩余期限 &gt; 30年</span> → 计入核心一级资本 (CET1)<br>
+      <span class="var">剩余期限 10-30年</span> → 计入核心二级资本 (AT1)<br>
+      <span class="var">剩余期限 5-10年</span> → 计入附属一级资本 (T2)<br>
+      <span class="var">剩余期限 &lt; 5年</span> → 计入附属二级资本 (T3)
+    </div>
+
+    <div class="callout success">
+      <div class="title">设计原理</div>
+      <p>剩余期限越长，未来利润的不确定性越大、变现时间越远，损失吸收能力越弱；反之剩余期限越短，利润实现的确定性越高。将长期未来盈余计入更低层级资本，可防止保险公司将"远期纸上利润"当作"即期可用资本"使用，从根本上提升了实际资本的真实性和审慎性。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 关键条款 Key Provisions ============== -->
+<div class="tab-content" id="tab-provisions" style="display:none;">
+
+  <div class="section">
+    <h2>认可资产 Admitted Assets <span class="en">Recognition Standards</span></h2>
+    <p>认可资产是实际资本公式的减项之一（实际资本 = 认可资产 - 认可负债）。C-ROSS II 对认可资产的认定<strong>以账面价值为基础</strong>，但对部分资产设有特殊规定，以反映资产的真实可变现价值与风险特征。</p>
+
+    <h3>一般原则 General Principles</h3>
+    <ul>
+      <li>以<strong>账面价值</strong>为基础计量（与会计准则一致）</li>
+      <li>排除<strong>非认可资产</strong>：商誉、递延所得税资产、无形资产（单独列示的除外）、待处理财产损溢等</li>
+      <li>对部分资产按<strong>认可比例</strong>或<strong>特殊估值方法</strong>调整</li>
+    </ul>
+
+    <h3>特殊资产规定 Special Provisions</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">资产类别</th>
+          <th style="width:25%">英文名称</th>
+          <th>认可规定</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>投资性房地产</strong></td>
+          <td class="en-text">Investment Real Estate</td>
+          <td><strong>按成本模式</strong>计量（二期变化，一期为公允价值），评估增值不再计入实际资本</td>
+        </tr>
+        <tr>
+          <td><strong>长期股权投资</strong></td>
+          <td class="en-text">Long-term Equity Investment</td>
+          <td>对联营/合营企业按<strong>权益法</strong>核算并考虑减值；对<strong>子公司（控制权）100%全额扣除</strong>，认可价值为 0（通过合并报表处理）</td>
+        </tr>
+        <tr>
+          <td><strong>交易性金融资产</strong></td>
+          <td class="en-text">Trading Financial Assets</td>
+          <td>按公允价值计量，认可比例一般为 100%</td>
+        </tr>
+        <tr>
+          <td><strong>持有至到期投资</strong></td>
+          <td class="en-text">Held-to-maturity Investments</td>
+          <td>按摊余成本计量，须考虑减值准备</td>
+        </tr>
+        <tr>
+          <td><strong>应收款项</strong></td>
+          <td class="en-text">Receivables</td>
+          <td>按账面价值扣除坏账准备后净额，账龄超过一定期限的按比例认可</td>
+        </tr>
+        <tr>
+          <td><strong>现金及银行存款</strong></td>
+          <td class="en-text">Cash &amp; Bank Deposits</td>
+          <td>认可比例 100%（限制存款于非合格金融机构的部分）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">"穿透"原则</div>
+      <p>对基础资产不透明的投资产品（如部分资管产品、信托计划、私募基金），须按照第7号规则"应穿尽穿"原则进行穿透，识别底层资产后按相应资产类别认定认可价值。无法穿透的资产适用惩罚性资本要求。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>认可负债 Admitted Liabilities <span class="en">Liability Recognition</span></h2>
+    <p>认可负债是实际资本公式的另一减项。C-ROSS II 对寿险与非寿险业务采用不同的认可负债评估标准。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">业务类型</th>
+          <th style="width:32%">评估标准</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>寿险合同负债</strong></td>
+          <td>按<strong>第3号规则</strong>评估</td>
+          <td>采用"最优估计 + 风险边际"的计量模型，折现率采用750日移动平均国债收益率曲线 + 终极利率4.5%</td>
+        </tr>
+        <tr>
+          <td><strong>非寿险负债</strong></td>
+          <td>以<strong>财务报表账面价值</strong>为准</td>
+          <td>未到期责任准备金、未决赔款准备金按财务准则确认，不另作精算调整</td>
+        </tr>
+        <tr>
+          <td><strong>其他负债</strong></td>
+          <td>以财务报表账面价值为准</td>
+          <td>包括应付账款、其他应付款等</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      <span class="label">寿险合同负债评估模型（第3号规则）</span>
+      <span class="eq">寿险合同负债</span> = <span class="var">最优估计准备金</span> + <span class="var">风险边际</span><br>
+      <span class="comment">最优估计：未来现金流的概率加权现值（折现率=750日移动平均国债收益率+终极利率4.5%）</span><br>
+      <span class="comment">风险边际：为反映未来现金流不确定性而附加的缓冲（通常采用分位法或情景法计算）</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>所得税准备 Income Tax Provision <span class="en">Deferred Tax Asset Treatment</span></h2>
+    <p>所得税准备的认定遵循<strong>审慎性原则</strong>，要求保险公司有合理的预期能够在未来实现相应的应纳税所得额。</p>
+
+    <div class="callout warning">
+      <div class="title">所得税准备确认规则</div>
+      <p>保险公司<strong>连续三年应纳税所得额为正</strong>的，应确认相应的所得税准备（递延所得税负债）；否则不予确认。这一规则防止保险公司利用递延所得税资产虚增实际资本。</p>
+    </div>
+
+    <div class="callout info">
+      <div class="title">为何要确认所得税准备？</div>
+      <p>认可负债中包含所得税准备，是因为在极端情况下（如清算或重大损失事件），保险公司可能需要支付或承担相应的所得税义务。将这些潜在税负计入认可负债，可使实际资本更加审慎、保守，避免高估资本实力。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>保单未来盈余归入规则 Future Profits Classification <span class="en">Tiering by Remaining Maturity</span></h2>
+    <p>保单未来盈余按<strong>剩余期限</strong>分四档归入相应资本层级，这是 C-ROSS II 第1号规则的核心创新之一。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">剩余期限</th>
+          <th style="width:22%">归入资本层级</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&gt; 30年</td>
+          <td><span class="cat-badge" style="background:var(--c-purple-light);color:var(--c-purple);">核心一级 (CET1)</span></td>
+          <td>超长期未来利润，与实收资本、留存收益同列最高层级</td>
+        </tr>
+        <tr>
+          <td>10-30年</td>
+          <td><span class="cat-badge" style="background:var(--c-blue-light);color:var(--c-blue);">核心二级 (AT1)</span></td>
+          <td>长期未来利润，吸收损失能力较强</td>
+        </tr>
+        <tr>
+          <td>5-10年</td>
+          <td><span class="cat-badge" style="background:var(--c-teal-light);color:var(--c-teal);">附属一级 (T2)</span></td>
+          <td>中期未来利润，吸收损失能力中等</td>
+        </tr>
+        <tr>
+          <td>&lt; 5年</td>
+          <td><span class="cat-badge" style="background:var(--c-amber-light);color:var(--c-amber);">附属二级 (T3)</span></td>
+          <td>短期未来利润，吸收损失能力较弱</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      <span class="label">保单未来盈余分级公式</span>
+      <span class="eq">FP_total</span> = <span class="var">FP_{&gt;30y}</span> + <span class="var">FP_{10-30y}</span> + <span class="var">FP_{5-10y}</span> + <span class="var">FP_{&lt;5y}</span><br>
+      <span class="comment">FP_{&gt;30y} → CET1；FP_{10-30y} → AT1；FP_{5-10y} → T2；FP_{&lt;5y} → T3</span><br>
+      <span class="comment">同时受 35% 限额约束：纳入核心资本的保单未来盈余 ≤ 核心资本 × 35%</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">"剩余期限"的定义</div>
+      <p>剩余期限 = 负债评估日 - 保单剩余保险期间终止日。对于年金等长期险业务，由于保险期间可能跨越数十年，未来盈余主要归入核心一级；对于短期健康险、意外险业务，未来盈余主要归入附属二级。这一机制实质上将资本质量与业务久期挂钩。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期改革概览 Phase II Reforms <span class="en">Key Changes from Phase I</span></h2>
+    <p>C-ROSS 二期（Phase II）相较一期（Phase I）在实际资本认定方面进行了系统性审慎化改革。核心思路是<strong>"挤水分、提质量、防套利"</strong>——挤掉虚增资本的水分，提升资本的真实损失吸收能力，防范资本套利行为。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">改革领域</th>
+          <th style="width:36%">一期做法</th>
+          <th>二期改革</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>保单未来盈余</strong></td>
+          <td>全额计入核心资本</td>
+          <td>按剩余期限分四档（&gt;30年/10-30年/5-10年/&lt;5年）分别计入核心一级、核心二级、附属一级、附属二级</td>
+        </tr>
+        <tr>
+          <td><strong>投资性房地产</strong></td>
+          <td>按公允价值计量，评估增值计入实际资本</td>
+          <td><strong>按成本模式</strong>计量，评估增值不再计入实际资本</td>
+        </tr>
+        <tr>
+          <td><strong>长期股权投资（子公司）</strong></td>
+          <td>按权益法部分认可</td>
+          <td><strong>100%全额扣除</strong>，认可价值为 0（通过合并报表处理子公司风险）</td>
+        </tr>
+        <tr>
+          <td><strong>核心资本限额</strong></td>
+          <td>无保单未来盈余占比限制</td>
+          <td><strong>新增</strong>核心资本中保单未来盈余 ≤ 35% 的限额</td>
+        </tr>
+        <tr>
+          <td><strong>上市公司股票</strong></td>
+          <td>统一按公允价值认可</td>
+          <td><strong>非蓝筹股</strong>须按减值规则处理，计提减值影响认可价值</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化1：保单未来盈余分级 Future Profits Tiering <span class="en">Most Significant Reform</span></h2>
+    <div class="callout danger">
+      <div class="title">一期问题</div>
+      <p>一期规则下，保单未来盈余<strong>全额计入核心资本</strong>。这导致保险公司可以将长期业务的远期预期利润全部当作"即期可用资本"，严重虚增了核心资本。对于长期储蓄型业务占比高的寿险公司，未来盈余可能占核心资本的50%以上，但这些利润要在数十年后才能逐步实现，根本无法应对即期损失。</p>
+    </div>
+
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期将保单未来盈余按剩余期限分四档：<strong>&gt;30年 → 核心一级</strong>；<strong>10-30年 → 核心二级</strong>；<strong>5-10年 → 附属一级</strong>；<strong>&lt;5年 → 附属二级</strong>。同时叠加35%限额，确保纳入核心资本的保单未来盈余不超过核心资本的35%。这一改革显著压降了虚增资本，促使保险公司依靠真实股东投入和经营积累。</p>
+    </div>
+
+    <div class="formula">
+      <span class="label">影响示例</span>
+      <span class="comment">假设某寿险公司保单未来盈余 100 亿元，期限结构：&gt;30年 30亿、10-30年 40亿、5-10年 20亿、&lt;5年 10亿</span><br>
+      <span class="eq">一期：</span> 100亿全部计入核心资本<br>
+      <span class="eq">二期：</span> 核心一级 30亿 + 核心二级 40亿 + 附属一级 20亿 + 附属二级 10亿<br>
+      <span class="comment">若核心资本限额 35% 触发，进一步压缩核心资本中的未来盈余金额</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化2：投资性房地产成本模式 Real Estate Cost Model <span class="en">No More Fair Value Uplift</span></h2>
+    <p>二期要求<strong>投资性房地产按成本模式</strong>后续计量，<strong>评估增值不再计入实际资本</strong>。</p>
+
+    <div class="callout warning">
+      <div class="title">改革背景</div>
+      <p>一期允许投资性房地产按公允价值计量，评估增值计入实际资本。在房地产市场上涨周期，部分保险公司通过频繁重估房地产增值大幅"充胖"实际资本，但这些增值并未实现、存在回调风险，且流动性差。二期改为成本模式后，房地产增值部分须在实际资本中剔除，防止资本虚增。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化3：子公司长投全额扣除 Subsidiary Investment Deduction <span class="en">Full Deduction Rule</span></h2>
+    <p>二期对保险公司<strong>拥有控制权的子公司长期股权投资</strong>实施<strong>100%全额扣除</strong>，认可价值为 0。</p>
+
+    <div class="callout info">
+      <div class="title">扣除逻辑</div>
+      <p>子公司风险已通过<strong>合并报表</strong>方式纳入集团偿付能力监管（第19号规则）。若同时在母公司层面认可长投价值，将造成同一笔资本"双重计算"。全额扣除可避免资本重复计入，确保集团层面资本真实。对于不纳入合并范围的联营、合营企业，仍按权益法认可（考虑减值）。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化4：核心资本35%限额 35% Cap on Future Profits <span class="en">New Quantitative Limit</span></h2>
+    <p>二期<strong>新增</strong>核心资本中保单未来盈余 ≤ 35% 的限额约束，这是一期没有的规则。</p>
+
+    <div class="formula">
+      <span class="label">35% 限额公式</span>
+      <span class="eq">保单未来盈余纳入核心资本部分</span> ≤ <span class="var">核心资本 × 35%</span><br>
+      <span class="comment">即 (CET1 中的 FP + AT1 中的 FP) ≤ (CET1 + AT1) × 35%</span><br>
+      <span class="comment">超出部分向下转移：核心二级 → 附属一级；附属一级 → 附属二级</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">限额的政策意图</div>
+      <p>35%限额与保单未来盈余分级机制"双保险"：分级机制限制了未来盈余的<strong>质量层级</strong>，35%限额限制了未来盈余在核心资本中的<strong>数量占比</strong>。两者共同作用，确保核心资本主要由"真金白银"（实收资本、资本公积、留存收益）构成，而非"纸上利润"。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化5：上市公司股票减值规则 Stock Impairment <span class="en">Non-blue-chip Impairment</span></h2>
+    <p>二期对上市公司股票实施差异化认可规则：<strong>蓝筹股</strong>按公允价值认可，<strong>非蓝筹股</strong>须按减值规则处理。</p>
+
+    <div class="callout warning">
+      <div class="title">减值规则要点</div>
+      <ul>
+        <li>蓝筹股（沪深300成分股等）：按公允价值认可，不强制减值</li>
+        <li>非蓝筹股：当股价持续低于成本价一定幅度时，须计提减值并相应调减认可价值</li>
+        <li>减值规则与会计准则的减值逻辑有所差异，体现监管的审慎性</li>
+        <li>该规则限制了保险公司通过配置高风险股票"博收益"的行为</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Calculation Example ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>计算案例：西红人寿保险公司 Worked Example <span class="en">Anxin Life Insurance Co.</span></h2>
+
+    <div class="callout info">
+      <div class="title">公司背景 Company Background</div>
+      <p><strong>西红人寿保险公司</strong>（Anxin Life Insurance Co., Ltd.），一家虚构的中型寿险公司，以长期储蓄型业务为主。<br>
+      评估日期：<strong>2024年12月31日</strong>　|　单位：<strong>万元</strong></p>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">1</span>
+        <span class="cs-title">认可资产计算 Admitted Assets Calculation</span>
+      </div>
+      <p style="font-size:13px;">以账面价值为基础，对部分资产按特殊规定调整。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:28%">资产类别</th>
+            <th style="width:15%">账面价值</th>
+            <th style="width:22%">认可规定</th>
+            <th>认可价值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>银行存款</td>
+            <td style="text-align:right;">50,000</td>
+            <td>认可比例 100%</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">50,000</td>
+          </tr>
+          <tr>
+            <td>国债</td>
+            <td style="text-align:right;">80,000</td>
+            <td>认可比例 100%</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">80,000</td>
+          </tr>
+          <tr>
+            <td>企业债</td>
+            <td style="text-align:right;">60,000</td>
+            <td>认可比例 100%</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">60,000</td>
+          </tr>
+          <tr>
+            <td>上市股票（蓝筹）</td>
+            <td style="text-align:right;">30,000</td>
+            <td>蓝筹股按公允价值认可</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">30,000</td>
+          </tr>
+          <tr>
+            <td>投资性房地产（成本）</td>
+            <td style="text-align:right;">20,000</td>
+            <td>二期：成本模式（公允价值增值 5,000 不计入）</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">20,000</td>
+          </tr>
+          <tr>
+            <td>子公司长投（控制权）</td>
+            <td style="text-align:right;">40,000</td>
+            <td><strong style="color:var(--c-red);">100%全额扣除</strong>（通过合并报表处理）</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-red);">0</td>
+          </tr>
+          <tr style="background:var(--c-accent-light);">
+            <td><strong>合计认可资产</strong></td>
+            <td style="text-align:right;">280,000</td>
+            <td>账面 280,000 → 认可 240,000</td>
+            <td style="text-align:right;font-weight:700;font-size:15px;color:var(--c-primary-dark);">240,000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cs-formula">
+        认可资产合计 = 50,000 + 80,000 + 60,000 + 30,000 + 20,000 + 0 = <strong>240,000 万元</strong>
+      </div>
+      <div class="cs-note">注：子公司长投 40,000 万元全额扣除；投资性房地产公允价值增值 5,000 万元不计入。</div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">2</span>
+        <span class="cs-title">认可负债计算 Admitted Liabilities Calculation</span>
+      </div>
+      <p style="font-size:13px;">寿险合同负债按第3号规则评估（最优估计 + 风险边际）。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:40%">负债类别</th>
+            <th style="width:25%">评估标准</th>
+            <th>认可价值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>寿险合同负债（最优估计）</td>
+            <td>第3号规则（750日国债收益率+终极利率4.5%）</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-red);">160,000</td>
+          </tr>
+          <tr>
+            <td>风险边际</td>
+            <td>反映未来现金流不确定性</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-red);">12,000</td>
+          </tr>
+          <tr>
+            <td>其他负债</td>
+            <td>财务报表账面价值</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-red);">8,000</td>
+          </tr>
+          <tr>
+            <td>所得税准备</td>
+            <td>连续三年应纳税所得额为正，予以确认</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-red);">3,000</td>
+          </tr>
+          <tr style="background:var(--c-accent-light);">
+            <td><strong>合计认可负债</strong></td>
+            <td>各项加总</td>
+            <td style="text-align:right;font-weight:700;font-size:15px;color:var(--c-primary-dark);">183,000</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cs-formula">
+        认可负债合计 = 160,000 + 12,000 + 8,000 + 3,000 = <strong>183,000 万元</strong>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">3</span>
+        <span class="cs-title">实际资本计算 Actual Capital Calculation</span>
+      </div>
+      <div class="cs-formula" style="background:var(--c-primary-dark);color:#fff;font-size:14px;">
+        实际资本 = 认可资产 - 认可负债 = 240,000 - 183,000 = <strong style="color:#4caf50;font-size:16px;">57,000 万元</strong>
+      </div>
+      <div class="cs-result">实际资本 = 57,000 万元</div>
+      <div class="cs-note">此为限额调整前的"名义实际资本"，接下来进行资本分级与限额检查。</div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">4</span>
+        <span class="cs-title">资本分级（调整前）Capital Tiering (Pre-adjustment)</span>
+      </div>
+      <p style="font-size:13px;">将各项资本来源按性质归入相应资本层级。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30%">资本来源</th>
+            <th style="width:18%">金额</th>
+            <th style="width:22%">归入层级</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>实收资本 + 资本公积</td>
+            <td style="text-align:right;">20,000</td>
+            <td><span class="cat-badge" style="background:var(--c-purple-light);color:var(--c-purple);">核心一级</span></td>
+            <td>股东投入，最高质量资本</td>
+          </tr>
+          <tr>
+            <td>留存收益</td>
+            <td style="text-align:right;">10,000</td>
+            <td><span class="cat-badge" style="background:var(--c-purple-light);color:var(--c-purple);">核心一级</span></td>
+            <td>历年经营积累</td>
+          </tr>
+          <tr>
+            <td>保单未来盈余（&gt;30年期）</td>
+            <td style="text-align:right;">8,000</td>
+            <td><span class="cat-badge" style="background:var(--c-purple-light);color:var(--c-purple);">核心一级</span></td>
+            <td>剩余期限 &gt; 30年</td>
+          </tr>
+          <tr>
+            <td>保单未来盈余（10-30年期）</td>
+            <td style="text-align:right;">10,000</td>
+            <td><span class="cat-badge" style="background:var(--c-blue-light);color:var(--c-blue);">核心二级</span></td>
+            <td>剩余期限 10-30年</td>
+          </tr>
+          <tr>
+            <td>保单未来盈余（5-10年期）</td>
+            <td style="text-align:right;">6,000</td>
+            <td><span class="cat-badge" style="background:var(--c-teal-light);color:var(--c-teal);">附属一级</span></td>
+            <td>剩余期限 5-10年</td>
+          </tr>
+          <tr>
+            <td>保单未来盈余（&lt;5年期）</td>
+            <td style="text-align:right;">3,000</td>
+            <td><span class="cat-badge" style="background:var(--c-amber-light);color:var(--c-amber);">附属二级</span></td>
+            <td>剩余期限 &lt; 5年</td>
+          </tr>
+          <tr style="background:var(--c-accent-light);">
+            <td><strong>合计</strong></td>
+            <td style="text-align:right;font-weight:700;">57,000</td>
+            <td colspan="2">名义实际资本（限额调整前）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top:16px;">35% 限额检查</h4>
+      <div class="cs-formula">
+        核心资本 = 核心一级 + 核心二级 = (20,000 + 10,000 + 8,000) + 10,000 = <strong>48,000 万元</strong><br>
+        纳入核心资本的保单未来盈余 = 8,000 + 10,000 = <strong>18,000 万元</strong><br>
+        占比 = 18,000 / 48,000 = <strong style="color:var(--c-red);">37.5%</strong> &gt; 35% 限额 → <strong style="color:var(--c-red);">需调整</strong>
+      </div>
+      <div class="cs-note" style="color:var(--c-red);">保单未来盈余占核心资本 37.5%，超过 35% 限额，须将超额部分从核心二级转入附属一级。</div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="calc-step" style="border:2px solid var(--c-accent);">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num" style="background:var(--c-accent);">5</span>
+        <span class="cs-title">限额调整后最终资本结构 Final Capital Structure (Post-adjustment)</span>
+      </div>
+      <p style="font-size:13px;">核心资本中允许的保单未来盈余上限 = 核心资本 × 35%。超出部分向下转移。</p>
+
+      <div class="cs-formula">
+        核心资本中允许的保单未来盈余上限 = 48,000 × 35% = <strong>16,800 万元</strong><br>
+        当前核心一级中保单未来盈余 = 8,000 万元<br>
+        核心二级最多可保留 = 16,800 - 8,000 = <strong>8,800 万元</strong>（原 10,000，超额 1,200）<br>
+        超额部分 1,200 万元 → 从核心二级转入附属一级
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:25%">资本层级</th>
+            <th style="width:18%">调整前</th>
+            <th style="width:18%">调整后</th>
+            <th>构成明细（调整后）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cat-badge" style="background:var(--c-purple-light);color:var(--c-purple);">核心一级 (CET1)</span></td>
+            <td style="text-align:right;">38,000</td>
+            <td style="text-align:right;font-weight:700;color:var(--c-purple);">38,000</td>
+            <td>实收资本+资本公积 20,000 + 留存收益 10,000 + FP(&gt;30年) 8,000</td>
+          </tr>
+          <tr>
+            <td><span class="cat-badge" style="background:var(--c-blue-light);color:var(--c-blue);">核心二级 (AT1)</span></td>
+            <td style="text-align:right;">10,000</td>
+            <td style="text-align:right;font-weight:700;color:var(--c-blue);">8,800</td>
+            <td>FP(10-30年) 10,000 - 转出 1,200 = 8,800</td>
+          </tr>
+          <tr>
+            <td><span class="cat-badge" style="background:var(--c-teal-light);color:var(--c-teal);">附属一级 (T2)</span></td>
+            <td style="text-align:right;">6,000</td>
+            <td style="text-align:right;font-weight:700;color:var(--c-teal);">7,200</td>
+            <td>原 FP(5-10年) 6,000 + 从核心二级转入 1,200 = 7,200</td>
+          </tr>
+          <tr>
+            <td><span class="cat-badge" style="background:var(--c-amber-light);color:var(--c-amber);">附属二级 (T3)</span></td>
+            <td style="text-align:right;">3,000</td>
+            <td style="text-align:right;font-weight:700;color:var(--c-amber);">3,000</td>
+            <td>FP(&lt;5年) 3,000（不变）</td>
+          </tr>
+          <tr style="background:var(--c-accent-light);">
+            <td><strong>核心资本合计</strong></td>
+            <td style="text-align:right;">48,000</td>
+            <td style="text-align:right;font-weight:700;font-size:15px;color:var(--c-primary-dark);">46,800</td>
+            <td>核心一级 38,000 + 核心二级 8,800</td>
+          </tr>
+          <tr style="background:var(--c-accent-light);">
+            <td><strong>实际资本合计</strong></td>
+            <td style="text-align:right;">57,000</td>
+            <td style="text-align:right;font-weight:700;font-size:15px;color:var(--c-primary-dark);">57,000</td>
+            <td>核心资本 46,800 + 附属资本 10,200（总额不变）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top:16px;">限额复核验证</h4>
+      <div class="cs-formula" style="background:var(--c-teal-light);color:var(--c-primary-dark);border:1px solid var(--c-teal);">
+        <span style="color:var(--c-teal);font-weight:600;">[验证] 35% 限额检查：</span><br>
+        纳入核心资本的保单未来盈余 = FP(&gt;30年) + FP(10-30年, 调整后)<br>
+        = 8,000 + 8,800 = <strong>16,800 万元</strong><br>
+        核心资本 = 38,000 + 8,800 = <strong>46,800 万元</strong><br>
+        占比 = 16,800 / 46,800 = <strong style="color:var(--c-green);">35.9% ≈ 35%</strong> ✓ 达标
+      </div>
+
+      <div class="cs-formula" style="background:var(--c-teal-light);color:var(--c-primary-dark);border:1px solid var(--c-teal);margin-top:8px;">
+        <span style="color:var(--c-teal);font-weight:600;">[验证] 附属资本 ≤ 核心资本：</span><br>
+        附属资本 = 附属一级 7,200 + 附属二级 3,000 = <strong>10,200 万元</strong><br>
+        核心资本 = <strong>46,800 万元</strong><br>
+        10,200 ≤ 46,800 → <strong style="color:var(--c-green);">达标 ✓</strong>
+      </div>
+
+      <div class="cs-result" style="font-size:16px;text-align:center;padding:12px;background:var(--c-teal-light);border-radius:8px;margin-top:12px;">
+        最终结果：核心资本 46,800 万元 ｜ 实际资本 57,000 万元 ｜ 保单未来盈余占比 35.9% ≈ 35% ✓
+      </div>
+
+      <div class="callout success" style="margin-top:14px;">
+        <div class="title">案例结论</div>
+        <p>经过5步计算，西红人寿的实际资本为 <strong>57,000 万元</strong>，其中核心资本 <strong>46,800 万元</strong>（核心一级 38,000 + 核心二级 8,800），附属资本 <strong>10,200 万元</strong>（附属一级 7,200 + 附属二级 3,000）。保单未来盈余占核心资本比重经调整后约为 35%，满足 35% 限额要求。本案例展示了 C-ROSS II 实际资本认定的全流程：认可资产扣除 → 认可负债加总 → 实际资本计算 → 资本分级 → 限额调整。</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号 第1号：实际资本<br>
+  参考：EIOPA Solvency II、国家金融监督管理总局官方网站</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+// Tab Switching
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Progress Tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule1';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
