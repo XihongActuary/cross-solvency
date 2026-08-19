@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三支柱监管体系 Three-Pillar Framework | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html" class="active">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  三支柱体系 Three-Pillar Framework
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管框架总览</div>
+  <h1>三支柱监管体系 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 三根支柱撑起偿付能力大厦</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Three-Pillar Regulatory Framework</div>
+  <div class="hero-pillars" style="margin-top:18px;">
+    <div class="pillar-badge">
+      <div class="p-num">Ⅰ</div>
+      <div class="p-label">定量资本要求<br>Quantitative Capital</div>
+    </div>
+    <div class="pillar-badge">
+      <div class="p-num">Ⅱ</div>
+      <div class="p-label">定性监管要求<br>Qualitative Supervision</div>
+    </div>
+    <div class="pillar-badge">
+      <div class="p-num">Ⅲ</div>
+      <div class="p-label">市场约束机制<br>Market Discipline</div>
+    </div>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">规则 1-18 号</span>
+    <span class="tag">定量+定性+市场</span>
+    <span class="tag">SARMRA评估</span>
+    <span class="tag">风险综合评级ABCD</span>
+    <span class="tag">信息披露制度</span>
+    <span class="tag">偿付能力充足率</span>
+  </div>
+</div>
+
+<!-- Section: Overview -->
+<div class="section">
+  <h2>三支柱总览 Overview <span class="en">The Three-Pillar Blueprint</span></h2>
+  <p>C-ROSS II 沿用国际通行的"三支柱"监管架构，在 Pillar 1 定量资本要求的基础上，辅以 Pillar 2 定性监管和 Pillar 3 市场约束，形成"硬约束+软约束+市场驱动"的多层防护体系。三根支柱相互支撑、环环相扣，共同构成保险公司偿付能力监管的完整框架。</p>
+
+  <!-- Section Navigation Pills -->
+  <div class="section-nav">
+    <a href="#pillar1" class="nav-pill pillar1">第一支柱 · 定量资本</a>
+    <a href="#pillar2" class="nav-pill pillar2">第二支柱 · 定性监管</a>
+    <a href="#pillar3" class="nav-pill pillar3">第三支柱 · 市场约束</a>
+    <a href="#metrics" class="nav-pill">关键指标一览</a>
+  </div>
+
+  <!-- Three Pillar Overview Cards -->
+  <div class="pillar-overview-grid">
+    <a href="#pillar1" class="pillar-overview-card p1">
+      <div class="po-icon">Ⅰ</div>
+      <h3>第一支柱</h3>
+      <div class="po-en">Quantitative Capital Requirements</div>
+      <span class="po-rules">规则 1-10 号</span>
+      <div class="po-metrics">
+        <span class="po-metric">核心偿付能力充足率 <strong>≥ 50%</strong></span>
+        <span class="po-metric">综合偿付能力充足率 <strong>≥ 100%</strong></span>
+      </div>
+      <div class="po-desc">实际资本分级、最低资本计量、寿险负债评估、保险/市场/信用风险因子聚合、全面穿透计量、压力测试</div>
+      <div class="po-link">查看详解 &#8594;</div>
+    </a>
+    <a href="#pillar2" class="pillar-overview-card p2">
+      <div class="po-icon">Ⅱ</div>
+      <h3>第二支柱</h3>
+      <div class="po-en">Qualitative Supervisory Requirements</div>
+      <span class="po-rules">规则 11-14 号</span>
+      <div class="po-metrics">
+        <span class="po-metric">风险综合评级 <strong>≥ B 类</strong></span>
+        <span class="po-metric">SARMRA 评分 <strong>0-100 分</strong></span>
+      </div>
+      <div class="po-desc">IRR 风险综合评级(ABCD)、SARMRA 九大领域评估、流动性风险监管指标、三年滚动资本规划</div>
+      <div class="po-link">查看详解 &#8594;</div>
+    </a>
+    <a href="#pillar3" class="pillar-overview-card p3">
+      <div class="po-icon">Ⅲ</div>
+      <h3>第三支柱</h3>
+      <div class="po-en">Market Discipline Mechanism</div>
+      <span class="po-rules">规则 15-18 号</span>
+      <div class="po-metrics">
+        <span class="po-metric">季度披露 <strong>30日内</strong></span>
+        <span class="po-metric">年度披露 <strong>4个月内</strong></span>
+      </div>
+      <div class="po-desc">偿付能力信息公开披露、监管双向信息交流、保险公司信用评级规范、多层级偿付能力报告体系</div>
+      <div class="po-link">查看详解 &#8594;</div>
+    </a>
+  </div>
+
+  <!-- Detailed Comparison Table -->
+  <h3>三支柱结构对照表 <span class="en">Structural Comparison</span></h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:14%">支柱</th>
+        <th style="width:26%">英文名称</th>
+        <th style="width:18%">涵盖规则</th>
+        <th style="width:18%">核心指标</th>
+        <th>核心内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="rule-ref" style="background:var(--c-blue)">第一支柱</span></td>
+        <td class="en-text">Quantitative Capital Requirements</td>
+        <td>规则 1-10 号</td>
+        <td>核心偿付能力充足率<br>综合偿付能力充足率</td>
+        <td>实际资本、最低资本、负债评估、保险风险、市场风险、信用风险、压力测试</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref" style="background:var(--c-amber)">第二支柱</span></td>
+        <td class="en-text">Qualitative Supervisory Requirements</td>
+        <td>规则 11-14 号</td>
+        <td>风险综合评级(ABCD)<br>SARMRA 评分</td>
+        <td>风险综合评级(IRR)、风险管理评估(SARMRA)、流动性风险、资本规划</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref" style="background:var(--c-teal)">第三支柱</span></td>
+        <td class="en-text">Market Discipline Mechanism</td>
+        <td>规则 15-18 号<br>(+ 19-20号集团/劳合社)</td>
+        <td>信息披露完整性<br>信息交流效率</td>
+        <td>公开信息披露、信息交流、信用评级、偿付能力报告</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="title">设计理念 Design Philosophy</div>
+    <p>C-ROSS II 三支柱借鉴 Basel III / Solvency II 的国际经验，同时结合中国保险市场"新兴+转型"的特点：Pillar 1 设定最低资本底线、Pillar 2 推动公司治理与风险管理能力建设、Pillar 3 利用市场力量辅助监管。三支柱不独立运作——例如 Pillar 2 的 SARMRA 评分会直接影响 Pillar 1 的控制风险最低资本，Pillar 3 的披露数据反过来为市场参与者的 Pillar 1 判断提供了信息基础。</p>
+  </div>
+</div>
+
+<!-- Section: Pillar 1 Detailed -->
+<div class="section" id="pillar1">
+  <h2><span class="section-index">Ⅰ</span>第一支柱详解 Pillar 1 <span class="en">Quantitative Capital Requirements</span></h2>
+
+  <h3>核心公式 Core Formula</h3>
+  <div class="formula">
+    <span class="label">偿付能力充足率 = 实际资本 / 最低资本 × 100%</span>
+    <span class="eq">Solvency Ratio</span> = <span class="var">Available Capital</span> / <span class="var">Minimum Capital</span> × 100%<br>
+    <span class="comment">分子：保险公司可以用于吸收损失的实际资本（认可资产 - 认可负债）</span><br>
+    <span class="comment">分母：监管要求的最低资本（可资本化风险MC + 控制风险MC）</span>
+  </div>
+
+  <h3>两个偿付能力充足率 Two Solvency Ratios</h3>
+  <table>
+    <thead>
+      <tr><th>指标名称</th><th>公式</th><th>监管标准</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>核心偿付能力充足率</strong><br><span class="en-text" style="font-size:10px;color:var(--c-text-muted)">Core Solvency Ratio</span></td>
+        <td style="font-family:var(--font-mono);font-size:12px;">核心资本 / 最低资本 × 100%</td>
+        <td><strong style="color:var(--c-red)">≥ 50%</strong></td>
+        <td style="font-size:12px;">衡量最高质量资本（核心一级+核心二级）对最低资本的覆盖倍数</td>
+      </tr>
+      <tr>
+        <td><strong>综合偿付能力充足率</strong><br><span class="en-text" style="font-size:10px;color:var(--c-text-muted)">Comprehensive Solvency Ratio</span></td>
+        <td style="font-family:var(--font-mono);font-size:12px;">实际资本 / 最低资本 × 100%</td>
+        <td><strong style="color:var(--c-red)">≥ 100%</strong></td>
+        <td style="font-size:12px;">衡量全部实际资本（含附属资本）对最低资本的覆盖倍数</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout success">
+    <div class="title">达标门槛 "Three Red Lines"</div>
+    <p>一家保险公司须同时满足三个条件才算偿付能力达标：① 核心偿付能力充足率 ≥ 50%；② 综合偿付能力充足率 ≥ 100%；③ 风险综合评级 ≥ B 类。任一条不达标即视为偿付能力不达标公司。</p>
+  </div>
+
+  <h3>实际资本的三层逻辑 Three Layers of Available Capital</h3>
+  <div class="formula">
+    <span class="label">Layer 1: 实际资本 = 认可资产 - 认可负债</span>
+    <span class="eq">Available Capital</span> = <span class="var">Admitted Assets</span> - <span class="var">Admitted Liabilities</span><br>
+    <span class="comment">认可资产：按照监管标准可以计入实际资本的资产（排除商誉、递延所得税资产等非认可资产）</span><br>
+    <span class="comment">认可负债：按照监管标准计算的负债（以最优估计准备金+风险边际为主）</span>
+  </div>
+  <div class="formula">
+    <span class="label">Layer 2: 实际资本分级 (Capital Tiers)</span>
+    <span class="comment">实际资本 = 核心资本 + 附属资本</span><br>
+    <span class="comment">核心资本 = 核心一级资本 (CET1) + 核心二级资本 (AT1)</span><br>
+    <span class="comment">附属资本 = 附属一级资本 (Tier 2) + 附属二级资本 (Tier 3)</span><br>
+    <span class="comment">核心一级资本限额：核心资本内，核心二级资本 ≤ 核心一级资本 × 35%</span><br>
+    <span class="comment">核心资本限额：实际资本内，核心资本 ≥ 实际资本 × 50%</span>
+  </div>
+  <div class="formula">
+    <span class="label">Layer 3: 最低资本 = 可资本化风险MC + 控制风险MC</span>
+    <span class="eq">Minimum Capital</span> = <span class="var">MC_capitalizable</span> + <span class="var">MC_control</span><br>
+    <span class="comment">MC_capitalizable = 保险风险MC + 市场风险MC + 信用风险MC (经相关系数矩阵聚合)</span><br>
+    <span class="comment">MC_control = 可资本化风险MC × 控制风险因子 (由SARMRA评分确定，范围-0.1~+0.25)</span>
+  </div>
+
+  <div class="callout info">
+    <div class="title">关键概念：保单未来盈余分级计入资本</div>
+    <p>二期将保单未来盈余（Future Profits in Current Policies）按剩余期限分为四档，分别计入不同层级的资本：<br>
+    &gt;30年 → 核心一级资本；10-30年 → 核心二级资本；5-10年 → 附属一级资本；&lt;5年 → 附属二级资本。<br>
+    此举防止保险公司将长尾业务的未来利润过度提前计入资本，增强资本的真实性和吸收损失能力。</p>
+  </div>
+
+  <h3>第一支柱涵盖规则 Rules Under Pillar 1</h3>
+  <table>
+    <thead>
+      <tr><th>编号</th><th>规则名称</th><th>英文名称</th><th>核心内容</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="rule-ref">第1号</span></td><td>实际资本</td><td class="en-text">Actual Capital</td><td>认可资产与认可负债的认定标准、实际资本分级（核心一级/二级、附属一级/二级）、资本工具合格标准</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第2号</span></td><td>最低资本</td><td class="en-text">Minimum Capital</td><td>最低资本的构成与汇总方法、可资本化风险MC的相关系数矩阵聚合</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第3号</span></td><td>寿险合同负债评估</td><td class="en-text">Life Insurance Liability Valuation</td><td>最优估计准备金、风险边际、折现率曲线（750日移动平均国债收益率+终极利率4.5%）</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第4号</span></td><td>保险风险最低资本（非寿险业务）</td><td class="en-text">Non-Life Insurance Risk MC</td><td>保费风险、准备金风险、巨灾风险的最低资本计量因子</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第5号</span></td><td>保险风险最低资本（寿险业务）</td><td class="en-text">Life Insurance Risk MC</td><td>死亡/长寿/疾病/退保/费用风险的最低资本，含重疾恶化因子</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第6号</span></td><td>再保险公司保险风险最低资本</td><td class="en-text">Reinsurance Insurance Risk MC</td><td>再保险业务保险风险、交易对手违约风险（分入/分出双向）</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第7号</span></td><td>市场风险和信用风险的穿透计量</td><td class="en-text">Look-Through Approach for Market &amp; Credit Risk</td><td>基础资产/非基础资产分类、"应穿尽穿"的穿透原则、多层嵌套处理及惩罚性资本要求</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第8号</span></td><td>市场风险最低资本</td><td class="en-text">Market Risk MC</td><td>利率风险、权益价格风险、房地产价格风险、汇率风险、境外资产风险、集中度风险</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第9号</span></td><td>信用风险最低资本</td><td class="en-text">Credit Risk MC</td><td>利差风险、交易对手违约风险、集中度风险</td>
+      </tr>
+      <tr>
+        <td><span class="rule-ref">第10号</span></td><td>压力测试</td><td class="en-text">Stress Testing</td><td>年度/季度压力测试、必测情景（保险风险+宏观经济）、反向压力测试、"由下而上"汇总</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Section: Pillar 2 Detailed -->
+<div class="section" id="pillar2">
+  <h2><span class="section-index">Ⅱ</span>第二支柱详解 Pillar 2 <span class="en">Qualitative Supervisory Requirements</span></h2>
+  <p>第二支柱定性监管是 C-ROSS II 区别于纯定量框架的关键所在。它通过<strong>风险综合评级(IRR)</strong>、<strong>SARMRA 评估</strong>、<strong>流动性风险监管</strong>、<strong>资本规划</strong>四个维度，深化对保险公司治理和风险管理能力的审查，让"软约束"发挥硬效果。第二支柱涵盖规则 11-14号（含第19号保险集团规则）。</p>
+
+  <h3>风险综合评级 IRR <span class="en">Integrated Risk Rating</span></h3>
+  <p>风险综合评级（Integrated Risk Rating, IRR）由第11号规则规定，是对保险公司偿付能力风险状况的综合评价。根据<strong>可资本化风险</strong>（定量评分，来自 Pillar 1 的偿付能力充足率）和<strong>难以资本化风险</strong>（定性评分，包括操作风险、战略风险、声誉风险、流动性风险）两个维度，将保险公司分为 A、B、C、D 四类。</p>
+
+  <table>
+    <thead>
+      <tr><th>评级</th><th>含义</th><th>监管处理</th><th>核心/综合充足率要求</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="cat-badge" style="background:var(--c-green-light);color:var(--c-green)">A 类</span></td>
+        <td>偿付能力充足，风险总体可控</td>
+        <td>正常监管</td>
+        <td>核心 ≥ 50% 且综合 ≥ 100%</td>
+      </tr>
+      <tr>
+        <td><span class="cat-badge" style="background:var(--c-blue-light);color:var(--c-blue)">B 类</span></td>
+        <td>偿付能力达标，存在一定风险但可控</td>
+        <td>关注监管</td>
+        <td>核心 ≥ 50% 且综合 ≥ 100%</td>
+      </tr>
+      <tr>
+        <td><span class="cat-badge" style="background:var(--c-amber-light);color:var(--c-amber)">C 类</span></td>
+        <td>偿付能力不达标（某一风险较大）</td>
+        <td>重点监管：限制分红/高管薪酬/业务范围</td>
+        <td>核心 &lt; 50% 或 综合 &lt; 100%</td>
+      </tr>
+      <tr>
+        <td><span class="cat-badge" style="background:#fcebeb;color:var(--c-red)">D 类</span></td>
+        <td>偿付能力严重不达标（重大风险）</td>
+        <td>严厉监管：可接管、责令增资或停业</td>
+        <td>核心 &lt; 50% 或 综合 &lt; 100%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <div class="title">重要提示：评级不是简单的"充足率一刀切"</div>
+    <p>即使偿付能力充足率达标（核心≥50%且综合≥100%），如果难以资本化风险评分不达标（操作风险失控、声誉风险事件频发等），同样可能被评为 C 类或 D 类，面临严厉监管措施。这是 Pillar 2 超越 Pillar 1 的核心价值所在。</p>
+  </div>
+
+  <h3>SARMRA 评估 <span class="en">Solvency Aligned Risk Management Requirements and Assessment</span></h3>
+  <p>SARMRA（偿付能力风险管理要求与评估）是第12号规则的核心，评估保险公司风险管理体系的健全性和有效性。评分结果不仅影响风险综合评级，还<strong>直接决定控制风险最低资本</strong>——高分降低资本要求，低分增加资本要求，形成了"管得好就少提资本"的正向激励机制。</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:5%">#</th><th>评估领域</th><th style="width:30%">英文名称</th><th>评估要点</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>风险管理基础与环境</td><td class="en-text">Risk Management Foundation &amp; Environment</td><td>风险管理组织架构、风险偏好体系、风险文化</td></tr>
+      <tr><td>2</td><td>风险管理目标与工具</td><td class="en-text">Risk Management Objectives &amp; Tools</td><td>风险限额、关键风险指标(KRI)、风险地图</td></tr>
+      <tr><td>3</td><td>保险风险管理</td><td class="en-text">Insurance Risk Management</td><td>产品开发、核保、理赔、再保险的风险管控</td></tr>
+      <tr><td>4</td><td>市场风险管理</td><td class="en-text">Market Risk Management</td><td>利率、权益、汇率等市场风险的识别与计量</td></tr>
+      <tr><td>5</td><td>信用风险管理</td><td class="en-text">Credit Risk Management</td><td>交易对手管理、投资集中度控制、利差风险</td></tr>
+      <tr><td>6</td><td>操作风险管理</td><td class="en-text">Operational Risk Management</td><td>流程控制、信息系统、业务连续性</td></tr>
+      <tr><td>7</td><td>战略风险管理</td><td class="en-text">Strategic Risk Management</td><td>战略制定、业务规划与风险匹配</td></tr>
+      <tr><td>8</td><td>声誉风险管理</td><td class="en-text">Reputational Risk Management</td><td>舆情监测、客户投诉处理、品牌管理</td></tr>
+      <tr><td>9</td><td>流动性风险管理</td><td class="en-text">Liquidity Risk Management</td><td>现金流管理、应急融资计划、资产负债久期匹配</td></tr>
+    </tbody>
+  </table>
+
+  <div class="formula">
+    <span class="label">SARMRA 评分 → 控制风险最低资本</span>
+    <span class="eq">MC_control</span> = <span class="var">MC_capitalizable × 控制风险因子</span><br>
+    <span class="comment">控制风险因子 f(SARMRA评分)，按分段函数确定：</span><br>
+    <span class="comment">SARMRA ≥ 80分 → 因子 = -0.10 (减少资本要求10%)</span><br>
+    <span class="comment">SARMRA = 70~79分 → 因子 = 0</span><br>
+    <span class="comment">SARMRA = 60~69分 → 因子 = +0.05</span><br>
+    <span class="comment">SARMRA &lt; 60分 → 因子 = +0.10~+0.25 (增加资本要求)</span>
+  </div>
+
+  <h3>流动性风险 Liquidity Risk</h3>
+  <p>第13号规则对保险公司流动性风险提出独立于资本监管的要求，核心监管指标包括：</p>
+  <table>
+    <thead>
+      <tr><th>监管指标</th><th>英文名称</th><th>监管标准</th><th>计算逻辑</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>流动性覆盖率</strong></td>
+        <td class="en-text">Liquidity Coverage Ratio (LCR)</td>
+        <td><strong style="color:var(--c-red)">≥ 100%</strong></td>
+        <td>优质流动性资产 / 压力情景下30日净现金流出</td>
+      </tr>
+      <tr>
+        <td><strong>综合流动比率</strong></td>
+        <td class="en-text">Comprehensive Liquidity Ratio</td>
+        <td><strong style="color:var(--c-red)">≥ 100%</strong></td>
+        <td>现有资产的预期现金流入 / 预期现金流出（1年内）</td>
+      </tr>
+      <tr>
+        <td><strong>经营活动净现金流</strong></td>
+        <td class="en-text">Net Operating Cash Flow</td>
+        <td>不得持续为负</td>
+        <td>经营活动现金流入 - 经营活动现金流出</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>资本规划 Capital Planning</h3>
+  <p>第14号规则要求保险公司建立<strong>三年滚动资本规划</strong>制度，涵盖资本规模规划、资本结构规划和资本补充来源规划。具体要求：</p>
+  <ul>
+    <li>每年至少更新一次三年滚动资本规划</li>
+    <li>资本规划须覆盖正常情景和压力情景（与第10号压力测试衔接）</li>
+    <li>资本规划须与业务发展规划、全面预算协调一致</li>
+    <li>当偿付能力充足率低于120%时，须制定资本补充方案</li>
+    <li>重大资本补充方案须向监管机构报批或报备</li>
+  </ul>
+</div>
+
+<!-- Section: Pillar 3 Detailed -->
+<div class="section" id="pillar3">
+  <h2><span class="section-index">Ⅲ</span>第三支柱详解 Pillar 3 <span class="en">Market Discipline Mechanism</span></h2>
+  <p>第三支柱通过强制信息披露、信息双向交流、信用评级规范和规范的偿付能力报告体系，让市场参与者（投保人、投资者、评级机构、分析师）能够对保险公司的风险状况和偿付能力形成判断，以市场力量辅助监管。第三支柱涵盖规则 15-18 号。</p>
+
+  <h3>公开信息披露 Information Disclosure</h3>
+  <p>第15号规则规定了保险公司偿付能力信息的<strong>公开披露</strong>制度，要求每季度在官方网站发布偿付能力报告摘要。披露内容包括但不限于：</p>
+  <ul>
+    <li><strong>偿付能力指标</strong>：核心偿付能力充足率、综合偿付能力充足率</li>
+    <li><strong>风险综合评级结果</strong>：最近一期的 IRR 分类</li>
+    <li><strong>实际资本构成</strong>：核心一级/二级、附属一级/二级资本的具体金额</li>
+    <li><strong>最低资本构成</strong>：可资本化风险 MC 各项明细</li>
+    <li><strong>重大事项</strong>：重大投资、重大赔付、股权变更、处罚等</li>
+  </ul>
+
+  <div class="callout info">
+    <div class="title">披露频率与时限要求</div>
+    <ul>
+      <li>季度偿付能力报告摘要：季度结束后 30 个自然日内披露</li>
+      <li>年度偿付能力报告：年度结束后 4 个月内披露</li>
+      <li>重大事项临时披露：事项发生后 5 个工作日内披露</li>
+      <li>官网专区：保险公司须在官网设立"偿付能力信息"专栏集中发布</li>
+    </ul>
+  </div>
+
+  <h3>信息交流 Information Exchange</h3>
+  <p>第16号规则构建了监管机构与市场参与者之间的<strong>双向信息交流</strong>机制：</p>
+  <table>
+    <thead>
+      <tr><th>交流方向</th><th>内容</th><th>渠道</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>监管 → 市场</td>
+        <td>行业偿付能力总体状况、监管政策解读、行业数据统计</td>
+        <td>官方网站、新闻发布会、行业通报会</td>
+      </tr>
+      <tr>
+        <td>市场 → 监管</td>
+        <td>投保人投诉、投资者关注、媒体反映、行业建议</td>
+        <td>监管热线、信访渠道、行业自律组织</td>
+      </tr>
+      <tr>
+        <td>监管 ↔ 公司</td>
+        <td>监管谈话、窗口指导、现场检查反馈、整改报告</td>
+        <td>专用报送系统、正式约谈、书面函件</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>信用评级 Credit Rating</h3>
+  <p>第17号规则规范保险公司<strong>信用评级</strong>行为，确保评级独立、客观、一致。核心要求：</p>
+  <ul>
+    <li>评级机构须具备相应资质，独立开展评级工作</li>
+    <li>评级方法须公开透明，充分考虑 C-ROSS II 各项监管指标</li>
+    <li>评级结果与偿付能力充足率、风险综合评级保持合理一致性</li>
+    <li>评级变更须及时报告监管机构并公开披露</li>
+  </ul>
+
+  <h3>偿付能力报告 Solvency Reporting</h3>
+  <p>第18号规则建立了<strong>多层级、多频次的偿付能力报告体系</strong>：</p>
+  <table>
+    <thead>
+      <tr><th>报告类型</th><th>英文名称</th><th>频率</th><th>内容</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>季度偿付能力报告</strong></td>
+        <td class="en-text">Quarterly Solvency Report</td>
+        <td>每季度</td>
+        <td>完整偿付能力指标、实际资本明细、最低资本明细、风险综合评级自评</td>
+      </tr>
+      <tr>
+        <td><strong>偿付能力快报</strong></td>
+        <td class="en-text">Solvency Flash Report</td>
+        <td>每季度（季度报告前）</td>
+        <td>核心偿付能力充足率、综合偿付能力充足率、主要变动原因</td>
+      </tr>
+      <tr>
+        <td><strong>临时偿付能力报告</strong></td>
+        <td class="en-text">Ad Hoc Solvency Report</td>
+        <td>触发特定事件时</td>
+        <td>重大风险事件对偿付能力的影响评估（5个工作日）</td>
+      </tr>
+      <tr>
+        <td><strong>年度偿付能力报告</strong></td>
+        <td class="en-text">Annual Solvency Report</td>
+        <td>每年（审计后）</td>
+        <td>经审计的全年偿付能力状况、资本规划执行情况、下年度展望</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="title">一体观会计原则</div>
+    <p>第18号规则要求偿付能力报告采用<strong>"一体观"会计处理</strong>：将保险业务与资产管理、银行、信托等附属业务的财务信息进行合并、协调，全面反映保险集团的整体偿付能力状况，避免信息碎片化和监管套利。</p>
+  </div>
+</div>
+
+<!-- Section: Key Metrics Summary -->
+<div class="section" id="metrics">
+  <h2>关键指标一览 Key Metrics Summary <span class="en">Dashboard of Regulatory Indicators</span></h2>
+  <p>C-ROSS II 的偿付能力监管体系可浓缩为以下核心指标。一家保险公司须同时满足所有指标的达标要求，才算偿付能力合格的经营主体。</p>
+
+  <table>
+    <thead>
+      <tr><th style="width:5%">#</th><th>指标名称</th><th style="width:18%">英文名称</th><th style="width:12%">监管阈值</th><th>指标含义</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>核心偿付能力充足率</strong></td>
+        <td class="en-text">Core Solvency Ratio</td>
+        <td><span style="color:var(--c-red);font-weight:700;">≥ 50%</span></td>
+        <td>核心资本（核心一级+核心二级）对最低资本的覆盖倍数，衡量最高质量资本的充足程度</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>综合偿付能力充足率</strong></td>
+        <td class="en-text">Comprehensive Solvency Ratio</td>
+        <td><span style="color:var(--c-red);font-weight:700;">≥ 100%</span></td>
+        <td>全部实际资本（含附属资本）对最低资本的覆盖倍数，衡量总资本充足程度</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>风险综合评级</strong></td>
+        <td class="en-text">Integrated Risk Rating (IRR)</td>
+        <td><span style="color:var(--c-red);font-weight:700;">≥ B 类</span></td>
+        <td>定量+定性综合评价结果：A类(优) → B类(达标) → C类(不达标) → D类(严重不达标)</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>SARMRA 评分</strong></td>
+        <td class="en-text">SARMRA Score</td>
+        <td>0-100 分</td>
+        <td>9大领域风险管理评估总分，≥80分可降低控制风险MC，&lt;60分增加资本要求</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>流动性覆盖率</strong></td>
+        <td class="en-text">Liquidity Coverage Ratio (LCR)</td>
+        <td><span style="color:var(--c-red);font-weight:700;">≥ 100%</span></td>
+        <td>优质流动性资产 / 压力情景下30日净现金流出，衡量短期流动性抗压能力</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>综合流动比率</strong></td>
+        <td class="en-text">Comprehensive Liquidity Ratio</td>
+        <td><span style="color:var(--c-red);font-weight:700;">≥ 100%</span></td>
+        <td>一年内预期现金流入 / 预期现金流出，衡量中期流动性匹配程度</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <div class="title">指标联动关系 Indicator Linkages</div>
+    <ul>
+      <li>SARMRA 评分直接影响控制风险最低资本，进而影响偿付能力充足率（Pillar 2 → Pillar 1）</li>
+      <li>偿付能力充足率是风险综合评级(IRR)的可资本化风险评分的主要输入（Pillar 1 → Pillar 2）</li>
+      <li>风险综合评级结果须公开披露，影响市场约束效果（Pillar 2 → Pillar 3）</li>
+      <li>信息披露数据为市场参与者评估保险公司的 Pillar 1/Pillar 2 表现提供依据（Pillar 3 → Pillar 1/2）</li>
+      <li>流动性风险指标不达标会触发风险综合评级降级（Pillar 2 内部联动）</li>
+    </ul>
+  </div>
+
+  <div class="callout success">
+    <div class="title">快速记忆口诀</div>
+    <p><strong>"一个核心、两个充足率、三个支柱、四个评级、九个SARMRA"</strong><br>
+    一个核心目标：保护保单持有人利益<br>
+    两个充足率：核心偿付能力充足率 (≥50%) + 综合偿付能力充足率 (≥100%)<br>
+    三个支柱：定量资本要求 + 定性监管要求 + 市场约束机制<br>
+    四个评级：IRR A/B/C/D 四类<br>
+    九个SARMRA：九大风险管理评估领域</p>
+  </div>
+</div>
+
+<!-- Cross-Reference Cards -->
+<div class="section">
+  <h2>关联页面 Related Pages <span class="en">Continue Your Learning</span></h2>
+  <div class="compare-grid">
+    <a href="01-glossary.html" style="text-decoration:none;color:inherit;">
+      <div class="compare-card">
+        <h4>术语词典 Terminology</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">40+ 偿付能力核心术语中英对照。掌握"实际资本""最低资本""SARMRA""穿透计量"等关键概念的定义与使用场景。</p>
+        <span class="cat-badge accounting">L1 入门</span>
+      </div>
+    </a>
+    <a href="03-rule1-actual-capital.html" style="text-decoration:none;color:inherit;">
+      <div class="compare-card">
+        <h4>第1号：实际资本 Rule #1</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">Pillar 1 核心规则——认可资产/负债认定、资本分级、保单未来盈余计入，是理解偿付能力充足率分子的基础。</p>
+        <span class="cat-badge pillar1">第一支柱</span>
+      </div>
+    </a>
+    <a href="04-rule2-minimum-capital.html" style="text-decoration:none;color:inherit;">
+      <div class="compare-card">
+        <h4>第2号：最低资本 Rule #2</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">Pillar 1 核心规则——最低资本汇总方法、可资本化风险MC相关系数矩阵聚合、控制风险MC的计算。</p>
+        <span class="cat-badge pillar1">第一支柱</span>
+      </div>
+    </a>
+    <a href="06-compare-solvency2.html" style="text-decoration:none;color:inherit;">
+      <div class="compare-card">
+        <h4>对比 Solvency II Comparative Study</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">C-ROSS II vs Solvency II 系统性对标。从三支柱架构到技术细节的全面比较，理解中国特色的监管选择。</p>
+        <span class="cat-badge comparison">L4 专家</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- 关于作者 -->
+<div class="author-card">
+  <img src="assets/author-logo.jpg" alt="西红精算" class="ac-logo">
+  <div class="ac-body">
+    <div class="ac-name">西 红 精 算</div>
+    <div class="ac-en">Xihong Actuary · Insurance Actuarial Insights</div>
+    <ul class="ac-bullets">
+      <li>IFRS17 新准则落地与 CSM 摊释逻辑</li>
+      <li>偿二代二期（规则1-20号）从理论到计算</li>
+      <li>保险资金长期配置与降本增效实战案例</li>
+    </ul>
+  </div>
+  <div class="ac-qr-wrap">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号二维码" class="ac-qr">
+    <div class="ac-qr-tip"><strong>扫码关注 · 西红精算</strong>获取最新精算实务分享</div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号<br>
+  参考：EIOPA Solvency II、国家金融监督管理总局官方网站</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+// Progress Tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'pillars';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
