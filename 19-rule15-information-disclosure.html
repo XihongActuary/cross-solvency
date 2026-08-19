@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第15号：偿付能力信息公开披露 | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html" class="active">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+    <a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a> <span class="sep">›</span>
+  <a href="02-three-pillars.html">第三支柱</a> <span class="sep">›</span>
+  第15号 信息披露
+</div>
+
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II &middot; 监管规则第 15 号 &middot; Pillar III</div>
+  <h1>第15号：偿付能力信息公开披露 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 市场约束机制的核心</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Public Disclosure of Solvency Information</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(24,95,165,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(24,95,165,0.4);color:var(--c-blue-light);">Pillar III &middot; 第三支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">定期披露</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">重大事项披露</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">市场约束</span>
+  </div>
+</div>
+
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="methodology" onclick="switchTab('methodology')">披露内容 Content</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">案例 Case Study</button>
+</div>
+
+<!-- TAB 1: Overview -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+  <div class="section">
+    <h2>公开披露的定义 Definition <span class="en">Public Disclosure</span></h2>
+    <p><strong>偿付能力信息公开披露</strong>是保险公司按照监管要求，定期向公众公开偿付能力状况及相关风险管理信息的制度。这是第三支柱"市场约束机制"的核心——通过信息透明，使投保人、投资者、评级机构等市场参与者能够评估公司风险状况，形成市场约束力量。</p>
+
+    <div class="callout info">
+      <div class="title">市场约束的逻辑</div>
+      <p>信息披露&rarr;市场参与者获取信息&rarr;评估公司风险&rarr;做出投保/投资/评级决策&rarr;风险高的公司面临保费流失、融资成本上升、评级下调&rarr;倒逼公司改善风险管理。这一"声誉机制"是第一支柱（资本要求）和第二支柱（监管评估）的有效补充。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>披露频率与渠道 Frequency &amp; Channel</h2>
+    <table>
+      <thead>
+        <tr><th>类型</th><th>频率</th><th>内容</th><th>渠道</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>季度披露</td><td>每季度后30日内</td><td>核心指标：充足率、实际资本、最低资本、IRR评级</td><td>公司官网+监管指定平台</td></tr>
+        <tr><td>年度披露</td><td>每年度后4个月内</td><td>完整偿付能力报告摘要+风险管理描述</td><td>公司官网+年报</td></tr>
+        <tr><td>重大事项披露</td><td>事件发生后10日内</td><td>偿付能力重大变化、资本补充、重大投资损失等</td><td>公司官网+临时公告</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>与Solvency II Pillar 3的对比</h2>
+    <table>
+      <thead>
+        <tr><th>对比维度</th><th>C-ROSS II 第15号</th><th>Solvency II Pillar 3</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>披露频率</td><td>季度+年度+重大事项</td><td>年度+半年</td></tr>
+        <tr><td>披露内容</td><td>充足率、IRR、风险管理描述</td><td>SCR/MCR、ORSA、风险敏感度</td></tr>
+        <tr><td>披露渠道</td><td>公司官网+监管平台</td><td>公司官网+中央数据库</td></tr>
+        <tr><td>格式规范</td><td>监管模板</td><td>Solvency II披露模板（RTS）</td></tr>
+        <tr><td>审计要求</td><td>年度披露需审计</td><td>年度披露需审计</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TAB 2: Content -->
+<div class="tab-content" id="tab-methodology" style="display:none;">
+  <div class="section">
+    <h2>季度披露内容 Quarterly Disclosure</h2>
+    <table>
+      <thead>
+        <tr><th>披露项</th><th>具体内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>核心偿付能力充足率</td><td>核心资本/最低资本&times;100%</td></tr>
+        <tr><td>综合偿付能力充足率</td><td>实际资本/最低资本&times;100%</td></tr>
+        <tr><td>风险综合评级（IRR）</td><td>ABCD评级类别</td></tr>
+        <tr><td>实际资本构成</td><td>核心一级/二级、附属一级/二级</td></tr>
+        <tr><td>最低资本构成</td><td>各风险模块MC及控制风险MC</td></tr>
+        <tr><td>流动性监管指标</td><td>流动资产/流动负债</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>年度披露内容 Annual Disclosure</h2>
+    <p>年度披露在季度指标基础上，增加以下内容：</p>
+    <table>
+      <thead>
+        <tr><th>类别</th><th>披露内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>风险管理描述</td><td>SARMRA评估结果摘要、风险偏好体系、主要风险敞口</td></tr>
+        <tr><td>资本管理</td><td>资本规划摘要、资本补充方案、保单未来盈余分级</td></tr>
+        <tr><td>资产配置</td><td>大类资产配置比例、非基础资产穿透结果摘要</td></tr>
+        <tr><td>压力测试</td><td>压力测试结果摘要、极端情景下的充足率</td></tr>
+        <tr><td>关联交易</td><td>重大关联交易明细</td></tr>
+        <tr><td>审计意见</td><td>外部审计师对偿付能力报告的意见</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>重大事项披露 Material Event Disclosure</h2>
+    <div class="callout warning">
+      <div class="title">需在10日内披露的重大事项</div>
+      <p>① 偿付能力充足率低于100%<br>
+      ② IRR评级下调至C/D类<br>
+      ③ 实际资本下降超过20%<br>
+      ④ 发行或赎回资本补充工具<br>
+      ⑤ 重大投资损失（超过净资产5%）<br>
+      ⑥ 监管行政处罚<br>
+      ⑦ 重大再保险安排变更</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>披露质量要求 Quality Requirements</h2>
+    <p>披露信息须满足以下质量标准：</p>
+    <ul style="margin-left:20px;line-height:2;">
+      <li><strong>及时性：</strong>在规定时限内完成披露，不得延迟</li>
+      <li><strong>完整性：</strong>覆盖所有监管要求的披露项目，不得遗漏</li>
+      <li><strong>准确性：</strong>数据与偿付能力报告一致，经审计验证</li>
+      <li><strong>可理解性：</strong>语言清晰，便于非专业读者理解</li>
+      <li><strong>可比性：</strong>格式统一，便于跨公司比较</li>
+      <li><strong>一致性：</strong>与公司其他公开信息保持一致</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TAB 3: Phase II Changes -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+  <div class="section">
+    <h2>二期核心变化 Key Changes</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>披露频率提升</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">从年度披露提升至季度+年度+重大事项三位一体，大幅提高信息时效性。</p>
+      </div>
+      <div class="compare-card">
+        <h4>披露内容扩充</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">新增保单未来盈余分级、穿透式计量结果、SARMRA评估摘要等披露项目。</p>
+      </div>
+      <div class="compare-card">
+        <h4>重大事项制度化</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">二期将重大事项披露从"原则要求"细化为具体清单和时限要求（10日内）。</p>
+      </div>
+      <div class="compare-card">
+        <h4>IRR评级公开</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">二期要求公开IRR评级结果（ABCD类），增强市场约束力。</p>
+      </div>
+      <div class="compare-card">
+        <h4>简化披露机制</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">A类公司可适用简化披露，降低合规成本；C/D类公司需加强披露。</p>
+      </div>
+      <div class="compare-card">
+        <h4>数字化披露</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">推动XBRL等结构化数据格式，提高信息可机读性和跨公司可比性。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4: Case Study -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+  <div class="section">
+    <h2>西红人寿信息披露示例 <span class="en">Xihong Life Disclosure Example</span></h2>
+    <p>以<strong>西红人寿保险公司</strong>为例，展示季度公开披露的核心内容。</p>
+
+    <div class="callout success">
+      <div class="title">西红人寿 2026年Q1 偿付能力摘要（公开披露版）</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>指标</th><th>本季度</th><th>上季度</th><th>变动</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>核心偿付能力充足率</td><td><strong>233%</strong></td><td>231%</td><td style="color:var(--c-green);">+2pp</td></tr>
+        <tr><td>综合偿付能力充足率</td><td><strong>284%</strong></td><td>281%</td><td style="color:var(--c-green);">+3pp</td></tr>
+        <tr><td>风险综合评级（IRR）</td><td><strong>A 类</strong></td><td>A 类</td><td>持平</td></tr>
+        <tr><td>实际资本（万元）</td><td>57,000</td><td>56,500</td><td style="color:var(--c-green);">+500</td></tr>
+        <tr><td>核心一级资本</td><td>42,000</td><td>41,700</td><td>+300</td></tr>
+        <tr><td>核心二级资本</td><td>4,740</td><td>4,700</td><td>+40</td></tr>
+        <tr><td>附属一级资本</td><td>5,260</td><td>5,100</td><td>+160</td></tr>
+        <tr><td>附属二级资本</td><td>5,000</td><td>5,000</td><td>持平</td></tr>
+        <tr><td>最低资本（万元）</td><td>20,081</td><td>20,100</td><td>-19</td></tr>
+        <tr><td>流动性监管指标</td><td>158%</td><td>152%</td><td>+6pp</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">风险管理描述（摘要）</div>
+      <p><strong>SARMRA评估：</strong>最近一次SARMRA综合得分83.15分（优秀），控制风险MC不额外加征。各领域评分均在达标线以上。</p>
+      <p><strong>风险偏好：</strong>公司风险偏好为"稳健型"，核心偿付能力充足率目标&ge;150%，综合充足率目标&ge;200%。本季度实际充足率高于目标。</p>
+      <p><strong>主要风险敞口：</strong>权益价格风险（股票配置21,667万元）、利率风险（久期缺口约1.5年）、信用风险（AA+以上债券占比85%）。</p>
+      <p><strong>压力测试：</strong>逆周期叠加情景下综合充足率降至201%，仍高于100%监管底线。</p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">重大事项披露</div>
+      <p>本季度无重大事项需披露。上一重大事项为2025年Q4发行5,000万元资本补充债券（附属二级资本），已按规定于发行后10日内在公司官网公告。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>披露质量评估 Quality Assessment</h2>
+    <table>
+      <thead>
+        <tr><th>质量维度</th><th>评估</th><th>得分</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>及时性</td><td>季度结束后25日内完成披露</td><td style="color:var(--c-green);">优秀</td></tr>
+        <tr><td>完整性</td><td>覆盖所有监管要求项目</td><td style="color:var(--c-green);">优秀</td></tr>
+        <tr><td>准确性</td><td>与审计报告数据一致</td><td style="color:var(--c-green);">优秀</td></tr>
+        <tr><td>可理解性</td><td>使用图表辅助说明，语言清晰</td><td style="color:var(--c-green);">良好</td></tr>
+        <tr><td>可比性</td><td>格式与行业统一模板一致</td><td style="color:var(--c-green);">优秀</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 &middot; 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局《保险公司偿付能力监管规则（&Iota;）》银保监发〔2021〕51号 第15号：偿付能力信息公开披露<br>
+  参考：Solvency II Pillar 3 Disclosure Requirements、IAIS ICP 20 (Public Disclosure)</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('[id^="tab-"]');
+  for (var i = 0; i < contents.length; i++) contents[i].style.display = 'none';
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) buttons[j].classList.remove('active');
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule15';
+  if (visited.indexOf(currentPage) === -1) { visited.push(currentPage); localStorage.setItem(key, JSON.stringify(visited)); }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+</body>
+</html>
