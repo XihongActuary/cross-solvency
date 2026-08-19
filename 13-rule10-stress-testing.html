@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10号：压力测试 Stress Testing | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html" class="active">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第一支柱</a>
+  <span class="sep">›</span>
+  第10号 压力测试
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管规则第 10 号 · Pillar I</div>
+  <h1>第10号：压力测试 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 极端情景下的偿付能力评估</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Stress Testing</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(200,152,60,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(200,152,60,0.4);color:#fdf5e6;">Pillar I · 第一支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">必测情景</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">自测情景</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">可选情景</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">充足率变化</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="scenarios" onclick="switchTab('scenarios')">情景设计 Scenario Design</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Calculation Example</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>压力测试的定义 Definition <span class="en">Stress Testing</span></h2>
+    <p><strong>压力测试</strong>是保险公司评估在极端不利情景下偿付能力状况的风险管理工具。通过对各类风险设定极端但合理的冲击情景，量化风险对实际资本和最低资本的影响，评估公司在压力情境下是否仍能维持偿付能力充足。压力测试是第一支柱风险计量的重要补充，也是第二支柱风险管理要求的核心组成。</p>
+
+    <div class="formula">
+      <span class="label">充足率变化公式</span>
+      <span class="eq">充足率变化</span> = ( <span class="var">实际资本<sub>情景</sub></span> - <span class="var">最低资本<sub>情景</sub></span> ) / <span class="var">最低资本<sub>情景</sub></span> &#215; 100% - <span class="var">基准充足率</span><br>
+      <span class="comment">基准充足率 = 正常情景下的综合偿付能力充足率</span><br>
+      <span class="comment">正值表示充足率下降，负值表示充足率上升</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">压力测试的核心目的</div>
+      <p>压力测试回答一个关键问题：<strong>"如果极端不利事件发生，公司是否仍然具有足够的偿付能力？"</strong>正常情景下的偿付能力充足率仅反映"平均"风险水平，无法揭示尾部风险。压力测试通过设定极端情景，弥补了VaR框架（99.5%置信度）无法覆盖0.5%尾部事件的不足，帮助公司和监管机构识别尾部风险暴露。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>三类情景 Three Scenario Types <span class="en">Mandatory / Self-Defined / Optional</span></h2>
+
+    <h3>1. 必测情景 Mandatory Scenarios <span class="en">— 监管规定</span></h3>
+    <p>必测情景是监管规定的最低压力测试情景，所有保险公司必须执行。二期规定的必测情景共9个，覆盖市场风险、信用风险和保险风险的主要风险类型。必测情景的参数和冲击幅度由监管统一规定，确保行业可比性。</p>
+
+    <div class="callout warning">
+      <div class="title">必测情景的强制要求</div>
+      <p>必测情景是偿付能力报告的组成部分，测试结果需随季度报告报送监管机构。如必测情景下充足率低于100%，保险公司需提交压力测试报告并说明应对措施。</p>
+    </div>
+
+    <h3>2. 自测情景 Self-Defined Scenarios <span class="en">— 公司自设</span></h3>
+    <p>自测情景是公司根据自身风险特征设计的压力测试情景。监管要求公司至少设计3个自测情景，反映公司面临的特定风险暴露。自测情景的设计基于公司风险评估结果，需经董事会风险管理委员会审议。</p>
+
+    <div class="callout info">
+      <div class="title">自测情景设计原则</div>
+      <p>自测情景应覆盖公司主要风险类型，反映公司业务结构和投资组合的特征。例如：① 产品集中度高的公司应设计产品风险专项情景；② 投资集中度高的公司应设计资产风险专项情景；③ 再保依赖度高的公司应设计再保险风险情景。</p>
+    </div>
+
+    <h3>3. 可选情景 Optional Scenarios <span class="en">— 监管可选</span></h3>
+    <p>可选情景是监管可选的附加情景，根据宏观经济环境和行业风险状况不定期发布。监管可在特定时期要求保险公司执行特定的可选情景测试，例如在市场剧烈波动时期要求执行额外压力测试。</p>
+  </div>
+
+  <div class="section">
+    <h2>压力测试流程 Stress Testing Process <span class="en">Five Steps</span></h2>
+
+    <div class="formula">
+      <span class="label">压力测试流程</span>
+      <span class="eq">识别风险</span> &#8594; <span class="eq">设计情景</span> &#8594; <span class="eq">量化影响</span> &#8594; <span class="eq">评估充足率</span> &#8594; <span class="eq">报告与应对</span><br>
+      <span class="comment">Step 1: 识别公司面临的主要风险类型</span><br>
+      <span class="comment">Step 2: 设计压力情景（必测+自测+可选）</span><br>
+      <span class="comment">Step 3: 量化各情景对实际资本和最低资本的影响</span><br>
+      <span class="comment">Step 4: 计算压力情景下的偿付能力充足率</span><br>
+      <span class="comment">Step 5: 编制压力测试报告，制定资本补充计划</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">流程说明</div>
+      <p><strong>识别风险：</strong>基于ORSA（自身风险和偿付能力评估）结果，识别公司面临的主要风险类型和风险敞口。<br>
+      <strong>设计情景：</strong>针对识别出的风险，设计必测、自测和可选情景，确定冲击参数。<br>
+      <strong>量化影响：</strong>将情景参数输入估值和资本计量模型，计算各情景下实际资本和最低资本的变化。<br>
+      <strong>评估充足率：</strong>计算压力情景下的核心和综合偿付能力充足率，与基准充足率比较。<br>
+      <strong>报告与应对：</strong>编制压力测试报告，如充足率低于100%需制定资本补充计划。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>压力测试与资本规划 Connection to Capital Planning <span class="en">Link to Rule 14</span></h2>
+    <p>压力测试结果是资本规划（第14号）的重要输入。压力测试揭示了公司在极端情景下的资本缺口，资本规划据此制定资本补充方案，确保公司在各种情景下均能维持偿付能力充足。</p>
+
+    <div class="callout info">
+      <div class="title">压力测试在偿付能力体系中的位置</div>
+      <p>压力测试 &#8594; 识别极端情景资本缺口 &#8594; 资本规划（第14号） &#8594; 制定资本补充方案 &#8594; 维持偿付能力充足。压力测试是连接第一支柱（量化要求）和第二支柱（风险管理）的桥梁——它既使用第一支柱的计量框架，又服务于第二支柱的风险管理要求。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 情景设计 Scenario Design ============== -->
+<div class="tab-content" id="tab-scenarios" style="display:none;">
+
+  <div class="section">
+    <h2>必测情景列表 Mandatory Scenarios <span class="en">9 Scenarios</span></h2>
+    <p>二期规定9个必测情景，覆盖市场风险、信用风险、保险风险和集中度风险。各情景的冲击参数由监管统一规定。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:16%">风险类型</th>
+          <th style="width:22%">情景名称</th>
+          <th>主要参数变化</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>权益价格风险</strong></td>
+          <td>股票价格下跌30%</td>
+          <td>蓝筹股 -30%，其他股票 -40%</td>
+        </tr>
+        <tr>
+          <td><strong>利率风险</strong></td>
+          <td>利率上升/下降100bp</td>
+          <td>750日移动平均曲线上下平移100bp</td>
+        </tr>
+        <tr>
+          <td><strong>房地产价格风险</strong></td>
+          <td>房地产价格下跌15%</td>
+          <td>投资性房地产估值 -15%</td>
+        </tr>
+        <tr>
+          <td><strong>汇率风险</strong></td>
+          <td>人民币贬值10%</td>
+          <td>USD/CNY 汇率 +10%</td>
+        </tr>
+        <tr>
+          <td><strong>信用风险</strong></td>
+          <td>信用利差扩大200bp</td>
+          <td>所有非国债信用利差 +200bp</td>
+        </tr>
+        <tr>
+          <td><strong>保险风险</strong></td>
+          <td>死亡率上升20%</td>
+          <td>死亡率 &#215; 1.20</td>
+        </tr>
+        <tr>
+          <td><strong>退保风险</strong></td>
+          <td>退保率翻倍</td>
+          <td>退保率 &#215; 2.0</td>
+        </tr>
+        <tr>
+          <td><strong>集中度风险</strong></td>
+          <td>单一资产违约</td>
+          <td>最大单一资产全额违约</td>
+        </tr>
+        <tr>
+          <td><strong>逆周期</strong></td>
+          <td>多风险叠加情景</td>
+          <td>股票 -20% + 利率 -50bp + 退保 &#215; 1.5</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">情景设计原理</div>
+      <p>各必测情景的冲击幅度基于历史极端事件设定：① <strong>股票-30%</strong>参考2015年股市异常波动；② <strong>利率&#177;100bp</strong>覆盖利率大幅波动的情景；③ <strong>房地产-15%</strong>反映房地产市场调整风险；④ <strong>退保翻倍</strong>反映流动性危机情景；⑤ <strong>逆周期叠加</strong>模拟多风险同时爆发的系统性风险。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>自测情景设计 Self-Defined Scenarios <span class="en">Company-Specific</span></h2>
+    <p>公司需根据自身风险特征设计<strong>至少3个自测情景</strong>。自测情景应覆盖公司主要风险暴露，并考虑风险之间的传染效应。</p>
+
+    <h3>自测情景设计原则 Design Principles</h3>
+    <ul>
+      <li><strong>风险导向：</strong>基于ORSA风险评估结果，针对公司最大风险暴露设计情景</li>
+      <li><strong>前瞻性：</strong>不仅考虑历史极端事件，还需考虑未来可能出现的风险</li>
+      <li><strong>反向压力测试：</strong>从"什么会导致公司偿付能力不足"出发，反推压力情景</li>
+      <li><strong>多风险叠加：</strong>考虑风险之间的传染和放大效应</li>
+    </ul>
+
+    <div class="callout warning">
+      <div class="title">自测情景示例</div>
+      <p>以寿险公司为例，典型的自测情景包括：① <strong>利差损情景</strong>——长期低利率持续，新业务收益率低于定价假设；② <strong>集中退保情景</strong>——声誉事件导致集中退保，现金流断裂；③ <strong>信用违约潮情景</strong>——多个交易对手同时违约，信用损失激增。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>情景测试频率 Testing Frequency <span class="en">Semi-Annual Minimum</span></h2>
+
+    <div class="formula">
+      <span class="label">测试频率要求</span>
+      <span class="comment">必测情景：至少每半年一次</span><br>
+      <span class="comment">自测情景：至少每年一次（建议每半年）</span><br>
+      <span class="comment">可选情景：监管要求时执行</span><br>
+      <span class="comment">重大事件触发：市场剧烈波动时立即执行</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">测试频率说明</div>
+      <p>压力测试频率至少为每半年一次，但建议公司根据自身风险特征提高测试频率。在以下情况应立即执行额外压力测试：① 金融市场剧烈波动；② 监管政策重大调整；③ 公司重大战略变化；④ 重大自然灾害或突发事件。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>压力测试报告 Stress Testing Report <span class="en">Reporting Requirements</span></h2>
+    <p>压力测试完成后需编制压力测试报告，报送董事会风险管理委员会和监管机构。报告内容包括：</p>
+    <ul>
+      <li><strong>情景设计说明：</strong>各情景的假设、参数和冲击幅度</li>
+      <li><strong>量化影响结果：</strong>各情景下实际资本、最低资本和充足率的变化</li>
+      <li><strong>资本缺口分析：</strong>压力情景下的资本缺口及成因</li>
+      <li><strong>应对措施：</strong>资本补充计划和风险缓释措施</li>
+      <li><strong>管理层建议：</strong>基于测试结果的风险管理改进建议</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期改革概览 Phase II Reforms <span class="en">Key Changes in Stress Testing</span></h2>
+    <p>C-ROSS二期在压力测试方面进行了多项重要改革，核心变化是<strong>必测情景数量增加</strong>、<strong>新增逆周期情景</strong>和<strong>压力测试纳入资本规划</strong>，同时要求建立压力测试管理制度。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">改革领域</th>
+          <th style="width:36%">一期做法</th>
+          <th>二期改革</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>必测情景数量</strong></td>
+          <td>6个必测情景</td>
+          <td><strong>增至9个</strong>（新增3个）</td>
+        </tr>
+        <tr>
+          <td><strong>逆周期情景</strong></td>
+          <td>无多风险叠加情景</td>
+          <td><strong>新增逆周期叠加情景</strong></td>
+        </tr>
+        <tr>
+          <td><strong>退保风险情景</strong></td>
+          <td>无专项退保压力情景</td>
+          <td><strong>新增退保率翻倍情景</strong></td>
+        </tr>
+        <tr>
+          <td><strong>集中度风险情景</strong></td>
+          <td>无专项集中度压力情景</td>
+          <td><strong>新增单一资产违约情景</strong></td>
+        </tr>
+        <tr>
+          <td><strong>资本规划衔接</strong></td>
+          <td>压力测试结果与资本规划衔接不紧密</td>
+          <td><strong>压力测试结果纳入资本规划</strong>（第14号）</td>
+        </tr>
+        <tr>
+          <td><strong>管理制度</strong></td>
+          <td>无专门管理制度要求</td>
+          <td><strong>要求建立压力测试管理制度</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化1：必测情景从6个增至9个 Scenario Expansion <span class="en">6 &#8594; 9</span></h2>
+    <div class="callout warning">
+      <div class="title">一期问题</div>
+      <p>一期压力测试的必测情景仅6个，覆盖的风险类型有限。一期的情景主要覆盖市场风险和信用风险，对保险风险和集中度风险的压力测试不足，无法全面反映公司面临的尾部风险。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期将必测情景从6个增至9个，新增3个情景：① <strong>逆周期叠加情景</strong>——多风险同时爆发；② <strong>退保率翻倍情景</strong>——流动性危机；③ <strong>集中度风险情景</strong>——单一资产全额违约。新增情景覆盖了之前未纳入的压力维度，使压力测试更加全面。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化2：新增逆周期情景 Countercyclical Scenario <span class="en">Multi-Risk Overlay</span></h2>
+    <div class="callout danger">
+      <div class="title">一期问题</div>
+      <p>一期压力测试主要针对单一风险，未考虑多风险同时爆发的系统性风险情景。实际金融危机中，往往是多种风险同时爆发——例如2008年金融危机中，股票暴跌、信用利差扩大、流动性枯竭同时发生。单一风险情景无法反映这种"尾部相依"效应。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期新增<strong>逆周期叠加情景</strong>——模拟股票下跌20%、利率下降50bp、退保率上升1.5倍同时发生的极端情景。该情景反映了经济下行周期中多风险叠加的系统性风险，是压力测试中冲击最大的情景之一。逆周期情景的参数虽低于单个必测情景，但多风险叠加效应使得综合冲击更为严重。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化3：新增退保率翻倍和集中度风险情景 New Scenarios <span class="en">Surrender &amp; Concentration</span></h2>
+
+    <h3>退保率翻倍情景 Surrender Rate Doubling</h3>
+    <div class="callout info">
+      <div class="title">退保风险情景设计</div>
+      <p>退保率翻倍情景模拟声誉事件或市场恐慌导致的集中退保。退保率上升导致：① 准备金大量释放，但需支付退保金；② 现金流压力增大，可能被迫低价变卖资产；③ 投资收益下降。该情景对依赖新业务现金流的寿险公司冲击尤为显著。</p>
+    </div>
+
+    <h3>单一资产违约情景 Single Asset Default</h3>
+    <div class="callout info">
+      <div class="title">集中度风险情景设计</div>
+      <p>单一资产违约情景假设公司最大单一资产全额违约。该情景与第9号集中度风险最低资本衔接——第9号对超过总资产5%的单一交易对手暴露计提额外资本，压力测试进一步评估单一资产全额违约的极端影响。该情景促使公司关注投资集中度风险。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化4：压力测试纳入资本规划 Capital Planning Integration <span class="en">Link to Rule 14</span></h2>
+    <div class="callout warning">
+      <div class="title">改革要点</div>
+      <p>二期要求将压力测试结果纳入<strong>资本规划</strong>（第14号）。如果压力测试显示在特定情景下充足率低于100%，公司需在资本规划中制定资本补充方案，包括：① 利润留存计划；② 股东增资计划；③ 发行资本补充工具；④ 风险缓释措施（如调整资产配置、增加再保）。这一改革使压力测试从"事后评估"转变为"前置规划"，强化了压力测试的实际管理价值。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化5：建立压力测试管理制度 Management System <span class="en">Institutional Framework</span></h2>
+    <div class="callout info">
+      <div class="title">制度要求</div>
+      <p>二期要求保险公司建立<strong>压力测试管理制度</strong>，明确：① 压力测试的组织架构和职责分工；② 情景设计、参数设定、量化分析的方法论；③ 测试频率和报告流程；④ 结果应用和资本规划衔接机制；⑤ 制度的定期回顾和更新机制。这一要求将压力测试从"一次性任务"提升为"常态化管理机制"。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Calculation Example ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>计算案例：西红人寿 — 压力测试 Worked Example <span class="en">Xihong Life Insurance</span></h2>
+
+    <div class="callout info">
+      <div class="title">公司背景 Company Background</div>
+      <p><strong>西红人寿保险公司</strong>（Xihong Life Insurance Co., Ltd.），继续第1号和第2号案例的分析。<br>
+      评估日期：<strong>2024年12月31日</strong> &nbsp;|&nbsp; 单位：<strong>万元</strong><br>
+      <span style="color:var(--c-text-muted);">本案例的压力测试基于第1号实际资本和第2号最低资本的基准数值。</span></p>
+    </div>
+
+    <h3>基准情景（正常状态） Baseline Scenario</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:33%">指标</th>
+          <th style="width:33%">数值（万元）</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>实际资本</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-primary-dark);">57,000</td>
+          <td>来自第1号案例</td>
+        </tr>
+        <tr>
+          <td>最低资本</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-primary-dark);">20,081</td>
+          <td>来自第2号案例</td>
+        </tr>
+        <tr>
+          <td>核心偿付能力充足率</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-teal);">233%</td>
+          <td>核心资本 / 最低资本</td>
+        </tr>
+        <tr>
+          <td>综合偿付能力充足率</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-teal);">284%</td>
+          <td>实际资本 / 最低资本</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">教学说明 Educational Note</div>
+      <p><strong>本案例为简化的教学示例</strong>，演示压力测试情景对偿付能力充足率的影响。实际压力测试需逐资产、逐负债、逐风险计量，并考虑风险间的传染效应。本案例的核心资本占比约为46,800/57,000 &#8776; 82%。</p>
+    </div>
+  </div>
+
+  <!-- Step 1: 股票价格下跌30% -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">1</span>
+      <span class="cs-title">股票价格下跌30%情景 Equity Price Down 30%</span>
+    </div>
+    <p style="font-size:13px;">模拟股票价格大幅下跌：蓝筹股下跌30%，其他股票下跌40%。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      股票资产（蓝筹）= 15,000 万 &nbsp;|&nbsp; 股票资产（其他）= 6,667 万<br>
+      蓝筹股跌幅 = 30% &nbsp;|&nbsp; 其他股票跌幅 = 40%<br><br>
+      <span style="color:var(--c-accent);">[1] 实际资本减少：</span><br>
+      蓝筹股减值 = 15,000 &#215; 30% = 4,500 万<br>
+      其他股票减值 = 6,667 &#215; 40% = 2,667 万<br>
+      实际资本减少合计 = 4,500 + 2,667 = 7,167 万<br>
+      实际资本<sub>情景</sub> = 57,000 - 7,167 = <strong>49,833 万</strong><br><br>
+      <span style="color:var(--c-accent);">[2] 最低资本变化（简化）：</span><br>
+      权益价格风险MC增加 = (4,500&#215;0.20 + 2,667&#215;0.30) = 1,700 万<br>
+      最低资本<sub>情景</sub> &#8776; 20,081 + 1,500 = <strong>21,581 万</strong><br>
+      <span style="color:var(--c-text-muted);">（实际最低资本变化需重新聚合，此处简化）</span><br><br>
+      <span style="color:var(--c-accent);">[3] 充足率计算：</span><br>
+      核心资本 = 49,833 &#215; (46,800/57,000) = 49,833 &#215; 0.821 &#8776; 40,928 万<br>
+      核心充足率 = 40,928 / 21,581 = <strong>189%</strong><br>
+      综合充足率 = 49,833 / 21,581 = <strong>231%</strong>
+    </div>
+    <div class="cs-result">核心充足率：233% &#8594; 189% （-44pp） | 综合充足率：284% &#8594; 231% （-53pp）</div>
+    <div class="cs-note">注：股票下跌导致实际资本大幅减少7,167万，同时最低资本小幅增加。核心资本占比按82%简化计算。</div>
+  </div>
+
+  <!-- Step 2: 利率下降100bp -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">2</span>
+      <span class="cs-title">利率下降100bp情景 Interest Rate Down 100bp</span>
+    </div>
+    <p style="font-size:13px;">模拟利率下降100个基点。利率下降导致固收资产升值，但负债评估利率下降导致准备金增加更多，净值为负。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      固收资产久期 &#8776; 5年 &nbsp;|&nbsp; 负债久期 &#8776; 8年<br><br>
+      <span style="color:var(--c-accent);">[1] 资产负债价值变化：</span><br>
+      固收资产DV变化 = +5,000 万（资产升值）<br>
+      负债DV变化 = +8,000 万（准备金增加）<br>
+      净值变化 = 5,000 - 8,000 = -3,000 万<br>
+      实际资本<sub>情景</sub> = 57,000 - 3,000 = <strong>54,000 万</strong><br><br>
+      <span style="color:var(--c-accent);">[2] 最低资本变化：</span><br>
+      利率风险MC增加 &#8776; 2,000 万<br>
+      最低资本<sub>情景</sub> &#8776; 20,081 + 2,000 = <strong>22,081 万</strong><br>
+      <span style="color:var(--c-text-muted);">简化取 22,000 万</span><br><br>
+      <span style="color:var(--c-accent);">[3] 充足率计算：</span><br>
+      核心资本 = 54,000 &#215; 0.82 = 44,280 万<br>
+      核心充足率 = 44,280 / 22,000 = <strong>201%</strong><br>
+      综合充足率 = 54,000 / 22,000 = <strong>245%</strong>
+    </div>
+    <div class="cs-result">核心充足率：233% &#8594; 201% （-32pp） | 综合充足率：284% &#8594; 245% （-39pp）</div>
+    <div class="cs-note">注：寿险公司负债久期通常大于资产久期，利率下降导致准备金增幅大于资产升值，实际资本减少。这是寿险公司"久期错配"的典型影响。</div>
+  </div>
+
+  <!-- Step 3: 退保率翻倍 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">3</span>
+      <span class="cs-title">退保率翻倍情景 Surrender Rate Doubling</span>
+    </div>
+    <p style="font-size:13px;">模拟退保率翻倍。大量退保导致准备金释放，但需支付退保金，同时可能被迫低价变卖资产，产生现金流缺口。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      退保率 &#215; 2.0 &nbsp;|&nbsp; 假设资本侵蚀 &#8776; 5%（退保损失+资产变现损失）<br><br>
+      <span style="color:var(--c-accent);">[1] 实际资本变化（简化）：</span><br>
+      资本侵蚀 = 57,000 &#215; 5% = 2,850 万<br>
+      实际资本<sub>情景</sub> = 57,000 &#215; 0.95 = <strong>54,150 万</strong><br><br>
+      <span style="color:var(--c-accent);">[2] 最低资本变化：</span><br>
+      退保风险MC增加 &#8776; 3,000 万<br>
+      最低资本<sub>情景</sub> &#8776; 20,081 + 3,000 = <strong>23,081 万</strong><br>
+      <span style="color:var(--c-text-muted);">简化取 23,000 万</span><br><br>
+      <span style="color:var(--c-accent);">[3] 充足率计算：</span><br>
+      核心资本 = 54,150 &#215; 0.82 = 44,403 万<br>
+      核心充足率 = 44,403 / 23,000 = <strong>193%</strong><br>
+      综合充足率 = 54,150 / 23,000 = <strong>235%</strong>
+    </div>
+    <div class="cs-result">核心充足率：233% &#8594; 193% （-40pp） | 综合充足率：284% &#8594; 235% （-49pp）</div>
+    <div class="cs-note">注：退保率翻倍导致约5%的资本侵蚀，主要来自退保损失和资产变现损失。实际影响取决于产品退保惩罚条款和资产流动性。</div>
+  </div>
+
+  <!-- Step 4: 逆周期叠加 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">4</span>
+      <span class="cs-title">逆周期叠加情景 Countercyclical Overlay</span>
+    </div>
+    <p style="font-size:13px;">模拟多风险叠加：股票 -20% + 利率 -50bp + 退保 &#215; 1.5。虽然各单项冲击幅度低于对应必测情景，但多风险叠加效应使综合冲击最为严重。</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">参数：</span><br>
+      股票总资产 = 21,667 万 &nbsp;|&nbsp; 股票跌幅 = 25%（加权平均）<br>
+      利率下降 = 50bp &nbsp;|&nbsp; 退保率 &#215; 1.5<br><br>
+      <span style="color:var(--c-accent);">[1] 股票减值：</span><br>
+      股票减值 = 21,667 &#215; 25% = 5,417 万<br><br>
+      <span style="color:var(--c-accent);">[2] 利率影响（净值）：</span><br>
+      利率下降50bp净值变化 = -1,500 万<br>
+      <span style="color:var(--c-text-muted);">（利率下降100bp净值-3,000万，50bp约减半）</span><br><br>
+      <span style="color:var(--c-accent);">[3] 退保影响：</span><br>
+      退保率&#215;1.5的资本侵蚀 &#8776; 2,850 万<br>
+      <span style="color:var(--c-text-muted);">（退保翻倍侵蚀2,850万，1.5倍约2,850万）</span><br><br>
+      <span style="color:var(--c-accent);">[4] 实际资本合计：</span><br>
+      实际资本<sub>情景</sub> = 57,000 - 5,417 - 1,500 - 2,850 = <strong>47,233 万</strong><br><br>
+      <span style="color:var(--c-accent);">[5] 最低资本：</span><br>
+      最低资本<sub>情景</sub> &#8776; <strong>23,500 万</strong><br>
+      <span style="color:var(--c-text-muted);">（权益+利率+退保风险MC综合增加）</span><br><br>
+      <span style="color:var(--c-accent);">[6] 充足率计算：</span><br>
+      核心资本 = 47,233 &#215; 0.82 = 38,731 万<br>
+      核心充足率 = 38,731 / 23,500 = <strong>165%</strong><br>
+      综合充足率 = 47,233 / 23,500 = <strong>201%</strong>
+    </div>
+    <div class="cs-result">核心充足率：233% &#8594; 165% （-68pp） | 综合充足率：284% &#8594; 201% （-83pp）</div>
+    <div class="cs-note">注：逆周期叠加情景虽然各单项冲击幅度低于必测情景，但多风险叠加效应使综合充足率降幅最大（-83pp），体现了系统性风险的尾部相依特征。</div>
+  </div>
+
+  <!-- Step 5: 结果汇总 -->
+  <div class="calc-step" style="border:2px solid var(--c-teal);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-teal);">5</span>
+      <span class="cs-title">压力测试结果汇总 Summary</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:16%">情景</th>
+          <th style="width:12%">实际资本</th>
+          <th style="width:12%">最低资本</th>
+          <th style="width:12%">核心充足率</th>
+          <th style="width:12%">综合充足率</th>
+          <th>变化</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:var(--c-teal-light);">
+          <td><strong>基准</strong></td>
+          <td style="text-align:right;font-weight:600;">57,000</td>
+          <td style="text-align:right;font-weight:600;">20,081</td>
+          <td style="text-align:center;font-weight:600;color:var(--c-teal);">233%</td>
+          <td style="text-align:center;font-weight:600;color:var(--c-teal);">284%</td>
+          <td style="text-align:center;color:var(--c-text-muted);">-</td>
+        </tr>
+        <tr>
+          <td>股票 -30%</td>
+          <td style="text-align:right;">49,833</td>
+          <td style="text-align:right;">21,581</td>
+          <td style="text-align:center;">189%</td>
+          <td style="text-align:center;">231%</td>
+          <td style="text-align:center;color:var(--c-amber);">-53pp</td>
+        </tr>
+        <tr>
+          <td>利率 -100bp</td>
+          <td style="text-align:right;">54,000</td>
+          <td style="text-align:right;">22,000</td>
+          <td style="text-align:center;">201%</td>
+          <td style="text-align:center;">245%</td>
+          <td style="text-align:center;color:var(--c-amber);">-39pp</td>
+        </tr>
+        <tr>
+          <td>退保翻倍</td>
+          <td style="text-align:right;">54,150</td>
+          <td style="text-align:right;">23,000</td>
+          <td style="text-align:center;">193%</td>
+          <td style="text-align:center;">235%</td>
+          <td style="text-align:center;color:var(--c-amber);">-49pp</td>
+        </tr>
+        <tr style="background:#fcebeb;">
+          <td><strong>逆周期叠加</strong></td>
+          <td style="text-align:right;font-weight:600;">47,233</td>
+          <td style="text-align:right;font-weight:600;">23,500</td>
+          <td style="text-align:center;font-weight:700;color:var(--c-red);">165%</td>
+          <td style="text-align:center;font-weight:700;color:var(--c-red);">201%</td>
+          <td style="text-align:center;font-weight:700;color:var(--c-red);">-83pp</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout success" style="margin-top:14px;">
+      <div class="title">结果分析</div>
+      <p>所有压力情景下，西红人寿的综合偿付能力充足率仍高于100%，核心充足率也高于100%，表明公司在极端情景下仍具备偿付能力。但逆周期叠加情景下核心充足率从233%降至165%，降幅达68个百分点（综合降幅83pp），是所有情景中冲击最大的。</p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">资本补充触发条件</div>
+      <p>如压力情景下充足率低于100%，需启动资本补充计划，包括：① 利润留存；② 股东增资；③ 发行资本补充工具；④ 调整资产配置和业务结构。西红人寿当前基准充足率较高（284%），压力测试下仍维持充足，暂无需启动资本补充计划。但建议持续监控逆周期风险，做好资本补充预案。</p>
+    </div>
+
+    <div class="callout info" style="margin-top:10px;">
+      <div class="title">情景敏感性分析</div>
+      <p>各情景的充足率降幅反映了西红人寿的风险敏感性：① <strong>股票-30%</strong>（-53pp）——权益价格风险敏感度高，反映21,667万股票资产敞口较大；② <strong>利率-100bp</strong>（-39pp）——久期错配导致利率敏感度为负；③ <strong>退保翻倍</strong>（-49pp）——退保风险中等敏感；④ <strong>逆周期叠加</strong>（-83pp）——多风险叠加效应显著，约为各单项情景之和的1.3倍，体现了尾部相依效应。建议：① 适当降低股票配置比例或增加对冲；② 缩小资产负债久期缺口；③ 优化产品退保惩罚条款。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号 第10号：压力测试<br>
+  参考：EIOPA Solvency II ORSA Guidelines、 Basel III Stress Testing Principles</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('[id^="tab-"]');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Progress tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule10';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
