@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11号：风险综合评级 IRR | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html" class="active">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+    <a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第二支柱</a>
+  <span class="sep">›</span>
+  第11号 风险综合评级
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II &middot; 监管规则第 11 号 &middot; Pillar II</div>
+  <h1>第11号：风险综合评级 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 保险公司分类监管的核心评级</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Integrated Risk Rating (IRR) &amp; Categorized Supervision</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(83,74,183,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(83,74,183,0.4);color:var(--c-purple-light);">Pillar II &middot; 第二支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">ABCD 四类评级</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">可资本化 + 难以资本化</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">分类监管措施</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="methodology" onclick="switchTab('methodology')">评级方法 Methodology</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Case Study</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>风险综合评级的定义 Definition <span class="en">Integrated Risk Rating</span></h2>
+    <p><strong>风险综合评级（IRR）</strong>是监管机构对保险公司整体风险状况的综合评价，是第二支柱分类监管的核心工具。IRR综合评估保险公司的可资本化风险（可通过最低资本量化的风险）和难以资本化风险（无法直接通过资本计量的风险），将保险公司分为A、B、C、D四个类别，据此实施差异化监管措施。</p>
+
+    <div class="callout info">
+      <div class="title">IRR的核心定位</div>
+      <p>IRR回答的不是"公司有多少资本"（第一支柱已回答），而是"公司的<strong>整体风险状况</strong>如何"。它将定量指标（偿付能力充足率）与定性评估（SARMRA评分、公司治理、信息披露质量等）相结合，形成对公司风险状况的全方位画像，是连接第一支柱和第二支柱的桥梁。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>ABCD四类评级 Four Rating Categories <span class="en">Categorized Supervision</span></h2>
+    <table>
+      <thead>
+        <tr><th style="width:60px">类别</th><th style="width:180px">风险状况</th><th>监管措施</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-green);color:#fff;">A 类</span></td>
+          <td>风险综合评级最低，整体风险小</td>
+          <td>常规监管，非现场监管为主，现场检查频率最低</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-blue);color:#fff;">B 类</span></td>
+          <td>风险综合评级较低，整体风险可控</td>
+          <td>常规监管，适当增加非现场监管分析深度</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-amber);color:#fff;">C 类</span></td>
+          <td>风险综合评级较高，整体风险较大</td>
+          <td>提高监管强度：增加现场检查频率，要求提交风险整改计划，限制新业务</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-red);color:#fff;">D 类</span></td>
+          <td>风险综合评级最高，整体风险大</td>
+          <td>最严格监管措施：责令停止部分或全部新业务、调整负责人、接管重组</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">评级与偿付能力的关系</div>
+      <p>偿付能力充足率达标（核心&ge;50%、综合&ge;100%）<strong>不等于</strong>评级为A或B类。一家公司可能偿付能力充足率达标，但因SARMRA评分低、风险管理缺陷多、公司治理问题严重而被评为C类甚至D类。反之，偿付能力充足率略低但风险管理体系完善的公司也可能获得B类评级。IRR是一个综合性评估，不仅看"结果"指标，更看"过程"指标。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>两个评估维度 Two Assessment Dimensions</h2>
+
+    <h3>1. 可资本化风险 Capitalizable Risk <span class="en">— Quantitative</span></h3>
+    <p>可资本化风险是可以通过最低资本计量来量化的风险，包括保险风险、市场风险、信用风险等。评估依据是偿付能力充足率水平。可资本化风险的评估结果与第一支柱直接关联——偿付能力充足率越高，可资本化风险评分越好。</p>
+
+    <h3>2. 难以资本化风险 Non-Capitalizable Risk <span class="en">— Qualitative</span></h3>
+    <p>难以资本化风险是无法通过最低资本直接量化的风险，包括战略风险、声誉风险、关联交易风险、公司治理风险等。评估依据是SARMRA评分（第12号）、公司治理评估、内控合规情况、信息披露质量等。这一维度体现了第二支柱"定性监管要求"的核心——风险管理体系的质量与成熟度。</p>
+
+    <div class="callout success">
+      <div class="title">综合评级逻辑</div>
+      <p>可资本化风险和难以资本化风险的评估结果分别评级后，按照"就低不就高"的原则确定综合评级。即：如果可资本化风险为A类、难以资本化风险为C类，则综合评级为C类。这一原则体现了监管审慎理念——<strong>最薄弱环节决定整体评级</strong>。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>IRR在偿付能力体系中的位置 <span class="en">Position in the Framework</span></h2>
+    <div class="formula">
+      <span class="label">IRR评估输入</span>
+      <span class="eq">第一支柱充足率</span> &#8594; <span class="eq">可资本化风险评级</span> &#8594; <span style="color:var(--c-accent);font-weight:600;">综合评级 (IRR)</span><br>
+      <span class="eq">SARMRA评分(第12号)</span> &#8594; <span class="eq">难以资本化风险评级</span> &#8594; <span style="color:var(--c-accent);font-weight:600;">综合评级 (IRR)</span><br>
+      <span class="comment">同时参考：公司治理评估、关联交易合规、信息披露质量等</span>
+    </div>
+    <p>IRR评估结果直接影响监管机构对保险公司的分类监管措施。A/B类公司享受常规或轻度增强监管，C/D类公司面临监管干预甚至接管。IRR也是保险机构市场准入、分支机构设立、高管任职资格等审批的重要参考。</p>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 评级方法 Methodology ============== -->
+<div class="tab-content" id="tab-methodology" style="display:none;">
+
+  <div class="section">
+    <h2>可资本化风险评估 Capitalizable Risk Assessment <span class="en">— Based on Solvency Ratios</span></h2>
+    <p>可资本化风险评估以偿付能力充足率为核心指标，结合核心偿付能力充足率、综合偿付能力充足率和风险综合评级三个指标进行评分。</p>
+
+    <table>
+      <thead>
+        <tr><th>评估指标</th><th>A类阈值</th><th>B类阈值</th><th>C类阈值</th><th>D类阈值</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>综合偿付能力充足率</strong></td>
+          <td>&ge; 150%</td>
+          <td>100% ~ 150%</td>
+          <td>50% ~ 100%</td>
+          <td>&lt; 50%</td>
+        </tr>
+        <tr>
+          <td><strong>核心偿付能力充足率</strong></td>
+          <td>&ge; 75%</td>
+          <td>50% ~ 75%</td>
+          <td>25% ~ 50%</td>
+          <td>&lt; 25%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);margin-top:6px;">注：上表为示意性阈值。实际评级需综合考虑两个指标，取较低等级作为可资本化风险评级。</p>
+
+    <div class="callout info">
+      <div class="title">可资本化风险评级规则</div>
+      <p>可资本化风险评级取综合充足率和核心充足率对应的较低类别。例如：综合充足率=160%（A类）、核心充足率=60%（B类），则可资本化风险评级为<strong>B类</strong>。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>难以资本化风险评估 Non-Capitalizable Risk Assessment <span class="en">— Qualitative Evaluation</span></h2>
+    <p>难以资本化风险评估基于多维度定性评价，核心输入是SARMRA评分（第12号），同时考虑以下因素：</p>
+
+    <table>
+      <thead>
+        <tr><th>评估维度</th><th>数据来源</th><th>评估要点</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>SARMRA评分</strong></td>
+          <td>第12号规则评估结果</td>
+          <td>9大风险管理领域评分综合，&ge;80分优秀</td>
+        </tr>
+        <tr>
+          <td><strong>公司治理</strong></td>
+          <td>公司治理监管评估</td>
+          <td>三会一层运作、股东行为、关联交易</td>
+        </tr>
+        <tr>
+          <td><strong>战略风险</strong></td>
+          <td>战略规划评审</td>
+          <td>战略方向合理性、执行偏差</td>
+        </tr>
+        <tr>
+          <td><strong>声誉风险</strong></td>
+          <td>舆情监测、投诉数据</td>
+          <td>负面舆情、消费者投诉率</td>
+        </tr>
+        <tr>
+          <td><strong>合规风险</strong></td>
+          <td>合规报告、处罚记录</td>
+          <td>行政处罚、监管函件</td>
+        </tr>
+        <tr>
+          <td><strong>信息披露质量</strong></td>
+          <td>第15/18号规则披露</td>
+          <td>披露及时性、完整性、准确性</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">难以资本化风险评级</div>
+      <p>各维度评估结果综合后，按照预设权重加权计算，映射至ABCD四类。SARMRA评分权重最大（约40%），其他维度各占约10-15%。综合得分&ge;80分为A类，70-80分为B类，60-70分为C类，&lt;60分为D类。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>综合评级矩阵 Rating Matrix <span class="en">Combined Rating</span></h2>
+    <p>综合评级由可资本化风险评级和难以资本化风险评级共同确定，遵循<strong>"就低不就高"</strong>原则：</p>
+
+    <table>
+      <thead>
+        <tr><th colspan="2" rowspan="2"></th><th colspan="4">难以资本化风险评级</th></tr>
+        <tr><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th rowspan="4">可资本化<br>风险评级</th>
+          <th>A</th>
+          <td style="text-align:center;background:var(--c-green-light);font-weight:600;">A</td>
+          <td style="text-align:center;background:var(--c-blue-light);font-weight:600;">B</td>
+          <td style="text-align:center;background:var(--c-amber-light);font-weight:600;">C</td>
+          <td style="text-align:center;background:var(--c-pink-light);font-weight:600;">D</td>
+        </tr>
+        <tr>
+          <th>B</th>
+          <td style="text-align:center;background:var(--c-blue-light);font-weight:600;">B</td>
+          <td style="text-align:center;background:var(--c-blue-light);font-weight:600;">B</td>
+          <td style="text-align:center;background:var(--c-amber-light);font-weight:600;">C</td>
+          <td style="text-align:center;background:var(--c-pink-light);font-weight:600;">D</td>
+        </tr>
+        <tr>
+          <th>C</th>
+          <td style="text-align:center;background:var(--c-amber-light);font-weight:600;">C</td>
+          <td style="text-align:center;background:var(--c-amber-light);font-weight:600;">C</td>
+          <td style="text-align:center;background:var(--c-amber-light);font-weight:600;">C</td>
+          <td style="text-align:center;background:var(--c-pink-light);font-weight:600;">D</td>
+        </tr>
+        <tr>
+          <th>D</th>
+          <td style="text-align:center;background:var(--c-pink-light);font-weight:600;">D</td>
+          <td style="text-align:center;background:var(--c-pink-light);font-weight:600;">D</td>
+          <td style="text-align:center;background:var(--c-pink-light);font-weight:600;">D</td>
+          <td style="text-align:center;background:var(--c-pink-light);font-weight:600;">D</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);margin-top:6px;">注：综合评级 = min(可资本化风险评级, 难以资本化风险评级)。监管机构可在矩阵结果基础上，根据审慎原则做一级调整（上调或下调）。</p>
+  </div>
+
+  <div class="section">
+    <h2>分类监管措施 Categorized Supervisory Measures <span class="en">Differentiated Actions</span></h2>
+    <table>
+      <thead>
+        <tr><th>评级</th><th>非现场监管</th><th>现场检查</th><th>业务限制</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A</strong></td>
+          <td>常规分析，年度评估</td>
+          <td>2-3年一次，例行检查</td>
+          <td>无限制</td>
+        </tr>
+        <tr>
+          <td><strong>B</strong></td>
+          <td>适当加强分析深度</td>
+          <td>1-2年一次</td>
+          <td>无限制</td>
+        </tr>
+        <tr>
+          <td><strong>C</strong></td>
+          <td>月度/季度跟踪，专项分析</td>
+          <td>每年至少一次</td>
+          <td>限制高风险新业务，提交整改计划</td>
+        </tr>
+        <tr>
+          <td><strong>D</strong></td>
+          <td>持续监控，派驻监管组</td>
+          <td>专项检查</td>
+          <td>停止新业务，调整高管，接管重组</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期核心变化 Key Changes in Phase II</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>评级维度扩充</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期将难以资本化风险的评估维度从一期的主要依赖SARMRA，扩展至包含公司治理、战略风险、声誉风险、合规风险、信息披露质量等多维度综合评估，评级更全面。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>SARMRA权重调整</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期调整了SARMRA在难以资本化风险评估中的权重（约40%），增加其他定性维度权重，避免单一评分"一锤定音"。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>评级频率明确</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期明确规定每季度更新一次风险综合评级，增强评级的时效性。一期为年度评级，时效性不足。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>评级与资本计量联动</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期强化IRR评级与控制风险最低资本（第2号）的联动。评级C/D类的公司，控制风险MC加征系数更高，形成"评级越低&rarr;MC越高&rarr;充足率越低&rarr;评级更低"的负反馈约束。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>穿透式评估</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期要求对保险集团的IRR评估采用穿透式方法，从集团层面到子公司层面逐层评估，防止集团内部风险传染。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>差异化监管强化</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期进一步细化了各评级类别的监管措施，特别是C/D类公司的干预措施更加具体和可操作，增强了监管威慑力。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>与Solvency II ORSA的对比 <span class="en">Comparison with ORSA</span></h2>
+    <table>
+      <thead>
+        <tr><th>对比维度</th><th>C-ROSS II 第11号 IRR</th><th>Solvency II ORSA</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>评估主体</strong></td>
+          <td>监管机构主导</td>
+          <td>保险公司自主开展，监管审查</td>
+        </tr>
+        <tr>
+          <td><strong>评级结果</strong></td>
+          <td>ABCD四类分类监管</td>
+          <td>无明确分类，监管审查后给出整改要求</td>
+        </tr>
+        <tr>
+          <td><strong>定性评估</strong></td>
+          <td>SARMRA + 多维度定性评价</td>
+          <td>ORSA报告（自身风险和偿付能力评估）</td>
+        </tr>
+        <tr>
+          <td><strong>监管干预</strong></td>
+          <td>分类监管措施明确</td>
+          <td>" ladder of intervention"逐级干预</td>
+        </tr>
+        <tr>
+          <td><strong>频率</strong></td>
+          <td>季度更新</td>
+          <td>年度审查</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Case Study ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>西红人寿风险综合评级评估 <span class="en">Xihong Life IRR Assessment</span></h2>
+    <p>以<strong>西红人寿保险公司</strong>为例，展示风险综合评级的完整评估流程。本案例延续前序规则的数据基准：实际资本 57,000 万元、最低资本 20,081 万元。</p>
+
+    <div class="callout info">
+      <div class="title">基准数据（来自第1-2号规则）</div>
+      <p>核心偿付能力充足率 = 233% &nbsp;|&nbsp; 综合偿付能力充足率 = 284% &nbsp;|&nbsp; 控制风险MC = 0（SARMRA评分优秀）</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Step 1：可资本化风险评估 <span class="en">Capitalizable Risk Rating</span></h2>
+
+    <div class="formula">
+      <span class="label">可资本化风险评估</span><br>
+      <span style="color:var(--c-accent);">综合偿付能力充足率</span> = 284% &rarr; &ge; 150% &rarr; A类<br>
+      <span style="color:var(--c-accent);">核心偿付能力充足率</span> = 233% &rarr; &ge; 75% &rarr; A类<br><br>
+      <span class="eq">可资本化风险评级 = A 类</span>
+    </div>
+
+    <p>西红人寿的综合充足率（284%）和核心充足率（233%）均远超A类阈值，可资本化风险评级为<strong>A类</strong>。公司资本充足，可资本化风险小。</p>
+  </div>
+
+  <div class="section">
+    <h2>Step 2：难以资本化风险评估 <span class="en">Non-Capitalizable Risk Rating</span></h2>
+
+    <p>难以资本化风险评估基于SARMRA评分和多维度定性评价：</p>
+
+    <table>
+      <thead>
+        <tr><th>评估维度</th><th>权重</th><th>西红人寿得分</th><th>评价</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SARMRA评分（第12号）</td>
+          <td>40%</td>
+          <td>85/100</td>
+          <td>优秀：风险管理体系完善</td>
+        </tr>
+        <tr>
+          <td>公司治理评估</td>
+          <td>15%</td>
+          <td>82/100</td>
+          <td>良好：三会一层运作规范</td>
+        </tr>
+        <tr>
+          <td>战略风险</td>
+          <td>12%</td>
+          <td>80/100</td>
+          <td>良好：战略方向稳健</td>
+        </tr>
+        <tr>
+          <td>声誉风险</td>
+          <td>10%</td>
+          <td>78/100</td>
+          <td>良好：投诉率低于行业均值</td>
+        </tr>
+        <tr>
+          <td>合规风险</td>
+          <td>13%</td>
+          <td>85/100</td>
+          <td>优秀：无重大行政处罚</td>
+        </tr>
+        <tr>
+          <td>信息披露质量</td>
+          <td>10%</td>
+          <td>88/100</td>
+          <td>优秀：披露及时完整</td>
+        </tr>
+        <tr style="background:var(--c-teal-light);">
+          <td colspan="2" style="text-align:right;font-weight:600;">加权综合得分</td>
+          <td style="font-weight:700;color:var(--c-teal);">83.1/100</td>
+          <td><strong>A 类</strong>（&ge; 80分）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      <span class="label">难以资本化风险加权计算</span><br>
+      综合得分 = 85&times;0.40 + 82&times;0.15 + 80&times;0.12 + 78&times;0.10 + 85&times;0.13 + 88&times;0.10<br>
+      = 34.0 + 12.3 + 9.6 + 7.8 + 11.05 + 8.8 = <strong>83.1 分</strong><br>
+      <span class="comment">&ge; 80 分 &rarr; 难以资本化风险评级 = A 类</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Step 3：综合评级确定 <span class="en">Final IRR Determination</span></h2>
+
+    <div class="formula">
+      <span class="label">综合评级矩阵</span><br>
+      可资本化风险评级 = <strong style="color:var(--c-green);">A 类</strong><br>
+      难以资本化风险评级 = <strong style="color:var(--c-green);">A 类</strong><br><br>
+      <span class="eq" style="font-size:18px;">综合评级 (IRR) = A 类</span><br>
+      <span class="comment">"就低不就高"原则：min(A, A) = A</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">西红人寿 IRR 评级结果</div>
+      <p><strong>评级类别：A类</strong></p>
+      <p><strong>含义：</strong>西红人寿整体风险小，风险管理体系成熟完善，偿付能力充足率高，公司治理规范，合规经营良好。</p>
+      <p><strong>监管措施：</strong>适用常规监管，以非现场监管为主，现场检查频率最低（2-3年一次），无业务限制。可正常开展新业务、设立分支机构、高管任职资格正常审批。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Step 4：评级联动效应 Rating Linkage Effects</h2>
+
+    <p>IRR评级与其他规则存在联动效应：</p>
+
+    <div class="formula">
+      <span class="label">联动效应</span><br>
+      <span class="eq">IRR = A 类</span> &#8594; <span class="eq">控制风险MC = 0</span>（第2号，不额外加征）<br>
+      <span class="eq">IRR = A 类</span> &#8594; <span class="eq">资本规划宽松</span>（第14号，无额外约束）<br>
+      <span class="eq">IRR = A 类</span> &#8594; <span class="eq">现场检查低频</span>（2-3年一次）<br>
+      <span class="eq">IRR = A 类</span> &#8594; <span class="eq">信息披露可简化</span>（第15号，A类可适用简化披露）
+    </div>
+
+    <div class="callout warning">
+      <div class="title">对比情景：若评级降至 C 类</div>
+      <p>假设西红人寿因SARMRA评分下降至60分，难以资本化风险评级降至C类，则：</p>
+      <p>① 综合评级 = min(A, C) = <strong>C 类</strong>；<br>
+      ② 控制风险MC可能加征 5%-10%（第2号）；<br>
+      ③ 最低资本增加，偿付能力充足率下降；<br>
+      ④ 需提交风险整改计划，限制高风险新业务；<br>
+      ⑤ 每年至少一次现场检查；<br>
+      ⑥ 资本规划需提出更严格的资本补充方案。</p>
+      <p>这一联动效应体现了C-ROSS II"分类监管 + 差异化资本要求"的监管逻辑。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>评估流程总结 Assessment Process Summary</h2>
+    <div class="formula">
+      <span class="label">IRR评估五步法</span><br>
+      <span class="eq">Step 1</span> 采集偿付能力充足率数据 &#8594; 确定可资本化风险评级<br>
+      <span class="eq">Step 2</span> 采集SARMRA + 多维度定性评价 &#8594; 计算难以资本化风险加权得分<br>
+      <span class="eq">Step 3</span> 加权得分映射至ABCD &#8594; 确定难以资本化风险评级<br>
+      <span class="eq">Step 4</span> 查综合评级矩阵 &#8594; "就低不就高"确定综合评级<br>
+      <span class="eq">Step 5</span> 监管审慎调整（可选）&#8594; 实施分类监管措施
+    </div>
+
+    <div class="callout info">
+      <div class="title">核心要点</div>
+      <p>IRR的本质是<strong>"木桶效应"</strong>——公司的整体评级由最薄弱的维度决定。这要求保险公司不能偏科，必须在资本充足率（第一支柱）和风险管理质量（第二支柱）两个维度同时优秀，才能获得最高评级。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 &middot; 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（&Iota;）》银保监发〔2021〕51号 第11号：风险综合评级<br>
+  参考：Solvency II ORSA Guidelines、IAIS ICPs</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('[id^="tab-"]');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Progress tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule11';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
