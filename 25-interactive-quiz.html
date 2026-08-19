@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>互动测验 Interactive Quiz | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.quiz-section { background: var(--c-surface); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; box-shadow: var(--shadow); }
+.quiz-question { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--c-border); }
+.quiz-question:last-child { border-bottom: none; }
+.quiz-q-title { font-weight: 600; font-size: 15px; margin-bottom: 10px; color: var(--c-text); }
+.quiz-q-title .q-num { display: inline-block; background: var(--c-primary); color: #fff; width: 24px; height: 24px; border-radius: 50%; text-align: center; line-height: 24px; font-size: 12px; margin-right: 8px; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-option { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 2px solid var(--c-border); border-radius: 8px; cursor: pointer; transition: all .2s; }
+.quiz-option:hover { border-color: var(--c-accent); background: var(--c-accent-light); }
+.quiz-option.selected { border-color: var(--c-blue); background: var(--c-blue-light); }
+.quiz-option.correct { border-color: var(--c-green); background: var(--c-green-light); }
+.quiz-option.wrong { border-color: var(--c-red); background: var(--c-pink-light); }
+.quiz-option .opt-label { display: inline-block; width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--c-border); text-align: center; line-height: 20px; font-size: 12px; font-weight: 600; flex-shrink: 0; }
+.quiz-option.selected .opt-label { background: var(--c-blue); color: #fff; border-color: var(--c-blue); }
+.quiz-option.correct .opt-label { background: var(--c-green); color: #fff; border-color: var(--c-green); }
+.quiz-option.wrong .opt-label { background: var(--c-red); color: #fff; border-color: var(--c-red); }
+.quiz-answer { display: none; margin-top: 8px; padding: 10px 14px; background: var(--c-blue-light); border-radius: 8px; font-size: 13px; line-height: 1.6; }
+.quiz-answer.visible { display: block; }
+.quiz-answer strong { color: var(--c-primary); }
+.fill-input { display: inline-block; width: 100px; padding: 4px 8px; border: 2px solid var(--c-border); border-radius: 6px; font-size: 14px; text-align: right; }
+.fill-input:focus { border-color: var(--c-accent); outline: none; }
+.fill-unit { display: inline-block; margin-left: 4px; font-size: 13px; color: var(--c-text-secondary); }
+.match-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.match-item { padding: 8px 12px; border: 2px solid var(--c-border); border-radius: 8px; cursor: pointer; transition: all .2s; font-size: 13px; }
+.match-item:hover { border-color: var(--c-accent); }
+.match-item.selected { border-color: var(--c-blue); background: var(--c-blue-light); }
+.match-item.matched { opacity: 0.4; cursor: default; }
+.match-item.matched-correct { border-color: var(--c-green); background: var(--c-green-light); opacity: 0.7; }
+.match-item.matched-wrong { border-color: var(--c-red); background: var(--c-pink-light); opacity: 0.7; }
+.btn-submit { display: inline-block; padding: 10px 28px; background: linear-gradient(135deg, var(--c-primary-dark), var(--c-primary)); color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all .2s; }
+.btn-submit:hover { background: linear-gradient(135deg, var(--c-primary), var(--c-primary-light)); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(10,41,66,0.3); }
+.btn-retry { display: inline-block; padding: 8px 20px; background: var(--c-border); color: var(--c-text); border: none; border-radius: 6px; font-size: 13px; cursor: pointer; margin-left: 10px; }
+.btn-retry:hover { background: var(--c-text-muted); color: #fff; }
+.quiz-result { display: none; text-align: center; padding: 30px; }
+.quiz-result.visible { display: block; }
+.result-score { font-size: 48px; font-weight: 700; color: var(--c-accent); }
+.result-grade { font-size: 24px; font-weight: 600; margin-top: 8px; }
+.result-detail { margin-top: 12px; font-size: 14px; color: var(--c-text-secondary); }
+</style>
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html" class="active">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+    <a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a> <span class="sep">›</span>
+  互动测验
+</div>
+
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II &middot; 知识检验</div>
+  <h1>互动测验 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 20题全面自测</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Interactive Quiz</div>
+  <div class="hero-tags">
+    <span class="tag">选择题 10题</span>
+    <span class="tag">计算题 5题</span>
+    <span class="tag">术语配对 5组</span>
+    <span class="tag">即时反馈</span>
+  </div>
+</div>
+
+<div id="quizContainer">
+
+<!-- ===== Section 1: 选择题 ===== -->
+<div class="quiz-section">
+  <h2>第一部分：选择题 <span class="en">Multiple Choice (10 Questions)</span></h2>
+  <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:16px;">每题4个选项，选择最正确的答案。提交后显示正确答案和解析。</p>
+
+  <div class="quiz-question" id="mc1">
+    <div class="quiz-q-title"><span class="q-num">1</span>C-ROSS II（偿二代二期）的发布文号和实施时间是？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc1" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>银保监发〔2015〕15号，2015年实施</div>
+      <div class="quiz-option" data-q="mc1" data-correct="true" onclick="selectOption(this)"><span class="opt-label">B</span>银保监发〔2021〕51号，2022年Q1起执行</div>
+      <div class="quiz-option" data-q="mc1" data-correct="false" onclick="selectOption(this)"><span class="opt-label">C</span>银保监发〔2018〕42号，2019年实施</div>
+      <div class="quiz-option" data-q="mc1" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>银保监发〔2020〕20号，2021年实施</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc1"><strong>答案：B</strong>。C-ROSS II于2021年12月30日发布（银保监发〔2021〕51号），自2022年第一季度起执行。文号51号是文件编号，不是20项规则。</div>
+  </div>
+
+  <div class="quiz-question" id="mc2">
+    <div class="quiz-q-title"><span class="q-num">2</span>核心偿付能力充足率的监管底线是？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc2" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>50%</div>
+      <div class="quiz-option" data-q="mc2" data-correct="true" onclick="selectOption(this)"><span class="opt-label">B</span>核心充足率 &ge; 50%，综合充足率 &ge; 100%</div>
+      <div class="quiz-option" data-q="mc2" data-correct="false" onclick="selectOption(this)"><span class="opt-label">C</span>100%</div>
+      <div class="quiz-option" data-q="mc2" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>150%</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc2"><strong>答案：B</strong>。C-ROSS II要求核心偿付能力充足率 &ge; 50% <strong>且</strong> 综合偿付能力充足率 &ge; 100%，两个指标同时达标。注意不是单一指标。</div>
+  </div>
+
+  <div class="quiz-question" id="mc3">
+    <div class="quiz-q-title"><span class="q-num">3</span>保单未来盈余在二期中如何计入资本？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc3" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>全部计入核心一级资本</div>
+      <div class="quiz-option" data-q="mc3" data-correct="false" onclick="selectOption(this)"><span class="opt-label">B</span>全部计入附属资本</div>
+      <div class="quiz-option" data-q="mc3" data-correct="true" onclick="selectOption(this)"><span class="opt-label">C</span>按剩余期限分四档计入不同资本层级，核心资本内限额 &le;35%</div>
+      <div class="quiz-option" data-q="mc3" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>不计入实际资本</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc3"><strong>答案：C</strong>。保单未来盈余按剩余期限分四档：&gt;30年&rarr;核心一级、10-30年&rarr;核心二级、5-10年&rarr;附属一级、&lt;5年&rarr;附属二级。计入核心资本的部分有35%的限额约束。</div>
+  </div>
+
+  <div class="quiz-question" id="mc4">
+    <div class="quiz-q-title"><span class="q-num">4</span>寿险负债评估的折现率曲线采用什么基准？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc4" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>当日国债收益率</div>
+      <div class="quiz-option" data-q="mc4" data-correct="true" onclick="selectOption(this)"><span class="opt-label">B</span>750日移动平均国债收益率 + 终极利率4.5%</div>
+      <div class="quiz-option" data-q="mc4" data-correct="false" onclick="selectOption(this)"><span class="opt-label">C</span>30日移动平均收益率</div>
+      <div class="quiz-option" data-q="mc4" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>银行间同业拆借利率（Shibor）</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc4"><strong>答案：B</strong>。寿险负债评估用750日移动平均国债收益率曲线（约3年），加终极利率4.5%，平滑市场波动。而利率风险最低资本用60日移动平均曲线（更敏感）。</div>
+  </div>
+
+  <div class="quiz-question" id="mc5">
+    <div class="quiz-q-title"><span class="q-num">5</span>SARMRA评估覆盖多少个风险管理领域？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc5" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>5个</div>
+      <div class="quiz-option" data-q="mc5" data-correct="false" onclick="selectOption(this)"><span class="opt-label">B</span>7个</div>
+      <div class="quiz-option" data-q="mc5" data-correct="true" onclick="selectOption(this)"><span class="opt-label">C</span>9个</div>
+      <div class="quiz-option" data-q="mc5" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>12个</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc5"><strong>答案：C</strong>。二期SARMRA评估9大领域：风险治理、风险偏好与容忍度、风险识别与评估、风险控制与缓释、风险监控与报告、风险管理工具与信息系统、风险文化、压力测试、应急管理。</div>
+  </div>
+
+  <div class="quiz-question" id="mc6">
+    <div class="quiz-q-title"><span class="q-num">6</span>IRR风险综合评级分为几类？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc6" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>3类（A/B/C）</div>
+      <div class="quiz-option" data-q="mc6" data-correct="true" onclick="selectOption(this)"><span class="opt-label">B</span>4类（A/B/C/D）</div>
+      <div class="quiz-option" data-q="mc6" data-correct="false" onclick="selectOption(this)"><span class="opt-label">C</span>5类（A/B/C/D/E）</div>
+      <div class="quiz-option" data-q="mc6" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>2类（合格/不合格）</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc6"><strong>答案：B</strong>。IRR分A/B/C/D四类。A类风险最小（常规监管），D类风险最大（接管重组）。综合评级遵循"就低不就高"原则——min(可资本化, 难以资本化)。</div>
+  </div>
+
+  <div class="quiz-question" id="mc7">
+    <div class="quiz-q-title"><span class="q-num">7</span>"应穿尽穿、穿透到底"是哪个规则的核心原则？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc7" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>第1号 实际资本</div>
+      <div class="quiz-option" data-q="mc7" data-correct="false" onclick="selectOption(this)"><span class="opt-label">B</span>第2号 最低资本</div>
+      <div class="quiz-option" data-q="mc7" data-correct="true" onclick="selectOption(this)"><span class="opt-label">C</span>第7号 穿透计量</div>
+      <div class="quiz-option" data-q="mc7" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>第8号 市场风险</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc7"><strong>答案：C</strong>。第7号"市场风险和信用风险的穿透计量"是二期新增规则，核心原则是"应穿尽穿、穿透到底"——对所有非基础资产逐层穿透至基础资产，无法穿透适用惩罚性资本要求。</div>
+  </div>
+
+  <div class="quiz-question" id="mc8">
+    <div class="quiz-q-title"><span class="q-num">8</span>利率风险最低资本使用什么折现率曲线？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc8" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>750日移动平均</div>
+      <div class="quiz-option" data-q="mc8" data-correct="true" onclick="selectOption(this)"><span class="opt-label">B</span>60日移动平均</div>
+      <div class="quiz-option" data-q="mc8" data-correct="false" onclick="selectOption(this)"><span class="opt-label">C</span>当日收益率</div>
+      <div class="quiz-option" data-q="mc8" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>365日移动平均</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc8"><strong>答案：B</strong>。二期创新：负债评估用750日MA（平滑稳定），但利率风险最低资本用60日MA（更敏感），增强对市场变化的敏感性。两条曲线分开使用是二期的重要变化。</div>
+  </div>
+
+  <div class="quiz-question" id="mc9">
+    <div class="quiz-q-title"><span class="q-num">9</span>集团偿付能力计量中"内部交易消除"的主要目的是？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc9" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>简化计算</div>
+      <div class="quiz-option" data-q="mc9" data-correct="true" onclick="selectOption(this)"><span class="opt-label">B</span>防止资本重复计算和虚假资本</div>
+      <div class="quiz-option" data-q="mc9" data-correct="false" onclick="selectOption(this)"><span class="opt-label">C</span>降低集团最低资本</div>
+      <div class="quiz-option" data-q="mc9" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>提高集团充足率</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc9"><strong>答案：B</strong>。集团内部交易（内部债、内部再保险、交叉持股）会虚增集团资本。消除机制挤出这些"水分"，确保集团偿付能力反映真实外部资本支撑能力。</div>
+  </div>
+
+  <div class="quiz-question" id="mc10">
+    <div class="quiz-q-title"><span class="q-num">10</span>偿付能力信息公开披露（第15号）的季度披露时限是？</div>
+    <div class="quiz-options">
+      <div class="quiz-option" data-q="mc10" data-correct="false" onclick="selectOption(this)"><span class="opt-label">A</span>季度结束后10日内</div>
+      <div class="quiz-option" data-q="mc10" data-correct="true" onclick="selectOption(this)"><span class="opt-label">B</span>季度结束后30日内</div>
+      <div class="quiz-option" data-q="mc10" data-correct="false" onclick="selectOption(this)"><span class="opt-label">C</span>季度结束后60日内</div>
+      <div class="quiz-option" data-q="mc10" data-correct="false" onclick="selectOption(this)"><span class="opt-label">D</span>季度结束后90日内</div>
+    </div>
+    <div class="quiz-answer" id="ans-mc10"><strong>答案：B</strong>。季度公开披露在季度结束后30日内完成。快报在10日内报送监管，公开披露在30日内发布。年度披露在年度结束后4个月内完成。</div>
+  </div>
+</div>
+
+<!-- ===== Section 2: 计算填空题 ===== -->
+<div class="quiz-section">
+  <h2>第二部分：计算填空题 <span class="en">Calculation (5 Questions)</span></h2>
+  <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:16px;">基于西红人寿的数据（实际资本57,000万元，最低资本20,081万元）进行计算。</p>
+
+  <div class="quiz-question" id="fc1">
+    <div class="quiz-q-title"><span class="q-num">1</span>西红人寿综合偿付能力充足率 = 57,000 / 20,081 &times; 100% = <input class="fill-input" data-answer="284" data-tolerance="2" onkeyup="checkFill(this)"> <span class="fill-unit">%</span></div>
+    <div class="quiz-answer" id="ans-fc1"><strong>答案：284%</strong>。综合偿付能力充足率 = 实际资本 / 最低资本 &times; 100% = 57,000 / 20,081 = 283.8% &asymp; 284%。</div>
+  </div>
+
+  <div class="quiz-question" id="fc2">
+    <div class="quiz-q-title"><span class="q-num">2</span>若核心资本为46,740万元，核心偿付能力充足率 = 46,740 / 20,081 &times; 100% = <input class="fill-input" data-answer="233" data-tolerance="2" onkeyup="checkFill(this)"> <span class="fill-unit">%</span></div>
+    <div class="quiz-answer" id="ans-fc2"><strong>答案：233%</strong>。核心偿付能力充足率 = 核心资本 / 最低资本 = 46,740 / 20,081 = 232.8% &asymp; 233%。</div>
+  </div>
+
+  <div class="quiz-question" id="fc3">
+    <div class="quiz-q-title"><span class="q-num">3</span>SARMRA评分55分（加征8%），控制风险MC = 20,081 &times; 8% = <input class="fill-input" data-answer="1606" data-tolerance="10" onkeyup="checkFill(this)"> <span class="fill-unit">万元</span></div>
+    <div class="quiz-answer" id="ans-fc3"><strong>答案：1,606万元</strong>。控制风险MC = 基础MC &times; 加征系数 = 20,081 &times; 8% = 1,606万。加征后最低资本合计 = 20,081 + 1,606 = 21,687万。</div>
+  </div>
+
+  <div class="quiz-question" id="fc4">
+    <div class="quiz-q-title"><span class="q-num">4</span>压力情景下实际资本47,233万、最低资本23,500万，综合充足率 = <input class="fill-input" data-answer="201" data-tolerance="2" onkeyup="checkFill(this)"> <span class="fill-unit">%</span></div>
+    <div class="quiz-answer" id="ans-fc4"><strong>答案：201%</strong>。压力情景下综合充足率 = 47,233 / 23,500 = 200.9% &asymp; 201%。从基准284%降至201%，下降83个百分点（逆周期叠加情景）。</div>
+  </div>
+
+  <div class="quiz-question" id="fc5">
+    <div class="quiz-q-title"><span class="q-num">5</span>流动资产49,050万、流动负债31,000万，流动性监管指标 = <input class="fill-input" data-answer="158" data-tolerance="2" onkeyup="checkFill(this)"> <span class="fill-unit">%</span></div>
+    <div class="quiz-answer" id="ans-fc5"><strong>答案：158%</strong>。流动性监管指标 = 流动资产 / 流动负债 &times; 100% = 49,050 / 31,000 = 158.2% &asymp; 158%。高于100%监管要求。</div>
+  </div>
+</div>
+
+<!-- ===== Section 3: 术语配对 ===== -->
+<div class="quiz-section">
+  <h2>第三部分：术语配对 <span class="en">Term Matching (5 Pairs)</span></h2>
+  <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:16px;">点击左侧中文术语，再点击右侧对应的英文术语进行配对。</p>
+
+  <div id="matchArea">
+    <div class="match-container">
+      <div id="matchLeft">
+        <div class="match-item" data-id="1" data-side="left" onclick="selectMatch(this)">最优估计准备金</div>
+        <div class="match-item" data-id="2" data-side="left" onclick="selectMatch(this)">风险边际</div>
+        <div class="match-item" data-id="3" data-side="left" onclick="selectMatch(this)">保单未来盈余</div>
+        <div class="match-item" data-id="4" data-side="left" onclick="selectMatch(this)">穿透式计量</div>
+        <div class="match-item" data-id="5" data-side="left" onclick="selectMatch(this)">控制风险最低资本</div>
+      </div>
+      <div id="matchRight">
+        <div class="match-item" data-id="3" data-side="right" onclick="selectMatch(this)">Future Surplus of Policies</div>
+        <div class="match-item" data-id="1" data-side="right" onclick="selectMatch(this)">Best Estimate Liability (BEL)</div>
+        <div class="match-item" data-id="5" data-side="right" onclick="selectMatch(this)">Control Risk MC</div>
+        <div class="match-item" data-id="4" data-side="right" onclick="selectMatch(this)">Look-through Measurement</div>
+        <div class="match-item" data-id="2" data-side="right" onclick="selectMatch(this)">Risk Margin (RM)</div>
+      </div>
+    </div>
+    <div id="matchResult" style="margin-top:14px;font-size:13px;color:var(--c-text-secondary);">已配对：<span id="matchCount">0</span> / 5</div>
+    <div id="matchAnswers" style="display:none;margin-top:10px;">
+      <div style="font-size:13px;line-height:1.8;">
+        <strong>正确配对：</strong><br>
+        最优估计准备金 &harr; Best Estimate Liability (BEL)<br>
+        风险边际 &harr; Risk Margin (RM)<br>
+        保单未来盈余 &harr; Future Surplus of Policies<br>
+        穿透式计量 &harr; Look-through Measurement<br>
+        控制风险最低资本 &harr; Control Risk MC
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Submit & Result -->
+<div style="text-align:center;margin:24px 0;">
+  <button class="btn-submit" onclick="submitQuiz()">提交答卷 Submit</button>
+  <button class="btn-retry" onclick="location.reload()">重做 Retry</button>
+</div>
+
+<div class="quiz-result" id="quizResult">
+  <div class="result-score" id="resultScore">0 / 20</div>
+  <div class="result-grade" id="resultGrade"></div>
+  <div class="result-detail" id="resultDetail"></div>
+  <div style="margin-top:20px;">
+    <button class="btn-retry" onclick="location.reload()">重新测试</button>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 &middot; 知识矩阵</p>
+  <p>测验范围覆盖全部20项监管规则 + 核心计算案例</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {} // not used but defined for safety
+
+// Progress tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'quiz';
+  if (visited.indexOf(currentPage) === -1) { visited.push(currentPage); localStorage.setItem(key, JSON.stringify(visited)); }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+
+// Multiple choice
+function selectOption(el) {
+  var qId = el.dataset.q;
+  var options = document.querySelectorAll('[data-q="' + qId + '"]');
+  options.forEach(function(opt) { opt.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+// Fill-in check
+function checkFill(input) {
+  // Visual feedback only on submit
+}
+
+// Term matching
+var matchSelected = null;
+var matchPairs = {};
+var matchCount = 0;
+
+function selectMatch(el) {
+  if (el.classList.contains('matched') || el.classList.contains('matched-correct') || el.classList.contains('matched-wrong')) return;
+  
+  if (matchSelected === null) {
+    matchSelected = el;
+    el.classList.add('selected');
+  } else {
+    if (matchSelected.dataset.side === el.dataset.side) {
+      // Same side - switch selection
+      document.querySelectorAll('.match-item.selected').forEach(function(m) { m.classList.remove('selected'); });
+      matchSelected = el;
+      el.classList.add('selected');
+      return;
+    }
+    
+    // Different side - check match
+    var leftItem = matchSelected.dataset.side === 'left' ? matchSelected : el;
+    var rightItem = matchSelected.dataset.side === 'right' ? matchSelected : el;
+    
+    if (leftItem.dataset.id === rightItem.dataset.id) {
+      leftItem.classList.remove('selected');
+      leftItem.classList.add('matched-correct');
+      rightItem.classList.remove('selected');
+      rightItem.classList.add('matched-correct');
+      matchCount++;
+    } else {
+      leftItem.classList.remove('selected');
+      leftItem.classList.add('matched-wrong');
+      rightItem.classList.remove('selected');
+      rightItem.classList.add('matched-wrong');
+      setTimeout(function() {
+        leftItem.classList.remove('matched-wrong');
+        rightItem.classList.remove('matched-wrong');
+      }, 800);
+    }
+    
+    matchSelected = null;
+    document.getElementById('matchCount').textContent = matchCount;
+    
+    if (matchCount === 5) {
+      document.getElementById('matchAnswers').style.display = 'block';
+    }
+  }
+}
+
+// Submit quiz
+function submitQuiz() {
+  var score = 0;
+  var total = 20;
+  
+  // Check multiple choice (10 questions)
+  for (var i = 1; i <= 10; i++) {
+    var qId = 'mc' + i;
+    var selected = document.querySelector('[data-q="' + qId + '"].selected');
+    var answerDiv = document.getElementById('ans-' + qId);
+    if (answerDiv) answerDiv.classList.add('visible');
+    
+    if (selected) {
+      if (selected.dataset.correct === 'true') {
+        selected.classList.add('correct');
+        score++;
+      } else {
+        selected.classList.add('wrong');
+        // Also show the correct one
+        var correctOpt = document.querySelector('[data-q="' + qId + '"][data-correct="true"]');
+        if (correctOpt) correctOpt.classList.add('correct');
+      }
+    }
+  }
+  
+  // Check fill-in (5 questions)
+  for (var j = 1; j <= 5; j++) {
+    var fId = 'fc' + j;
+    var input = document.querySelector('#' + fId + ' .fill-input');
+    var ansDiv = document.getElementById('ans-' + fId);
+    if (ansDiv) ansDiv.classList.add('visible');
+    
+    if (input) {
+      var userVal = parseFloat(input.value);
+      var correctVal = parseFloat(input.dataset.answer);
+      var tolerance = parseFloat(input.dataset.tolerance || 0);
+      if (!isNaN(userVal) && Math.abs(userVal - correctVal) <= tolerance) {
+        score++;
+        input.style.borderColor = 'var(--c-green)';
+        input.style.background = 'var(--c-green-light)';
+      } else if (!isNaN(userVal)) {
+        input.style.borderColor = 'var(--c-red)';
+        input.style.background = 'var(--c-pink-light)';
+      }
+    }
+  }
+  
+  // Match score (5 pairs)
+  var correctMatches = document.querySelectorAll('.matched-correct[data-side="left"]').length;
+  score += correctMatches;
+  
+  // Show match answers
+  document.getElementById('matchAnswers').style.display = 'block';
+  
+  // Show results
+  var resultDiv = document.getElementById('quizResult');
+  var scoreDiv = document.getElementById('resultScore');
+  var gradeDiv = document.getElementById('resultGrade');
+  var detailDiv = document.getElementById('resultDetail');
+  
+  scoreDiv.textContent = score + ' / ' + total;
+  
+  var pct = Math.round((score / total) * 100);
+  if (pct >= 90) {
+    gradeDiv.textContent = '优秀 Excellent!';
+    gradeDiv.style.color = 'var(--c-green)';
+    detailDiv.textContent = '你对C-ROSS II偿付能力监管规则有深入理解，可以挑战更高级内容。';
+  } else if (pct >= 75) {
+    gradeDiv.textContent = '良好 Good!';
+    gradeDiv.style.color = 'var(--c-blue)';
+    detailDiv.textContent = '掌握了主要概念，建议复习错误题目对应的规则页面。';
+  } else if (pct >= 60) {
+    gradeDiv.textContent = '及格 Pass';
+    gradeDiv.style.color = 'var(--c-amber)';
+    detailDiv.textContent = '基础概念基本掌握，建议重新精读相关规则页面。';
+  } else {
+    gradeDiv.textContent = '需加强 Need Improvement';
+    gradeDiv.style.color = 'var(--c-red)';
+    detailDiv.textContent = '建议从术语词典和三支柱开始系统学习。';
+  }
+  
+  resultDiv.classList.add('visible');
+  resultDiv.scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
