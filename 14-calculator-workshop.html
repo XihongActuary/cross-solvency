@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>计算工坊 Calculator Workshop | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html" class="active">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  计算工坊
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <h1>计算工坊</h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Calculator Workshop — 交互式偿付能力计算器</div>
+  <div class="hero-tags">
+    <span class="tag">可调参数</span>
+    <span class="tag">实时计算</span>
+    <span class="tag">案例驱动</span>
+    <span class="tag">风险聚合</span>
+  </div>
+</div>
+
+<!-- ============== Calculator 1: 偿付能力充足率计算器 ============== -->
+<div class="section">
+  <h2>计算器 1：偿付能力充足率计算器 <span class="en">Solvency Ratio Calculator</span></h2>
+  <p>输入各项实际资本和最低资本，实时计算核心和综合偿付能力充足率，并判断是否满足监管要求。默认值取自西红人寿2024年案例。</p>
+
+  <div class="interactive-calc">
+    <h4>输入参数 Input Parameters</h4>
+
+    <div class="input-group">
+      <label>核心一级资本 Core Tier 1</label>
+      <input type="number" id="ct1" value="38000" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>核心二级资本 Core Tier 2</label>
+      <input type="number" id="ct2" value="8800" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>附属一级资本 Ancillary Tier 1</label>
+      <input type="number" id="at1" value="7200" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>附属二级资本 Ancillary Tier 2</label>
+      <input type="number" id="at2" value="3000" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>最低资本 Minimum Capital</label>
+      <input type="number" id="mc" value="20081" step="100">
+      <span class="unit">万元</span>
+    </div>
+
+    <button class="calc-btn" onclick="calcSolvency()">计算</button>
+
+    <div class="calc-output" id="solvencyOutput" style="display:none;">
+    </div>
+  </div>
+</div>
+
+<!-- ============== Calculator 2: 最低资本风险聚合计算器 ============== -->
+<div class="section">
+  <h2>计算器 2：最低资本风险聚合计算器 <span class="en">Risk Aggregation Calculator</span></h2>
+  <p>输入各子风险最低资本，按C-ROSS二期相关系数矩阵聚合计算最终最低资本。包含寿险风险5&#215;5矩阵聚合、可资本化风险3&#215;3聚合和控制风险附加。默认值取自西红人寿案例。</p>
+
+  <div class="interactive-calc">
+    <h4>输入参数 Input Parameters</h4>
+
+    <div class="input-group">
+      <label>死亡风险 MC Mortality Risk</label>
+      <input type="number" id="mc_mortality" value="4000" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>长寿风险 MC Longevity Risk</label>
+      <input type="number" id="mc_longevity" value="2700" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>疾病风险 MC Morbidity Risk</label>
+      <input type="number" id="mc_morbidity" value="5000" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>退保风险 MC Surrender Risk</label>
+      <input type="number" id="mc_surrender" value="2500" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>费用风险 MC Expense Risk</label>
+      <input type="number" id="mc_expense" value="1200" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>市场风险 MC Market Risk</label>
+      <input type="number" id="mc_market" value="11800" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>信用风险 MC Credit Risk</label>
+      <input type="number" id="mc_credit" value="3600" step="100">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>控制风险因子 k Control Risk Factor</label>
+      <input type="number" id="k_factor" value="0.0625" step="0.005">
+      <span class="unit">（比率）</span>
+    </div>
+
+    <button class="calc-btn" onclick="calcAggregation()">聚合计算</button>
+
+    <div class="calc-output" id="aggregationOutput" style="display:none;">
+    </div>
+  </div>
+</div>
+
+<!-- ============== Calculator 3: 保单未来盈余分级计算器 ============== -->
+<div class="section">
+  <h2>计算器 3：保单未来盈余分级计算器 <span class="en">Future Surplus Tiering Calculator</span></h2>
+  <p>根据保单未来盈余的剩余期限进行资本分级，并执行35%核心资本限额校验。默认值取自西红人寿案例。</p>
+
+  <div class="interactive-calc">
+    <h4>输入参数 Input Parameters</h4>
+
+    <div class="input-group">
+      <label>实收资本 + 资本公积</label>
+      <input type="number" id="paid_capital" value="20000" step="500">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>留存收益 Retained Earnings</label>
+      <input type="number" id="retained" value="10000" step="500">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>保单未来盈余 — 剩余期限 &gt;30年</label>
+      <input type="number" id="surplus_30" value="8000" step="500">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>保单未来盈余 — 剩余期限 10~30年</label>
+      <input type="number" id="surplus_10_30" value="10000" step="500">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>保单未来盈余 — 剩余期限 5~10年</label>
+      <input type="number" id="surplus_5_10" value="6000" step="500">
+      <span class="unit">万元</span>
+    </div>
+    <div class="input-group">
+      <label>保单未来盈余 — 剩余期限 &lt;5年</label>
+      <input type="number" id="surplus_5" value="3000" step="500">
+      <span class="unit">万元</span>
+    </div>
+
+    <button class="calc-btn" onclick="calcSurplus()">分级计算</button>
+
+    <div class="calc-output" id="surplusOutput" style="display:none;">
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>计算器仅用于教学演示，实际偿付能力计量请参照监管规则原文。默认值取自西红人寿案例。</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+// ====== Calculator 1: 偿付能力充足率计算器 ======
+function calcSolvency() {
+  var ct1 = parseFloat(document.getElementById('ct1').value);
+  var ct2 = parseFloat(document.getElementById('ct2').value);
+  var at1 = parseFloat(document.getElementById('at1').value);
+  var at2 = parseFloat(document.getElementById('at2').value);
+  var mc  = parseFloat(document.getElementById('mc').value);
+
+  if (isNaN(ct1) || isNaN(ct2) || isNaN(at1) || isNaN(at2) || isNaN(mc)) {
+    alert('请输入有效的数字');
+    return;
+  }
+  if (mc <= 0) {
+    alert('最低资本必须大于0');
+    return;
+  }
+
+  var coreCapital   = ct1 + ct2;
+  var actualCapital = ct1 + ct2 + at1 + at2;
+  var coreRatio     = coreCapital / mc * 100;
+  var totalRatio    = actualCapital / mc * 100;
+
+  var pass = (coreRatio >= 50 && totalRatio >= 100);
+  var statusColor = pass ? '#4caf50' : '#f44336';
+  var statusIcon  = pass ? '\u2705' : '\u274C';
+  var statusText  = pass ? '达标' : '不达标';
+
+  var fmt = function(n) { return n.toLocaleString('zh-CN', { maximumFractionDigits: 2 }); };
+
+  var html = '';
+  html += '<span class="co-label">核心一级资本：</span> <span class="co-value">' + fmt(ct1) + '</span> 万元<br>';
+  html += '<span class="co-label">核心二级资本：</span> <span class="co-value">' + fmt(ct2) + '</span> 万元<br>';
+  html += '<span class="co-label">附属一级资本：</span> <span class="co-value">' + fmt(at1) + '</span> 万元<br>';
+  html += '<span class="co-label">附属二级资本：</span> <span class="co-value">' + fmt(at2) + '</span> 万元<br>';
+  html += '<span class="co-label">最低资本：</span> <span class="co-value">' + fmt(mc) + '</span> 万元<br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+  html += '<span class="co-label">核心资本 = 核心一级 + 核心二级 = </span> <span class="co-value">' + fmt(coreCapital) + '</span> 万元<br>';
+  html += '<span class="co-label">实际资本 = 四者之和 = </span> <span class="co-value">' + fmt(actualCapital) + '</span> 万元<br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+  html += '<span class="co-label">核心偿付能力充足率 = </span> <span class="co-value">' + fmt(ct1 + ct2) + ' / ' + fmt(mc) + ' &#215; 100%</span><br>';
+  html += '<span class="co-result" style="color:#7dc4ff;">核心偿付能力充足率 = ' + fmt(coreRatio) + '%</span><br>';
+  html += '<span class="co-label">综合偿付能力充足率 = </span> <span class="co-value">' + fmt(actualCapital) + ' / ' + fmt(mc) + ' &#215; 100%</span><br>';
+  html += '<span class="co-result" style="color:#7dc4ff;">综合偿付能力充足率 = ' + fmt(totalRatio) + '%</span><br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+  html += '<div style="font-size:16px;font-weight:700;color:' + statusColor + ';">';
+  html += statusIcon + ' 监管判断：核心 &#8805; 50% 且 综合 &#8805; 100% &#8594; ' + statusText;
+  html += '</div>';
+  html += '<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">';
+  html += '核心充足率 ' + fmt(coreRatio) + '% ' + (coreRatio >= 50 ? '&#8805; 50% &#10004;' : '&lt; 50% &#10006;');
+  html += ' | 综合充足率 ' + fmt(totalRatio) + '% ' + (totalRatio >= 100 ? '&#8805; 100% &#10004;' : '&lt; 100% &#10006;');
+  html += '</div>';
+
+  var output = document.getElementById('solvencyOutput');
+  output.innerHTML = html;
+  output.style.display = 'block';
+}
+
+// ====== Calculator 2: 最低资本风险聚合计算器 ======
+function calcAggregation() {
+  var mc_mortality = parseFloat(document.getElementById('mc_mortality').value);
+  var mc_longevity = parseFloat(document.getElementById('mc_longevity').value);
+  var mc_morbidity = parseFloat(document.getElementById('mc_morbidity').value);
+  var mc_surrender = parseFloat(document.getElementById('mc_surrender').value);
+  var mc_expense   = parseFloat(document.getElementById('mc_expense').value);
+  var mc_market    = parseFloat(document.getElementById('mc_market').value);
+  var mc_credit    = parseFloat(document.getElementById('mc_credit').value);
+  var k            = parseFloat(document.getElementById('k_factor').value);
+
+  if (isNaN(mc_mortality) || isNaN(mc_longevity) || isNaN(mc_morbidity) ||
+      isNaN(mc_surrender) || isNaN(mc_expense) || isNaN(mc_market) ||
+      isNaN(mc_credit) || isNaN(k)) {
+    alert('请输入有效的数字');
+    return;
+  }
+
+  var fmt = function(n) { return n.toLocaleString('zh-CN', { maximumFractionDigits: 2 }); };
+
+  // Step 1: 寿险风险聚合 (5x5 correlation matrix)
+  // Correlation matrix from Rule 5:
+  // [1,    0,    0.25, 0.25, 0.5 ]
+  // [0,    1,    0.25, 0.5,  0.25]
+  // [0.25, 0.25, 1,    0.25, 0.25]
+  // [0.25, 0.5,  0.25, 1,    0.25]
+  // [0.5,  0.25, 0.25, 0.25, 1   ]
+  var mcVec = [mc_mortality, mc_longevity, mc_morbidity, mc_surrender, mc_expense];
+  var corr = [
+    [1,    0,    0.25, 0.25, 0.5 ],
+    [0,    1,    0.25, 0.5,  0.25],
+    [0.25, 0.25, 1,    0.25, 0.25],
+    [0.25, 0.5,  0.25, 1,    0.25],
+    [0.5,  0.25, 0.25, 0.25, 1   ]
+  ];
+
+  // MC_life = sqrt(MC^T * Corr * MC)
+  // First compute Corr * MC = tempVec[i] = sum(corr[i][j] * mcVec[j])
+  var tempVec = [0, 0, 0, 0, 0];
+  for (var i = 0; i < 5; i++) {
+    for (var j = 0; j < 5; j++) {
+      tempVec[i] += corr[i][j] * mcVec[j];
+    }
+  }
+  // Then MC^T * (Corr * MC) = sum(mcVec[i] * tempVec[i])
+  var mcLifeSq = 0;
+  for (var i = 0; i < 5; i++) {
+    mcLifeSq += mcVec[i] * tempVec[i];
+  }
+  var mcLife = Math.sqrt(mcLifeSq);
+
+  // Step 2: 可资本化风险聚合 (3x3, all correlations = 0.25)
+  // MC_cap = sqrt(MC_life^2 + MC_market^2 + MC_credit^2
+  //   + 2*0.25*(MC_life*MC_market + MC_life*MC_credit + MC_market*MC_credit))
+  var rho = 0.25;
+  var mcCapSq = mcLife * mcLife + mc_market * mc_market + mc_credit * mc_credit
+    + 2 * rho * (mcLife * mc_market + mcLife * mc_credit + mc_market * mc_credit);
+  var mcCap = Math.sqrt(mcCapSq);
+
+  // Step 3: 控制风险附加
+  var mcControl = mcCap * k;
+
+  // Step 4: 最低资本
+  var mcTotal = mcCap + mcControl;
+
+  var html = '';
+  html += '<span class="co-label">输入子风险MC：</span><br>';
+  html += '&nbsp;&nbsp;死亡风险 = <span class="co-value">' + fmt(mc_mortality) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;长寿风险 = <span class="co-value">' + fmt(mc_longevity) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;疾病风险 = <span class="co-value">' + fmt(mc_morbidity) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;退保风险 = <span class="co-value">' + fmt(mc_surrender) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;费用风险 = <span class="co-value">' + fmt(mc_expense) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;市场风险 = <span class="co-value">' + fmt(mc_market) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;信用风险 = <span class="co-value">' + fmt(mc_credit) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;控制风险因子 k = <span class="co-value">' + fmt(k) + '</span><br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  html += '<span class="co-label">Step 1：寿险风险聚合（5&#215;5相关系数矩阵）</span><br>';
+  html += '<span style="font-size:11px;color:rgba(255,255,255,0.5);">MC_life = &#8730;(MC&#7488; &#215; Corr &#215; MC)</span><br>';
+  html += '<span class="co-value">MC_life = ' + fmt(mcLife) + ' 万</span><br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  html += '<span class="co-label">Step 2：可资本化风险聚合（3&#215;3矩阵，&#961;=0.25）</span><br>';
+  html += '<span style="font-size:11px;color:rgba(255,255,255,0.5);">MC_cap = &#8730;(MC_life&#178; + MC_market&#178; + MC_credit&#178; + 2&#215;0.25&#215;(...))</span><br>';
+  html += '<span class="co-value">MC_cap = ' + fmt(mcCap) + ' 万</span><br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  html += '<span class="co-label">Step 3：控制风险附加</span><br>';
+  html += '<span class="co-value">MC_control = MC_cap &#215; k = ' + fmt(mcCap) + ' &#215; ' + fmt(k) + ' = ' + fmt(mcControl) + ' 万</span><br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  html += '<span class="co-label">Step 4：最低资本 = MC_cap + MC_control</span><br>';
+  html += '<span class="co-result" style="color:#4caf50;">最低资本 MC = ' + fmt(mcTotal) + ' 万元</span>';
+
+  var output = document.getElementById('aggregationOutput');
+  output.innerHTML = html;
+  output.style.display = 'block';
+}
+
+// ====== Calculator 3: 保单未来盈余分级计算器 ======
+function calcSurplus() {
+  var paidCapital = parseFloat(document.getElementById('paid_capital').value);
+  var retained    = parseFloat(document.getElementById('retained').value);
+  var surplus30   = parseFloat(document.getElementById('surplus_30').value);
+  var surplus1030 = parseFloat(document.getElementById('surplus_10_30').value);
+  var surplus510  = parseFloat(document.getElementById('surplus_5_10').value);
+  var surplus5    = parseFloat(document.getElementById('surplus_5').value);
+
+  if (isNaN(paidCapital) || isNaN(retained) || isNaN(surplus30) ||
+      isNaN(surplus1030) || isNaN(surplus510) || isNaN(surplus5)) {
+    alert('请输入有效的数字');
+    return;
+  }
+
+  var fmt = function(n) { return n.toLocaleString('zh-CN', { maximumFractionDigits: 2 }); };
+
+  // Step 1: Capital tiering (before limit)
+  var core1_before = paidCapital + retained + surplus30;
+  var core2_before = surplus1030;
+  var anc1_before  = surplus510;
+  var anc2_before  = surplus5;
+  var coreCapital  = core1_before + core2_before;
+  var actualCapital = core1_before + core2_before + anc1_before + anc2_before;
+
+  // Step 2: 35% limit check
+  var surplusInCore = surplus30 + surplus1030;
+  var surplusRatio = coreCapital > 0 ? surplusInCore / coreCapital : 0;
+  var limitTriggered = surplusRatio > 0.35;
+  var maxSurplusInCore = coreCapital * 0.35;
+  var excessSurplus = limitTriggered ? surplusInCore - maxSurplusInCore : 0;
+
+  // Step 3: Adjusted tiering
+  var core1_after = core1_before;
+  var core2_after = core2_before;
+  var anc1_after  = anc1_before;
+  var anc2_after  = anc2_before;
+
+  if (limitTriggered) {
+    // Move excess from core2 (10-30 year surplus) to ancillary tier 1
+    var transfer = Math.min(excessSurplus, core2_before);
+    core2_after = core2_before - transfer;
+    anc1_after  = anc1_before + transfer;
+    // If still excess after draining core2, move from core1 surplus portion
+    if (excessSurplus > transfer) {
+      var remaining = excessSurplus - transfer;
+      core1_after = core1_before - remaining;
+      anc1_after  = anc1_after + remaining;
+    }
+  }
+
+  var coreCapitalAfter = core1_after + core2_after;
+  var actualCapitalAfter = core1_after + core2_after + anc1_after + anc2_after;
+
+  // Step 4: 附属 <= 核心 check
+  var ancillaryTotal = anc1_after + anc2_after;
+  var ancillaryCheck = ancillaryTotal <= coreCapitalAfter;
+
+  var html = '';
+  html += '<span class="co-label">输入参数：</span><br>';
+  html += '&nbsp;&nbsp;实收资本+资本公积 = <span class="co-value">' + fmt(paidCapital) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;留存收益 = <span class="co-value">' + fmt(retained) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;盈余(&gt;30年) = <span class="co-value">' + fmt(surplus30) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;盈余(10~30年) = <span class="co-value">' + fmt(surplus1030) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;盈余(5~10年) = <span class="co-value">' + fmt(surplus510) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;盈余(&lt;5年) = <span class="co-value">' + fmt(surplus5) + '</span> 万<br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  // Step 1
+  html += '<span class="co-label">Step 1：分级（限额前）</span><br>';
+  html += '&nbsp;&nbsp;核心一级 = 实收+留存+&gt;30年 = <span class="co-value">' + fmt(core1_before) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;核心二级 = 10~30年 = <span class="co-value">' + fmt(core2_before) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;附属一级 = 5~10年 = <span class="co-value">' + fmt(anc1_before) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;附属二级 = &lt;5年 = <span class="co-value">' + fmt(anc2_before) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;核心资本 = <span class="co-value">' + fmt(coreCapital) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;实际资本 = <span class="co-value">' + fmt(actualCapital) + '</span> 万<br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  // Step 2
+  html += '<span class="co-label">Step 2：35%限额校验</span><br>';
+  html += '&nbsp;&nbsp;纳入核心的盈余 = &gt;30年 + 10~30年 = <span class="co-value">' + fmt(surplusInCore) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;盈余 / 核心资本 = ' + fmt(surplusInCore) + ' / ' + fmt(coreCapital) + ' = <span class="co-value">' + fmt(surplusRatio * 100) + '%</span><br>';
+  if (limitTriggered) {
+    html += '&nbsp;&nbsp;<span style="color:#f44336;">&#9888; 超过35%限额！</span><br>';
+    html += '&nbsp;&nbsp;允许核心资本中盈余最大 = 核心资本 &#215; 35% = <span class="co-value">' + fmt(maxSurplusInCore) + '</span> 万<br>';
+    html += '&nbsp;&nbsp;超出部分 = <span class="co-value">' + fmt(excessSurplus) + '</span> 万 &#8594; 从核心二级转入附属一级<br>';
+  } else {
+    html += '&nbsp;&nbsp;<span style="color:#4caf50;">&#10004; 未超过35%限额，无需调整</span><br>';
+  }
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  // Step 3
+  html += '<span class="co-label">Step 3：调整后分级</span><br>';
+  html += '&nbsp;&nbsp;核心一级 = <span class="co-value">' + fmt(core1_after) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;核心二级 = <span class="co-value">' + fmt(core2_after) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;附属一级 = <span class="co-value">' + fmt(anc1_after) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;附属二级 = <span class="co-value">' + fmt(anc2_after) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;核心资本（调整后）= <span class="co-value">' + fmt(coreCapitalAfter) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;实际资本（调整后）= <span class="co-value">' + fmt(actualCapitalAfter) + '</span> 万<br>';
+  html += '<hr style="border-color:rgba(255,255,255,0.15);margin:8px 0;">';
+
+  // Step 4
+  html += '<span class="co-label">Step 4：附属 &#8804; 核心校验</span><br>';
+  html += '&nbsp;&nbsp;附属资本合计 = ' + fmt(anc1_after) + ' + ' + fmt(anc2_after) + ' = <span class="co-value">' + fmt(ancillaryTotal) + '</span> 万<br>';
+  html += '&nbsp;&nbsp;核心资本 = <span class="co-value">' + fmt(coreCapitalAfter) + '</span> 万<br>';
+  if (ancillaryCheck) {
+    html += '&nbsp;&nbsp;<span class="co-result" style="color:#4caf50;">&#10004; 附属资本 &#8804; 核心资本，校验通过</span>';
+  } else {
+    html += '&nbsp;&nbsp;<span class="co-result" style="color:#f44336;">&#10006; 附属资本 &gt; 核心资本，校验不通过！需进一步调整。</span>';
+  }
+
+  var output = document.getElementById('surplusOutput');
+  output.innerHTML = html;
+  output.style.display = 'block';
+}
+
+// Progress tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'calculator';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
