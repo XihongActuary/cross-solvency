@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第13号：流动性风险 Liquidity Risk | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html" class="active">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+    <a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第二支柱</a>
+  <span class="sep">›</span>
+  第13号 流动性风险
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II &middot; 监管规则第 13 号 &middot; Pillar II</div>
+  <h1>第13号：流动性风险 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 现金流压力测试与流动性监管指标</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Liquidity Risk</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(83,74,183,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(83,74,183,0.4);color:var(--c-purple-light);">Pillar II &middot; 第二支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">流动性监管指标</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">现金流压力测试</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">LCR</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="indicators" onclick="switchTab('indicators')">监管指标 Indicators</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Case Study</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>流动性风险的定义 Definition <span class="en">Liquidity Risk</span></h2>
+    <p><strong>流动性风险</strong>是指保险公司在面临资金需求时，无法以合理成本及时获取充足资金的风险。偿付能力充足回答的是"是否有足够的资本吸收损失"——是存量概念；而流动性风险回答的是"是否有足够的现金应对支付"——是流量概念。一家偿付能力充足的公司仍可能因资产流动性差而面临流动性危机。</p>
+
+    <div class="callout info">
+      <div class="title">偿付能力 vs 流动性</div>
+      <p><strong>偿付能力：</strong>实际资本 &ge; 最低资本（存量/净值视角）——"总资产够不够覆盖总负债"<br>
+      <strong>流动性：</strong>可用现金 &ge; 现金流出（流量/时间视角）——"手头有没有钱付"<br>
+      二者不等价：资产可能有价值但缺乏流动性（如长期债券、非标资产），在需要变现时面临折价损失。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>流动性风险的来源 Sources <span class="en">Sources of Liquidity Risk</span></h2>
+    <table>
+      <thead>
+        <tr><th style="width:140px">来源</th><th>机制</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>退保集中</strong></td>
+          <td>大量保单持有人同时退保，公司需集中支付退保金。如遭遇声誉事件或市场恐慌，退保率可能骤升至正常水平的数倍。</td>
+        </tr>
+        <tr>
+          <td><strong>赔付集中</strong></td>
+          <td>巨灾事件导致集中赔付（如地震、洪水），短期内需要大量现金支付赔款。</td>
+        </tr>
+        <tr>
+          <td><strong>资产变现困难</strong></td>
+          <td>持有的非流动性资产（非标投资、不动产、长期债券）在市场恐慌时无法及时变现或被迫大幅折价出售。</td>
+        </tr>
+        <tr>
+          <td><strong>融资渠道中断</strong></td>
+          <td>市场流动性紧张时，银行授信、回购、发行债券等融资渠道可能同时关闭。</td>
+        </tr>
+        <tr>
+          <td><strong>期限错配</strong></td>
+          <td>资产期限长于负债期限，短期负债到期时资产无法到期收回，需被动变现长期资产。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>两个监管指标 Two Regulatory Indicators <span class="en">Core Metrics</span></h2>
+    <div class="formula">
+      <span class="label">流动性监管指标体系</span><br>
+      <span class="eq">指标 1</span> 流动性监管指标 = 流动资产 / 流动负债 &times; 100% &nbsp; &rarr; &nbsp; &ge; <strong>100%</strong><br>
+      <span class="eq">指标 2</span> 现金流压力测试 &nbsp; &rarr; &nbsp; 3个压力情景下净现金流为正
+    </div>
+    <p>同时满足两个指标，公司流动性风险才被视为可控。指标1是"快照式"存量比率，指标2是"动态式"流量压力测试，两者互补。</p>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 监管指标 Indicators ============== -->
+<div class="tab-content" id="tab-indicators" style="display:none;">
+
+  <div class="section">
+    <h2>流动性监管指标 Liquidity Regulatory Ratio <span class="en">Stock-based Metric</span></h2>
+    <p>流动性监管指标是存量视角的快速评估工具，衡量公司"当前手头有多少流动资产可以覆盖短期负债"。</p>
+
+    <div class="formula">
+      <span class="label">流动性监管指标公式</span><br>
+      <span class="eq">流动性监管指标</span> = <span class="var">流动资产</span> / <span class="var">流动负债</span> &times; 100%<br>
+      <span class="comment">监管要求：&ge; 100%</span>
+    </div>
+
+    <h3>流动资产 Liquid Assets</h3>
+    <p>流动资产包括以下类别（需扣除已质押部分）：</p>
+    <table>
+      <thead>
+        <tr><th>类别</th><th>内容</th><th>折算率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>现金及活期存款</td><td>银行活期存款、库存现金</td><td>100%</td></tr>
+        <tr><td>定期存款（&le;3月）</td><td>3个月以内到期的定期存款</td><td>100%</td></tr>
+        <tr><td>国债、政策性金融债</td><td>剩余期限&le;1年</td><td>95%</td></tr>
+        <tr><td>高信用企业债</td><td>AA+及以上，剩余期限&le;1年</td><td>90%</td></tr>
+        <tr><td>股票（大盘蓝筹）</td><td>沪深300成分股</td><td>80%</td></tr>
+        <tr><td>货币基金</td><td>可随时赎回的货币市场基金</td><td>95%</td></tr>
+        <tr><td>逆回购</td><td>7天以内到期的逆回购</td><td>100%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);">注：折算率反映资产变现时的可能折价。非流动性资产（不动产、非标、长期股权投资等）不计入流动资产。</p>
+
+    <h3>流动负债 Liquid Liabilities</h3>
+    <table>
+      <thead>
+        <tr><th>类别</th><th>计量方式</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>未来3个月退保金</td><td>基于精算假设的预期退保金</td></tr>
+        <tr><td>未来3个月赔款支出</td><td>已发生未赔+预期赔付</td></tr>
+        <tr><td>未来3个月满期给付</td><td>到期保单的满期金</td></tr>
+        <tr><td>未来3个月费用支出</td><td>管理费用、佣金等</td></tr>
+        <tr><td>短期借款</td><td>1年内到期的银行借款、回购</td></tr>
+        <tr><td>保单质押贷款</td><td>已发放的保单质押贷款</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>现金流压力测试 Cash Flow Stress Testing <span class="en">Flow-based Metric</span></h2>
+    <p>现金流压力测试是流量视角的动态评估工具，模拟极端情景下公司在特定时间区间内能否维持正现金流。监管要求测试3个必测情景：</p>
+
+    <table>
+      <thead>
+        <tr><th style="width:40px">#</th><th>情景</th><th>冲击设定</th><th>测试期间</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>退保率上升</strong></td>
+          <td>退保率上升至正常水平的2倍</td>
+          <td>未来12个月</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>资产变现困难</strong></td>
+          <td>非流动资产变现折价20%，融资渠道中断</td>
+          <td>未来3个月</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>集中赔付</strong></td>
+          <td>巨灾情景下集中赔付，赔款增加50%</td>
+          <td>未来6个月</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">压力测试通过标准</div>
+      <p>每个情景下，公司在测试期间内每个时点的<strong>净现金流必须为正</strong>。净现金流 = 现金流入 - 现金流出。如果任一时点净现金流为负，视为流动性压力测试不通过，需提出流动性改善方案。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期核心变化 Key Changes in Phase II</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>新增现金流压力测试</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期在一期流动性监管指标（存量比率）基础上，新增现金流压力测试（流量视角），形成"存量+流量"双维度评估体系。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>压力情景标准化</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期将压力情景标准化为3个必测情景，统一冲击参数和测试期间，提高行业可比性。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>流动资产折算率细化</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期按资产类型和剩余期限设定差异化折算率，更真实反映极端市场条件下的变现能力。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>与IRR联动</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期将流动性风险状况纳入IRR难以资本化风险评估维度，流动性风险高的公司IRR评级可能下调。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>资产流动性分类管理</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期要求公司将资产按流动性分类管理，建立流动性资产池，确保极端情景下有足够高流动性资产可调用。
+        </p>
+      </div>
+      <div class="compare-card">
+        <h4>季度监控</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">
+          二期要求季度计算流动性监管指标，并在偿付能力报告中报送，强化了日常监控。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>与Basel III LCR的对比 <span class="en">Comparison with Banking LCR</span></h2>
+    <table>
+      <thead>
+        <tr><th>对比维度</th><th>C-ROSS II 第13号</th><th>Basel III LCR</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>适用对象</td><td>保险公司</td><td>商业银行</td></tr>
+        <tr><td>核心指标</td><td>流动资产/流动负债 + 现金流压力测试</td><td>LCR = 优质流动资产/净现金流出 &ge; 100%</td></tr>
+        <tr><td>压力情景</td><td>3个必测情景（退保/变现/赔付）</td><td>单一监管压力情景（30天）</td></tr>
+        <tr><td>测试期间</td><td>3-12个月（按情景不同）</td><td>30天</td></tr>
+        <tr><td>核心差异</td><td>保险负债的长期性使得流动性风险特征不同于银行</td><td>银行存款"一日游"特性，挤兑风险更突出</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Case Study ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>西红人寿流动性风险评估 <span class="en">Xihong Life Liquidity Assessment</span></h2>
+    <p>以<strong>西红人寿保险公司</strong>为例，展示流动性监管指标计算和现金流压力测试。</p>
+    <p><strong>基准数据：</strong>总资产 240,000 万元，总负债 183,000 万元，实际资本 57,000 万元。</p>
+  </div>
+
+  <div class="section">
+    <h2>Step 1：流动性监管指标计算 <span class="en">Liquidity Ratio</span></h2>
+
+    <table>
+      <thead>
+        <tr><th>流动资产类别</th><th>账面价值（万元）</th><th>折算率</th><th>认可价值（万元）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>现金及活期存款</td><td>5,000</td><td>100%</td><td>5,000</td></tr>
+        <tr><td>定期存款（&le;3月）</td><td>8,000</td><td>100%</td><td>8,000</td></tr>
+        <tr><td>国债、政策金融债（&le;1年）</td><td>15,000</td><td>95%</td><td>14,250</td></tr>
+        <tr><td>高信用企业债（&le;1年）</td><td>6,000</td><td>90%</td><td>5,400</td></tr>
+        <tr><td>大盘蓝筹股</td><td>12,000</td><td>80%</td><td>9,600</td></tr>
+        <tr><td>货币基金</td><td>4,000</td><td>95%</td><td>3,800</td></tr>
+        <tr><td>逆回购（&le;7天）</td><td>3,000</td><td>100%</td><td>3,000</td></tr>
+        <tr style="background:var(--c-teal-light);">
+          <td colspan="3" style="text-align:right;font-weight:700;">流动资产合计</td>
+          <td style="font-weight:700;color:var(--c-teal);">49,050</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table style="margin-top:14px;">
+      <thead>
+        <tr><th>流动负债类别</th><th>金额（万元）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>未来3个月退保金</td><td>12,000</td></tr>
+        <tr><td>未来3个月赔款支出</td><td>5,000</td></tr>
+        <tr><td>未来3个月满期给付</td><td>8,000</td></tr>
+        <tr><td>未来3个月费用支出</td><td>3,000</td></tr>
+        <tr><td>短期借款</td><td>2,000</td></tr>
+        <tr><td>保单质押贷款</td><td>1,000</td></tr>
+        <tr style="background:var(--c-amber-light);">
+          <td style="font-weight:700;">流动负债合计</td>
+          <td style="font-weight:700;color:var(--c-amber);">31,000</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      <span class="label">流动性监管指标</span><br>
+      流动性监管指标 = 流动资产 / 流动负债 &times; 100%<br>
+      = 49,050 / 31,000 &times; 100% = <strong>158%</strong> &nbsp; &rarr; &nbsp; &ge; 100% &nbsp; <span style="color:var(--c-green);font-weight:600;">达标</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Step 2：现金流压力测试 <span class="en">Cash Flow Stress Test</span></h2>
+
+    <h3>情景1：退保率翻倍（12个月）</h3>
+    <table>
+      <thead>
+        <tr><th>月份</th><th>现金流入</th><th>现金流出（基准）</th><th>现金流出（退保&times;2）</th><th>净现金流</th><th>累计净流</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1月</td><td>8,500</td><td>3,200</td><td>5,000</td><td style="color:var(--c-green);">+3,500</td><td style="color:var(--c-green);">+3,500</td></tr>
+        <tr><td>3月</td><td>8,000</td><td>3,500</td><td>5,600</td><td style="color:var(--c-green);">+2,400</td><td style="color:var(--c-green);">+10,200</td></tr>
+        <tr><td>6月</td><td>7,800</td><td>3,800</td><td>6,200</td><td style="color:var(--c-green);">+1,600</td><td style="color:var(--c-green);">+16,800</td></tr>
+        <tr><td>9月</td><td>7,500</td><td>4,000</td><td>6,800</td><td style="color:var(--c-green);">+700</td><td style="color:var(--c-green);">+19,500</td></tr>
+        <tr><td>12月</td><td>7,200</td><td>4,200</td><td>7,300</td><td style="color:var(--c-amber);">-100</td><td style="color:var(--c-green);">+20,100</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);">注：12月当月净现金流为-100万，但累计净现金流仍为正（+20,100万）。考虑到期初流动性储备（现金+活期存款5,000万），实际无流动性缺口。若按"每时点净流为正"的严格标准，12月需调整资产配置。</p>
+
+    <h3>情景2：资产变现困难（3个月）</h3>
+    <table>
+      <thead>
+        <tr><th>月份</th><th>现金流入</th><th>现金流出</th><th>净现金流</th><th>累计净流</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1月</td><td>6,000</td><td>3,200</td><td style="color:var(--c-green);">+2,800</td><td style="color:var(--c-green);">+2,800</td></tr>
+        <tr><td>2月</td><td>5,500</td><td>3,500</td><td style="color:var(--c-green);">+2,000</td><td style="color:var(--c-green);">+4,800</td></tr>
+        <tr><td>3月</td><td>5,200</td><td>3,800</td><td style="color:var(--c-green);">+1,400</td><td style="color:var(--c-green);">+6,200</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);">注：资产变现困难情景下，现金流入减少（非流动性资产无法变现、融资渠道中断），但基准现金流出不变，3个月内累计净现金流仍为正。西红人寿流动性储备充足。</p>
+
+    <h3>情景3：集中赔付（6个月）</h3>
+    <table>
+      <thead>
+        <tr><th>月份</th><th>现金流入</th><th>现金流出（赔款+50%）</th><th>净现金流</th><th>累计净流</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1月</td><td>8,500</td><td>4,800</td><td style="color:var(--c-green);">+3,700</td><td style="color:var(--c-green);">+3,700</td></tr>
+        <tr><td>2月</td><td>8,200</td><td>5,250</td><td style="color:var(--c-green);">+2,950</td><td style="color:var(--c-green);">+6,650</td></tr>
+        <tr><td>3月</td><td>8,000</td><td>5,750</td><td style="color:var(--c-green);">+2,250</td><td style="color:var(--c-green);">+8,900</td></tr>
+        <tr><td>6月</td><td>7,500</td><td>6,300</td><td style="color:var(--c-green);">+1,200</td><td style="color:var(--c-green);">+16,500</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);">注：集中赔付情景下赔款增加50%，但西红人寿保费收入足以覆盖增加的赔款支出，6个月内累计净现金流始终为正。</p>
+  </div>
+
+  <div class="section">
+    <h2>Step 3：评估结论 Assessment Conclusion</h2>
+
+    <div class="callout success">
+      <div class="title">西红人寿流动性评估结果</div>
+      <p><strong>指标1：流动性监管指标 = 158%</strong> &nbsp;&rarr;&nbsp; 达标（&ge;100%）</p>
+      <p><strong>指标2：现金流压力测试</strong></p>
+      <ul>
+        <li>退保率翻倍：累计净流始终为正，12月当月小幅负值但有储备覆盖</li>
+        <li>资产变现困难：3个月累计净流为正（+6,200万）</li>
+        <li>集中赔付：6个月累计净流始终为正（+16,500万）</li>
+      </ul>
+      <p><strong>结论：</strong>西红人寿流动性风险可控。主要得益于：① 高流动性资产占比较高（流动资产49,050万/总资产240,000万=20.4%）；② 保费收入稳定，月均流入约8,000万；③ 退保率基准较低，翻倍后仍在可控范围。</p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">流动性改进建议</div>
+      <p>① 12月退保翻倍情景下当月净流为负，建议增加3个月以内到期的短期债券配置，提升短期流动性缓冲；② 建议建立流动性资产池，将10%以上的总资产配置为高流动性资产；③ 加强退保率预警监控，设置退保率异常预警阈值。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 &middot; 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（&Iota;）》银保监发〔2021〕51号 第13号：流动性风险<br>
+  参考：Basel III Liquidity Coverage Ratio (LCR)、IAIS ICP 14 (Liquidity Risk)</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('[id^="tab-"]');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+// Progress tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule13';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
