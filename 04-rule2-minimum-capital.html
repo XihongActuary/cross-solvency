@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2号：最低资本 Minimum Capital | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger active">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html" class="active">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第一支柱</a>
+  <span class="sep">›</span>
+  第2号 最低资本
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管规则第 2 号 · Pillar I</div>
+  <h1>第2号：最低资本 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 偿付能力充足率的分母</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Minimum Capital / Required Capital</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(200,152,60,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(200,152,60,0.4);color:#fdf5e6;">Pillar I · 第一支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">可资本化风险 + 控制风险</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">相关系数矩阵聚合</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">SARMRA × k因子</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="framework" onclick="switchTab('framework')">计量框架 Measurement Framework</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Calculation Example</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>最低资本的定义 Definition <span class="en">Minimum Capital / Required Capital</span></h2>
+    <p><strong>最低资本</strong>（Minimum Capital），又称<strong>要求资本</strong>（Required Capital），是指保险公司为应对<strong>可资本化风险</strong>和<strong>控制风险</strong>而应当持有的资本数额。它是偿付能力充足率公式的<strong>分母</strong>，直接反映保险公司面临的风险规模与资本需求。</p>
+
+    <div class="formula">
+      <span class="label">最低资本基本公式</span>
+      <span class="eq">MC</span> = <span class="var">MC<sub>可资本化</sub></span> × (1 + <span class="var">k</span>)<br>
+      <span class="comment">最低资本 = 可资本化风险最低资本 × (1 + 控制风险因子k)</span><br>
+      <span class="comment">其中：MC<sub>可资本化</sub> = 保险风险 + 市场风险 + 信用风险（经相关系数矩阵聚合）</span><br>
+      <span class="comment">k = 控制风险因子，取决于SARMRA评分（偿付能力风险管理能力评估）</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">"可资本化风险 + 控制风险"双维度</div>
+      <p>最低资本同时覆盖两类风险：① <strong>可资本化风险</strong>——保险风险、市场风险、信用风险等可以通过量化模型直接计算资本要求的风险；② <strong>控制风险</strong>——因保险公司风险管理能力不足而附加的资本要求，通过 SARMRA 评分映射为 k 因子。前者是"风险本身"的资本要求，后者是"管理能力缺陷"的资本惩罚。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>可资本化风险的三大类别 Capitalizable Risks <span class="en">Three Risk Categories</span></h2>
+    <p>可资本化风险最低资本（MC<sub>可资本化</sub>）由三大类风险构成，每类风险内部又包含多个子风险模块：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">风险类别</th>
+          <th style="width:22%">英文</th>
+          <th style="width:12%">符号</th>
+          <th>子风险模块</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-purple-light);color:var(--c-purple);">保险风险</span></td>
+          <td class="en-text">Insurance Risk</td>
+          <td style="font-family:var(--font-mono);">MC<sub>保险</sub></td>
+          <td>寿险：死亡 / 长寿 / 疾病 / 退保 / 费用 &nbsp;|&nbsp; 非寿险：保费 / 准备金 / 巨灾</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-blue-light);color:var(--c-blue);">市场风险</span></td>
+          <td class="en-text">Market Risk</td>
+          <td style="font-family:var(--font-mono);">MC<sub>市场</sub></td>
+          <td>利率 / 权益价格 / 房地产 / 汇率 / 境外资产 / 集中度</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge" style="background:var(--c-teal-light);color:var(--c-teal);">信用风险</span></td>
+          <td class="en-text">Credit Risk</td>
+          <td style="font-family:var(--font-mono);">MC<sub>信用</sub></td>
+          <td>利差 / 交易对手违约 / 集中度</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>风险聚合：相关系数矩阵 Risk Aggregation <span class="en">Correlation Matrix Approach</span></h2>
+    <p>三大类可资本化风险之间并非简单相加，而是通过<strong>相关系数矩阵</strong>进行聚合。这是因为不同风险之间存在一定的分散效应（diversification benefit）——当各类风险不完全正相关时，总风险低于各类风险的简单加总。</p>
+
+    <div class="formula">
+      <span class="label">可资本化风险最低资本聚合公式</span>
+      <span class="eq">MC<sub>可资本化</sub></span> = √( <span class="var">MC<sup>T</sup></span> × <span class="var">Corr</span> × <span class="var">MC</span> )<br>
+      <span class="comment">其中 MC = [MC<sub>保险</sub>, MC<sub>市场</sub>, MC<sub>信用</sub>]<sup>T</sup> 为各类风险最低资本向量</span><br>
+      <span class="comment">Corr 为 3×3 相关系数矩阵，对角线为 1，非对角线为风险间相关系数（通常 0.25）</span>
+    </div>
+
+    <p>展开后的完整公式：</p>
+
+    <div class="formula">
+      <span class="label">展开公式（三类风险）</span>
+      <span class="eq">MC<sub>可资本化</sub></span> = √( MC<sub>保险</sub>² + MC<sub>市场</sub>² + MC<sub>信用</sub>²<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;+ 2×ρ<sub>保险,市场</sub>×MC<sub>保险</sub>×MC<sub>市场</sub><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;+ 2×ρ<sub>保险,信用</sub>×MC<sub>保险</sub>×MC<sub>信用</sub><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;+ 2×ρ<sub>市场,信用</sub>×MC<sub>市场</sub>×MC<sub>信用</sub> )<br>
+      <span class="comment">通常 ρ<sub>保险,市场</sub> = ρ<sub>保险,信用</sub> = ρ<sub>市场,信用</sub> = 0.25</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">分散效应 Diversification Benefit</div>
+      <p>由于相关系数 ρ &lt; 1，聚合后的最低资本<strong>小于</strong>各类风险的简单加总。例如：MC<sub>保险</sub> = 14,200、MC<sub>市场</sub> = 11,800、MC<sub>信用</sub> = 3,600，简单加总 = 29,600，但经 ρ = 0.25 的相关系数矩阵聚合后 MC<sub>可资本化</sub> ≈ 18,900，分散效应约为 36%。这体现了"不要把所有鸡蛋放在一个篮子里"的风险分散原理。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>控制风险与k因子 Control Risk & k Factor <span class="en">SARMRA-based Adjustment</span></h2>
+    <p><strong>控制风险</strong>（Control Risk）是指保险公司因偿付能力风险管理能力不足而面临的额外风险。C-ROSS II 通过 <strong>SARMRA</strong>（Solvency Adequacy Risk Management Requirements Assessment，偿付能力风险管理能力评估）对保险公司的风险管理能力进行打分，并将评分映射为控制风险因子 k，对可资本化风险最低资本进行附加调整。</p>
+
+    <div class="formula">
+      <span class="label">控制风险最低资本公式</span>
+      <span class="eq">MC<sub>控制</sub></span> = <span class="var">MC<sub>可资本化</sub></span> × <span class="var">k</span><br>
+      <span class="comment">k = 控制风险因子，取决于 SARMMA 评分</span><br>
+      <span class="comment">SARMRA 评分越高 → k 越小 → 控制风险附加资本越少</span><br>
+      <span class="comment">SARMRA 评分越低 → k 越大 → 控制风险附加资本越多</span>
+    </div>
+
+    <h3>SARMRA 评分 → k 值映射表</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">SARMRA 评分</th>
+          <th style="width:15%">k 因子</th>
+          <th style="width:15%">控制风险附加</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>≥ 85 分</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-green);">0</td>
+          <td style="color:var(--c-green);">无附加</td>
+          <td>风险管理能力优秀，不额外要求控制风险资本</td>
+        </tr>
+        <tr>
+          <td>80 - 84 分</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-teal);">0.025</td>
+          <td style="color:var(--c-teal);">MC × 2.5%</td>
+          <td>风险管理能力良好，轻微附加</td>
+        </tr>
+        <tr>
+          <td>75 - 79 分</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-blue);">0.0625</td>
+          <td style="color:var(--c-blue);">MC × 6.25%</td>
+          <td>风险管理能力中等，适度附加</td>
+        </tr>
+        <tr>
+          <td>70 - 74 分</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-amber);">0.10</td>
+          <td style="color:var(--c-amber);">MC × 10%</td>
+          <td>风险管理能力较弱，较高附加</td>
+        </tr>
+        <tr>
+          <td>65 - 69 分</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-red);">0.15</td>
+          <td style="color:var(--c-red);">MC × 15%</td>
+          <td>风险管理能力不足，显著附加</td>
+        </tr>
+        <tr>
+          <td>&lt; 65 分</td>
+          <td style="font-family:var(--font-mono);font-weight:600;color:var(--c-red);">0.20</td>
+          <td style="color:var(--c-red);">MC × 20%</td>
+          <td>风险管理能力严重不足，最高附加</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">k 因子的政策意图</div>
+      <p>控制风险因子 k 将<strong>风险管理能力</strong>与<strong>资本要求</strong>直接挂钩：管理能力强的公司可以享受更低的资本要求（"奖励"），管理能力弱的公司则需持有更多资本（"惩罚"）。这激励保险公司持续提升风险管理水平，形成"以资本约束促管理提升"的良性循环。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 计量框架 Measurement Framework ============== -->
+<div class="tab-content" id="tab-framework" style="display:none;">
+
+  <div class="section">
+    <h2>四层计量架构 Four-Layer Framework <span class="en">Measurement Architecture</span></h2>
+    <p>C-ROSS II 最低资本的计量采用<strong>自下而上</strong>的四层架构：从各子风险的单一最低资本计算出发，逐层向上聚合，最终叠加控制风险附加，得到最低资本总额。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:12%">层级</th>
+          <th style="width:22%">计量内容</th>
+          <th style="width:22%">方法</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>第一层</strong></td>
+          <td>各子风险最低资本</td>
+          <td>因子法 / 情景法</td>
+          <td>计算保险、市场、信用风险下各子模块的最低资本</td>
+        </tr>
+        <tr>
+          <td><strong>第二层</strong></td>
+          <td>风险类别内聚合</td>
+          <td>相关系数矩阵</td>
+          <td>在每类风险内部，将子风险按相关系数矩阵聚合</td>
+        </tr>
+        <tr>
+          <td><strong>第三层</strong></td>
+          <td>跨风险聚合</td>
+          <td>主要相关系数矩阵</td>
+          <td>将保险、市场、信用三大类风险按相关系数矩阵聚合为 MC<sub>可资本化</sub></td>
+        </tr>
+        <tr>
+          <td><strong>第四层</strong></td>
+          <td>控制风险附加</td>
+          <td>k 因子</td>
+          <td>MC = MC<sub>可资本化</sub> × (1 + k)，k 由 SARMRA 评分决定</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>第一层：各子风险最低资本 Layer 1: Sub-Risk Calculation <span class="en">Factor-Based & Scenario-Based</span></h2>
+
+    <h3>保险风险 Insurance Risk <span class="en">— 因子法 Factor Approach</span></h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">业务类型</th>
+          <th style="width:22%">子风险</th>
+          <th style="width:20%">计量方法</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="5"><strong>寿险</strong></td>
+          <td>死亡风险</td>
+          <td>因子法</td>
+          <td>MC = 风险暴露 × 风险因子</td>
+        </tr>
+        <tr>
+          <td>长寿风险</td>
+          <td>因子法</td>
+          <td>MC = 准备金 × 长寿风险因子（二期可享10%折扣）</td>
+        </tr>
+        <tr>
+          <td>疾病风险</td>
+          <td>因子法</td>
+          <td>MC = 风险暴露 × 疾病风险因子（二期新增重疾恶化因子）</td>
+        </tr>
+        <tr>
+          <td>退保风险</td>
+          <td>因子法</td>
+          <td>MC = 现金价值 × 退保风险因子</td>
+        </tr>
+        <tr>
+          <td>费用风险</td>
+          <td>因子法</td>
+          <td>MC = 费用预算 × 费用风险因子</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><strong>非寿险</strong></td>
+          <td>保费风险</td>
+          <td>因子法</td>
+          <td>MC = 自留保费 × 保费风险因子</td>
+        </tr>
+        <tr>
+          <td>准备金风险</td>
+          <td>因子法</td>
+          <td>MC = 未决赔款准备金 × 准备金风险因子</td>
+        </tr>
+        <tr>
+          <td>巨灾风险</td>
+          <td>情景法</td>
+          <td>基于巨灾情景（台风、地震等）计算资本要求</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>市场风险 Market Risk <span class="en">— 因子法 + 情景法</span></h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">子风险</th>
+          <th style="width:20%">计量方法</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>利率风险</td>
+          <td>情景法</td>
+          <td>基于利率上下变动情景，计算资产与负债价值变动差额（二期改用60日移动平均曲线）</td>
+        </tr>
+        <tr>
+          <td>权益价格风险</td>
+          <td>因子法</td>
+          <td>MC = 权益敞口 × 风险因子（区分上市/非上市、蓝筹/非蓝筹）</td>
+        </tr>
+        <tr>
+          <td>房地产价格风险</td>
+          <td>因子法</td>
+          <td>MC = 房地产敞口 × 房地产风险因子</td>
+        </tr>
+        <tr>
+          <td>汇率风险</td>
+          <td>因子法</td>
+          <td>MC = 外汇净敞口 × 汇率风险因子</td>
+        </tr>
+        <tr>
+          <td>境外资产风险</td>
+          <td>因子法</td>
+          <td>MC = 境外资产敞口 × 境外资产风险因子</td>
+        </tr>
+        <tr>
+          <td>集中度风险</td>
+          <td>因子法</td>
+          <td>对集中度超限的资产施加额外资本要求</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>信用风险 Credit Risk <span class="en">— 因子法 + PD/LGD</span></h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">子风险</th>
+          <th style="width:20%">计量方法</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>利差风险</td>
+          <td>因子法</td>
+          <td>MC = 固定收益资产敞口 × 利差风险因子（按信用评级差异化）</td>
+        </tr>
+        <tr>
+          <td>交易对手违约风险</td>
+          <td>PD/LGD 法</td>
+          <td>MC = 违约风险暴露 × PD × LGD × 风险因子</td>
+        </tr>
+        <tr>
+          <td>集中度风险</td>
+          <td>因子法</td>
+          <td>对单一交易对手集中度超限的施加额外资本要求</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>第二层：风险类别内聚合 Layer 2: Intra-Category Aggregation <span class="en">Correlation Matrix Within Each Category</span></h2>
+    <p>在每类风险内部，将各子风险的最低资本通过<strong>子风险相关系数矩阵</strong>聚合。例如寿险保险风险内部，死亡、长寿、疾病、退保、费用等子风险通过 5×5 相关系数矩阵聚合为 MC<sub>保险</sub>。</p>
+
+    <div class="formula">
+      <span class="label">风险类别内聚合公式（以保险风险为例）</span>
+      <span class="eq">MC<sub>保险</sub></span> = √( <span class="var">MC<sub>保险</sub><sup>T</sup></span> × <span class="var">Corr<sub>保险</sub></span> × <span class="var">MC<sub>保险</sub></span> )<br>
+      <span class="comment">MC<sub>保险</sub> = [MC<sub>死亡</sub>, MC<sub>长寿</sub>, MC<sub>疾病</sub>, MC<sub>退保</sub>, MC<sub>费用</sub>]<sup>T</sup></span><br>
+      <span class="comment">Corr<sub>保险</sub> 为 5×5 子风险相关系数矩阵</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>第三层：跨风险聚合 Layer 3: Cross-Category Aggregation <span class="en">Major Correlation Matrix</span></h2>
+    <p>将保险、市场、信用三大类风险通过<strong>主要相关系数矩阵</strong>聚合，得到可资本化风险最低资本 MC<sub>可资本化</sub>。</p>
+
+    <div class="formula">
+      <span class="label">跨风险聚合公式</span>
+      <span class="eq">MC<sub>可资本化</sub></span> = √( <span class="var">MC<sup>T</sup></span> × <span class="var">Corr</span> × <span class="var">MC</span> )<br>
+      <span class="comment">MC = [MC<sub>保险</sub>, MC<sub>市场</sub>, MC<sub>信用</sub>]<sup>T</sup></span><br>
+      <span class="comment">Corr 为 3×3 主要相关系数矩阵：</span><br>
+      <span class="comment">&nbsp;&nbsp;Corr = [ 1,&nbsp;&nbsp;&nbsp;&nbsp;0.25, 0.25 ]</span><br>
+      <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25, 1,&nbsp;&nbsp;&nbsp;&nbsp;0.25 ]</span><br>
+      <span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25, 0.25, 1&nbsp;&nbsp;&nbsp;&nbsp;]</span>
+    </div>
+
+    <p>展开后的计算公式：</p>
+    <div class="formula">
+      <span class="label">展开公式</span>
+      <span class="eq">MC<sub>可资本化</sub></span> = √( MC<sub>保险</sub>² + MC<sub>市场</sub>² + MC<sub>信用</sub>²<br>
+      &nbsp;&nbsp;+ 2×0.25×(MC<sub>保险</sub>×MC<sub>市场</sub> + MC<sub>保险</sub>×MC<sub>信用</sub> + MC<sub>市场</sub>×MC<sub>信用</sub>) )
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>第四层：控制风险附加 Layer 4: Control Risk Adjustment <span class="en">k Factor from SARMRA</span></h2>
+    <p>在 MC<sub>可资本化</sub> 的基础上，叠加控制风险附加，得到最终最低资本。</p>
+
+    <div class="formula">
+      <span class="label">最低资本最终公式</span>
+      <span class="eq">MC</span> = <span class="var">MC<sub>可资本化</sub></span> + <span class="var">MC<sub>控制</sub></span> = <span class="var">MC<sub>可资本化</sub></span> × (1 + <span class="var">k</span>)<br>
+      <span class="comment">MC<sub>控制</sub> = MC<sub>可资本化</sub> × k</span><br>
+      <span class="comment">k 由 SARMRA 评分映射决定（详见"概述"标签页的映射表）</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">三层聚合 + 一层附加的完整框架</div>
+      <p style="margin-bottom:6px;">C-ROSS II 最低资本计量的完整流程：</p>
+      <ul>
+        <li><strong>第一层：</strong>因子法/情景法 → 各子风险最低资本（死亡、长寿、利率、利差……）</li>
+        <li><strong>第二层：</strong>子风险相关系数矩阵 → 风险类别聚合（MC<sub>保险</sub>、MC<sub>市场</sub>、MC<sub>信用</sub>）</li>
+        <li><strong>第三层：</strong>主要相关系数矩阵 → MC<sub>可资本化</sub></li>
+        <li><strong>第四层：</strong>k 因子附加 → MC = MC<sub>可资本化</sub> × (1 + k)</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期改革概览 Phase II Reforms <span class="en">Key Changes in Minimum Capital</span></h2>
+    <p>C-ROSS 二期在最低资本计量方面进行了多项重要改革，核心思路是<strong>"穿透计量、精准定价、引导高质量发展"</strong>——强化资产穿透、优化风险因子、新增绿色折扣，使最低资本更精准地反映真实风险。</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">改革领域</th>
+          <th style="width:36%">一期做法</th>
+          <th>二期改革</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>穿透计量</strong></td>
+          <td>非基础资产可整体按类认定</td>
+          <td><strong>新增第7号规则</strong>，非基础资产必须穿透至底层资产计量</td>
+        </tr>
+        <tr>
+          <td><strong>利率风险曲线</strong></td>
+          <td>基于即期国债收益率曲线</td>
+          <td>改用<strong>60日移动平均曲线</strong>，对利率变动更敏感</td>
+        </tr>
+        <tr>
+          <td><strong>长期股权投资</strong></td>
+          <td>风险因子较低</td>
+          <td>风险因子<strong>大幅提升</strong>，抑制跨层级资本套利</td>
+        </tr>
+        <tr>
+          <td><strong>k 因子映射</strong></td>
+          <td>SARMRA 与 k 的映射较粗</td>
+          <td><strong>优化映射关系</strong>，更精细化体现管理能力差异</td>
+        </tr>
+        <tr>
+          <td><strong>重疾恶化</strong></td>
+          <td>无专项恶化因子</td>
+          <td><strong>新增重疾恶化因子</strong>，反映重疾发生率上升趋势</td>
+        </tr>
+        <tr>
+          <td><strong>绿色/科技折扣</strong></td>
+          <td>无差异化政策</td>
+          <td><strong>新增绿色债券、科技保险折扣</strong>，引导资金配置</td>
+        </tr>
+        <tr>
+          <td><strong>资本规划</strong></td>
+          <td>无专项规则</td>
+          <td><strong>新增第14号规则</strong>，要求保险公司建立资本规划机制</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化1：穿透计量规则 Look-Through Rule <span class="en">Rule No.7 — Non-Basic Asset Penetration</span></h2>
+    <div class="callout danger">
+      <div class="title">一期问题</div>
+      <p>一期规则下，非基础资产（如资管产品、信托计划、私募基金等）可以按产品类别整体认定风险因子，无需穿透到底层资产。这导致部分保险公司通过多层嵌套产品隐藏底层风险，资本计提严重不足。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期<strong>新增第7号规则</strong>，要求非基础资产<strong>"应穿尽穿"</strong>——必须穿透至底层资产，按底层资产的类别和风险特征分别计提最低资本。无法穿透的资产适用<strong>惩罚性风险因子</strong>（通常远高于正常水平），倒逼保险公司选择可穿透的投资产品或要求管理人提供底层信息。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化2：利率风险曲线改用60日移动平均 60-Day Moving Average Curve <span class="en">More Sensitive to Rate Changes</span></h2>
+    <div class="callout info">
+      <div class="title">改革要点</div>
+      <p>二期利率风险计量改用<strong>60日移动平均国债收益率曲线</strong>替代一期使用的即期曲线。移动平均曲线的变动更为<strong>平滑</strong>，减少了短期市场波动对利率风险资本的影响，但同时使得利率风险计量对利率趋势变化<strong>更敏感</strong>——在利率下行周期，利率风险最低资本将更及时地反映资产负债匹配状况的恶化。</p>
+    </div>
+    <div class="callout warning">
+      <div class="title">对保险公司的影响</div>
+      <p>寿险公司需加强<strong>资产负债久期匹配管理</strong>，减少利率风险敞口。对于久期错配严重的公司，利率风险最低资本将显著上升，倒逼其优化资产配置策略。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化3：长期股权投资风险因子提升 Long-term Equity Factor Increase <span class="en">Deter Cross-Tier Capital Arbitrage</span></h2>
+    <p>二期大幅提升了长期股权投资的权益价格风险因子，特别是对子公司以外的大额股权投资。</p>
+    <div class="callout warning">
+      <div class="title">改革背景</div>
+      <p>一期规则下，长期股权投资的风险因子相对较低，部分保险公司通过大额股权投资实现跨层级资本套利——在母公司层面计入实际资本，同时在投资标的层面也计入资本，造成资本重复计算。二期通过提升风险因子，增加了此类投资的资本成本，抑制套利行为。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化4：k 因子 SARMRA 映射优化 Optimized k-SARMRA Mapping <span class="en">Finer Differentiation</span></h2>
+    <p>二期优化了控制风险因子 k 与 SARMRA 评分之间的映射关系，使映射更加精细化。</p>
+    <div class="callout info">
+      <div class="title">优化方向</div>
+      <ul>
+        <li>扩展了 SARMRA 评分的分段密度，使不同管理能力水平的公司之间差异更明显</li>
+        <li>对评分较低的公司施加更高的 k 因子，强化"惩罚"效果</li>
+        <li>对评分较高的公司给予 k 因子优惠，强化"奖励"效果</li>
+        <li>细化 SARMRA 评估指标，使评分更客观反映实际管理能力</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化5：新增重疾恶化因子 Critical Illness Deterioration Factor <span class="en">New Factor for CI Trend</span></h2>
+    <div class="callout danger">
+      <div class="title">改革背景</div>
+      <p>近年来中国重大疾病发生率呈持续上升趋势，原有疾病风险因子未能充分反映这一趋势，导致重疾险最低资本计提不足。部分公司的重疾险业务出现严重利差损隐患。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期在疾病风险最低资本计量中<strong>新增重疾恶化因子</strong>，对重疾险业务施加额外的资本要求。恶化因子根据重疾发生率的历史趋势和未来预期确定，使最低资本更审慎地反映重疾风险的长期演变趋势。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化6：绿色债券与科技保险折扣 Green Bond &amp; Tech Insurance Discount <span class="en">Policy-Driven Capital Relief</span></h2>
+    <p>二期引入了<strong>政策导向型资本优惠</strong>机制，对特定领域投资和业务给予风险因子折扣。</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">优惠类型</th>
+          <th style="width:18%">折扣力度</th>
+          <th>适用条件</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>绿色债券</strong></td>
+          <td>风险因子折扣</td>
+          <td>投资于符合标准的绿色债券，信用风险与市场风险因子可享折扣</td>
+        </tr>
+        <tr>
+          <td><strong>科技保险</strong></td>
+          <td>风险因子折扣</td>
+          <td>承保科技保险业务的保费风险因子可享折扣</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="callout success">
+      <div class="title">政策意图</div>
+      <p>通过资本折扣引导保险公司将资金配置向绿色产业和科技创新领域倾斜，实现偿付能力监管与国家战略的协同。这是 C-ROSS II 从纯风险导向向"风险+政策"双导向的重要转变。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化7：新增资本规划规则 Capital Planning Rule <span class="en">Rule No.14</span></h2>
+    <p>二期<strong>新增第14号规则</strong>，要求保险公司建立并执行资本规划机制。</p>
+    <div class="callout info">
+      <div class="title">资本规划核心要求</div>
+      <ul>
+        <li>保险公司须制定<strong>三年滚动资本规划</strong>，明确资本目标、资本补充渠道和资本使用计划</li>
+        <li>定期进行<strong>资本压力测试</strong>，评估极端情景下的资本充足性</li>
+        <li>建立<strong>资本应急预案</strong>，在资本充足率下降时及时采取补充措施</li>
+        <li>将资本规划纳入公司治理体系，经董事会审批后报监管备案</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Calculation Example ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>计算案例：西红人寿保险公司 Worked Example <span class="en">Anxin Life Insurance Co.</span></h2>
+
+    <div class="callout info">
+      <div class="title">公司背景 Company Background</div>
+      <p><strong>西红人寿保险公司</strong>（Anxin Life Insurance Co., Ltd.），一家虚构的中型寿险公司，以长期储蓄型业务为主。<br>
+      评估日期：<strong>2024年12月31日</strong>　|　单位：<strong>万元</strong><br>
+      <span style="color:var(--c-text-muted);">本案例承接第1号案例的实际资本计算结果，继续计算最低资本与偿付能力充足率。</span></p>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">1</span>
+        <span class="cs-title">保险风险最低资本 MC<sub>保险</sub></span>
+      </div>
+      <p style="font-size:13px;">西红人寿为寿险公司，保险风险包括死亡、长寿、疾病、退保、费用五项子风险，通过子风险相关系数矩阵聚合。</p>
+
+      <h4 style="margin-top:14px;">寿险子风险最低资本</h4>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24%">子风险</th>
+            <th style="width:15%">基础MC</th>
+            <th style="width:22%">调整</th>
+            <th>调整后MC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>死亡风险</td>
+            <td style="text-align:right;">4,000</td>
+            <td>—</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-purple);">4,000</td>
+          </tr>
+          <tr>
+            <td>长寿风险</td>
+            <td style="text-align:right;">3,000</td>
+            <td>二期10%折扣 → 3,000 × 90%</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-purple);">2,700</td>
+          </tr>
+          <tr>
+            <td>疾病风险</td>
+            <td style="text-align:right;">5,000</td>
+            <td>含重疾恶化因子（已计入基础MC）</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-purple);">5,000</td>
+          </tr>
+          <tr>
+            <td>退保风险</td>
+            <td style="text-align:right;">2,500</td>
+            <td>—</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-purple);">2,500</td>
+          </tr>
+          <tr>
+            <td>费用风险</td>
+            <td style="text-align:right;">1,200</td>
+            <td>—</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-purple);">1,200</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top:14px;">寿险子风险相关系数矩阵</h4>
+      <div class="cs-formula" style="overflow-x:auto;">
+        Corr<sub>寿险</sub> = &nbsp;[ 1.00,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.50 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;1.00,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;1.00,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;1.00,&nbsp;&nbsp;0.25 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.50,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;1.00 ]
+      </div>
+
+      <div class="cs-formula">
+        MC<sub>寿险聚合</sub> = √( MC<sup>T</sup> × Corr<sub>寿险</sub> × MC )<br>
+        = √( 4,000² + 2,700² + 5,000² + 2,500² + 1,200²<br>
+        &nbsp;&nbsp;+ 2×(0.25×4,000×2,700 + 0.25×4,000×5,000 + 0.25×4,000×2,500 + 0.50×4,000×1,200<br>
+        &nbsp;&nbsp;+ 0.25×2,700×5,000 + 0.25×2,700×2,500 + 0.25×2,700×1,200<br>
+        &nbsp;&nbsp;+ 0.25×5,000×2,500 + 0.25×5,000×1,200 + 0.25×2,500×1,200) )<br>
+        = √( 16.00 + 7.29 + 25.00 + 6.25 + 1.44 + 23.85 ) × 100
+      </div>
+      <div class="cs-result">MC<sub>保险</sub> = MC<sub>寿险聚合</sub> = 14,200 万元</div>
+      <div class="cs-note">注：长寿风险享10%折扣后为 2,700 万元；疾病风险含重疾恶化因子。简单加总为 15,400 万元，聚合后 14,200 万元，分散效应约 7.8%。</div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">2</span>
+        <span class="cs-title">市场风险最低资本 MC<sub>市场</sub></span>
+      </div>
+      <p style="font-size:13px;">市场风险包括利率、权益价格、房地产、汇率等子风险，通过市场风险相关系数矩阵聚合。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24%">子风险</th>
+            <th style="width:15%">MC（万元）</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>利率风险</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-blue);">8,000</td>
+            <td>基于60日移动平均曲线计算</td>
+          </tr>
+          <tr>
+            <td>权益价格风险</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-blue);">5,000</td>
+            <td>含上市公司股票（蓝筹+非蓝筹）</td>
+          </tr>
+          <tr>
+            <td>房地产价格风险</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-blue);">1,500</td>
+            <td>投资性房地产敞口</td>
+          </tr>
+          <tr>
+            <td>汇率风险</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-blue);">500</td>
+            <td>外汇净敞口</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top:14px;">市场风险相关系数矩阵</h4>
+      <div class="cs-formula" style="overflow-x:auto;">
+        Corr<sub>市场</sub> = [ 1.00,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;1.00,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;1.00,&nbsp;&nbsp;0.25 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;1.00 ]
+      </div>
+
+      <div class="cs-formula">
+        MC<sub>市场聚合</sub> = √( MC<sup>T</sup> × Corr<sub>市场</sub> × MC )<br>
+        = √( 8,000² + 5,000² + 1,500² + 500²<br>
+        &nbsp;&nbsp;+ 2×0.25×(8,000×5,000 + 8,000×1,500 + 8,000×500 + 5,000×1,500 + 5,000×500 + 1,500×500) )<br>
+        = √( 64.00 + 25.00 + 2.25 + 0.25 + 22.50 ) × 100
+      </div>
+      <div class="cs-result">MC<sub>市场</sub> = 11,800 万元</div>
+      <div class="cs-note">注：简单加总为 15,000 万元，聚合后 11,800 万元，分散效应约 21.3%。</div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">3</span>
+        <span class="cs-title">信用风险最低资本 MC<sub>信用</sub></span>
+      </div>
+      <p style="font-size:13px;">信用风险包括利差风险和交易对手违约风险，通过信用风险相关系数矩阵聚合。</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:24%">子风险</th>
+            <th style="width:15%">MC（万元）</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>利差风险</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">3,000</td>
+            <td>企业债、信用债的利差敞口</td>
+          </tr>
+          <tr>
+            <td>交易对手违约风险</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">1,200</td>
+            <td>再保交易对手、衍生品交易对手等</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-top:14px;">信用风险相关系数矩阵</h4>
+      <div class="cs-formula" style="overflow-x:auto;">
+        Corr<sub>信用</sub> = [ 1.00,&nbsp;&nbsp;0.25 ]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;1.00 ]
+      </div>
+
+      <div class="cs-formula">
+        MC<sub>信用聚合</sub> = √( 3,000² + 1,200² + 2×0.25×3,000×1,200 )<br>
+        = √( 9,000,000 + 1,440,000 + 1,800,000 )<br>
+        = √( 12,240,000 )<br>
+        = √( 12.24 ) × 100
+      </div>
+      <div class="cs-result">MC<sub>信用</sub> = 3,600 万元</div>
+      <div class="cs-note">注：简单加总为 4,200 万元，聚合后 3,600 万元，分散效应约 14.3%。</div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="calc-step" style="border:2px solid var(--c-accent);">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num" style="background:var(--c-accent);">4</span>
+        <span class="cs-title">可资本化风险最低资本 MC<sub>可资本化</sub>（跨风险聚合）</span>
+      </div>
+      <p style="font-size:13px;">将保险、市场、信用三大类风险通过主要相关系数矩阵聚合，得到可资本化风险最低资本。</p>
+
+      <h4 style="margin-top:14px;">主要相关系数矩阵</h4>
+      <div class="cs-formula" style="overflow-x:auto;">
+        Corr = [ 1.00,&nbsp;&nbsp;0.25,&nbsp;&nbsp;0.25 ]&nbsp;&nbsp;← 保险<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;1.00,&nbsp;&nbsp;0.25 ]&nbsp;&nbsp;← 市场<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ 0.25,&nbsp;&nbsp;0.25,&nbsp;&nbsp;1.00 ]&nbsp;&nbsp;← 信用
+      </div>
+
+      <div class="cs-formula">
+        MC<sub>可资本化</sub> = √( MC<sup>T</sup> × Corr × MC )<br>
+        = √( MC<sub>保险</sub>² + MC<sub>市场</sub>² + MC<sub>信用</sub>²<br>
+        &nbsp;&nbsp;+ 2×0.25×(MC<sub>保险</sub>×MC<sub>市场</sub> + MC<sub>保险</sub>×MC<sub>信用</sub> + MC<sub>市场</sub>×MC<sub>信用</sub>) )<br><br>
+        = √( 14,200² + 11,800² + 3,600²<br>
+        &nbsp;&nbsp;+ 2×0.25×(14,200×11,800 + 14,200×3,600 + 11,800×3,600) )
+      </div>
+
+      <h4 style="margin-top:14px;">分步计算（单位换算为亿元）</h4>
+      <div class="cs-formula">
+        <span style="color:var(--c-accent);">[1] 各风险平方项（亿元²）：</span><br>
+        &nbsp;&nbsp;14,200² = 201.64<br>
+        &nbsp;&nbsp;11,800² = 139.24<br>
+        &nbsp;&nbsp;3,600² = 12.96<br>
+        &nbsp;&nbsp;小计 = 201.64 + 139.24 + 12.96 = <strong>353.84</strong><br><br>
+        <span style="color:var(--c-accent);">[2] 交叉项（亿元²）：</span><br>
+        &nbsp;&nbsp;14,200 × 11,800 = 167.56<br>
+        &nbsp;&nbsp;14,200 × 3,600 = 51.12<br>
+        &nbsp;&nbsp;11,800 × 3,600 = 42.48<br>
+        &nbsp;&nbsp;小计 = 167.56 + 51.12 + 42.48 = 261.16<br>
+        &nbsp;&nbsp;2 × 0.25 × 261.16 = <strong>130.58</strong><br><br>
+        <span style="color:var(--c-accent);">[3] 合计求平方根：</span><br>
+        &nbsp;&nbsp;MC<sub>可资本化</sub> = √(353.84 + 130.58) × 100<br>
+        &nbsp;&nbsp;= √(484.42) × 100<br>
+        &nbsp;&nbsp;≈ 22.01 × 100
+      </div>
+      <div class="cs-result" style="font-size:16px;">MC<sub>可资本化</sub> = 18,900 万元</div>
+      <div class="cs-note">注：三大风险简单加总为 29,600 万元，经相关系数矩阵聚合后为 18,900 万元，分散效应约 36.1%。分散效应显著，体现了"风险不完全正相关"的聚合原理。</div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">5</span>
+        <span class="cs-title">控制风险最低资本 MC<sub>控制</sub></span>
+      </div>
+      <p style="font-size:13px;">控制风险附加资本 = MC<sub>可资本化</sub> × k，其中 k 由 SARMRA 评分映射决定。</p>
+
+      <h4 style="margin-top:14px;">k 因子计算</h4>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:30%">参数</th>
+            <th style="width:20%">数值</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SARMRA 评分</td>
+            <td style="font-family:var(--font-mono);font-weight:600;">75 分</td>
+            <td>假设西红人寿 SARMRA 评估得分为 75 分</td>
+          </tr>
+          <tr>
+            <td>风险能力差异系数</td>
+            <td style="font-family:var(--font-mono);">(100 - 75) / 100 = 0.25</td>
+            <td>管理能力与基准（100分）的差距</td>
+          </tr>
+          <tr>
+            <td>控制风险基准系数</td>
+            <td style="font-family:var(--font-mono);">0.50</td>
+            <td>监管设定的基准系数</td>
+          </tr>
+          <tr>
+            <td>调整系数</td>
+            <td style="font-family:var(--font-mono);">0.50</td>
+            <td>映射调整系数</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cs-formula">
+        k = (100 - SARMRA评分) / 100 × 控制风险基准系数 × 调整系数<br>
+        &nbsp;&nbsp;= (100 - 75) / 100 × 0.50 × 0.50<br>
+        &nbsp;&nbsp;= 0.25 × 0.50 × 0.50<br>
+        &nbsp;&nbsp;= <strong>0.0625</strong>
+      </div>
+
+      <div class="cs-formula">
+        MC<sub>控制</sub> = MC<sub>可资本化</sub> × k<br>
+        &nbsp;&nbsp;= 18,900 × 0.0625<br>
+        &nbsp;&nbsp;= 1,181.25
+      </div>
+      <div class="cs-result">MC<sub>控制</sub> = 1,181 万元</div>
+      <div class="cs-note">注：SARMRA 评分 75 分属于"中等"水平，k = 0.0625 表示控制风险附加为可资本化风险的 6.25%。若 SARMRA 评分提升至 85 分以上，k 降为 0，可节省全部控制风险资本。</div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="calc-step">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num">6</span>
+        <span class="cs-title">最低资本汇总 MC Total</span>
+      </div>
+      <div class="cs-formula" style="background:var(--c-primary-dark);color:#fff;font-size:14px;">
+        MC = MC<sub>可资本化</sub> + MC<sub>控制</sub><br>
+        &nbsp;&nbsp;= MC<sub>可资本化</sub> × (1 + k)<br>
+        &nbsp;&nbsp;= 18,900 + 1,181<br>
+        &nbsp;&nbsp;= <strong style="color:#4caf50;font-size:18px;">20,081 万元</strong>
+      </div>
+
+      <table style="margin-top:14px;">
+        <thead>
+          <tr>
+            <th style="width:30%">项目</th>
+            <th style="width:20%">金额（万元）</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MC<sub>保险</sub></td>
+            <td style="text-align:right;font-weight:600;color:var(--c-purple);">14,200</td>
+            <td>死亡+长寿+疾病+退保+费用 聚合</td>
+          </tr>
+          <tr>
+            <td>MC<sub>市场</sub></td>
+            <td style="text-align:right;font-weight:600;color:var(--c-blue);">11,800</td>
+            <td>利率+权益+房地产+汇率 聚合</td>
+          </tr>
+          <tr>
+            <td>MC<sub>信用</sub></td>
+            <td style="text-align:right;font-weight:600;color:var(--c-teal);">3,600</td>
+            <td>利差+交易对手违约 聚合</td>
+          </tr>
+          <tr style="background:var(--c-accent-light);">
+            <td><strong>MC<sub>可资本化</sub></strong>（聚合后）</td>
+            <td style="text-align:right;font-weight:700;color:var(--c-primary-dark);">18,900</td>
+            <td>三大风险经相关系数矩阵聚合</td>
+          </tr>
+          <tr>
+            <td>MC<sub>控制</sub>（k = 0.0625）</td>
+            <td style="text-align:right;font-weight:600;color:var(--c-amber);">1,181</td>
+            <td>SARMRA 75分 → k = 0.0625</td>
+          </tr>
+          <tr style="background:var(--c-accent-light);">
+            <td><strong>MC（最低资本合计）</strong></td>
+            <td style="text-align:right;font-weight:700;font-size:16px;color:var(--c-primary-dark);">20,081</td>
+            <td>MC = MC<sub>可资本化</sub> × (1 + k)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="cs-note">注：三大风险简单加总 29,600 万元 → 聚合后 18,900 万元（分散效应 36.1%）→ 叠加控制风险 → 最终最低资本 20,081 万元。</div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="calc-step" style="border:2px solid var(--c-teal);">
+      <div style="display:flex;align-items:center;margin-bottom:10px;">
+        <span class="cs-num" style="background:var(--c-teal);">7</span>
+        <span class="cs-title">偿付能力充足率（结合第1号案例）Solvency Adequacy Ratio</span>
+      </div>
+      <p style="font-size:13px;">结合第1号案例中西红人寿的实际资本计算结果，计算偿付能力充足率。</p>
+
+      <div class="callout info">
+        <div class="title">来自第1号案例的数据</div>
+        <p>
+        实际资本 = <strong>57,000 万元</strong>（认可资产 240,000 - 认可负债 183,000）<br>
+        核心资本 = <strong>46,800 万元</strong>（核心一级 38,000 + 核心二级 8,800，经35%限额调整后）<br>
+        附属资本 = <strong>10,200 万元</strong>（附属一级 7,200 + 附属二级 3,000）</p>
+      </div>
+
+      <div class="cs-formula" style="background:var(--c-primary-dark);color:#fff;font-size:14px;">
+        <span style="color:var(--c-accent);">核心偿付能力充足率</span><br>
+        &nbsp;&nbsp;= 核心资本 / 最低资本 × 100%<br>
+        &nbsp;&nbsp;= 46,800 / 20,081 × 100%<br>
+        &nbsp;&nbsp;= <strong style="color:#4caf50;font-size:18px;">233%</strong><br><br>
+        <span style="color:var(--c-accent);">综合偿付能力充足率</span><br>
+        &nbsp;&nbsp;= 实际资本 / 最低资本 × 100%<br>
+        &nbsp;&nbsp;= 57,000 / 20,081 × 100%<br>
+        &nbsp;&nbsp;= <strong style="color:#4caf50;font-size:18px;">284%</strong>
+      </div>
+
+      <table style="margin-top:14px;">
+        <thead>
+          <tr>
+            <th style="width:30%">指标</th>
+            <th style="width:20%">计算</th>
+            <th style="width:15%">结果</th>
+            <th>监管要求</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>核心偿付能力充足率</td>
+            <td style="font-family:var(--font-mono);font-size:12px;">46,800 / 20,081</td>
+            <td style="text-align:right;font-weight:700;font-size:16px;color:var(--c-green);">233%</td>
+            <td>≥ 50%</td>
+          </tr>
+          <tr>
+            <td>综合偿付能力充足率</td>
+            <td style="font-family:var(--font-mono);font-size:12px;">57,000 / 20,081</td>
+            <td style="text-align:right;font-weight:700;font-size:16px;color:var(--c-green);">284%</td>
+            <td>≥ 100%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cs-formula" style="background:var(--c-teal-light);color:var(--c-primary-dark);border:1px solid var(--c-teal);">
+        <span style="color:var(--c-teal);font-weight:600;">[监管达标验证]</span><br>
+        核心偿付能力充足率 233% &gt; 50% → <strong style="color:var(--c-green);">达标 ✓</strong><br>
+        综合偿付能力充足率 284% &gt; 100% → <strong style="color:var(--c-green);">达标 ✓</strong><br>
+        核心资本 / 实际资本 = 46,800 / 57,000 = 82.1% &gt; 50% → <strong style="color:var(--c-green);">资本结构达标 ✓</strong>
+      </div>
+
+      <div class="callout success" style="margin-top:14px;">
+        <div class="title">案例总结</div>
+        <p>西红人寿 2024 年偿付能力计算完整呈现了 C-ROSS II 的核心框架：</p>
+        <ul>
+          <li><strong>第1号（分子）：</strong>实际资本 57,000 万元，其中核心资本 46,800 万元</li>
+          <li><strong>第2号（分母）：</strong>最低资本 20,081 万元，由可资本化风险 18,900 万元（三类风险聚合）+ 控制风险 1,181 万元（k=0.0625）构成</li>
+          <li><strong>偿付能力充足率：</strong>核心 233%、综合 284%，均<strong>远高于</strong>监管要求（核心≥50%、综合≥100%）</li>
+        </ul>
+        <p style="margin-top:8px;">西红人寿偿付能力充足，资本缓冲充裕，具备较强的风险抵御能力。但需注意：① SARMRA 评分 75 分仍有提升空间，若提升至 85 分以上可免除控制风险资本 1,181 万元；② 利率风险占比较高（8,000/20,081 = 40%），建议加强资产负债久期匹配管理。</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号 第2号：最低资本<br>
+  参考：EIOPA Solvency II、国家金融监督管理总局官方网站</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+// Tab Switching
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Progress Tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule2';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
