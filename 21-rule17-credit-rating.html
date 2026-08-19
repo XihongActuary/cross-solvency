@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第17号：保险公司信用评级 | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html" class="active">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+    <a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a> <span class="sep">›</span>
+  <a href="02-three-pillars.html">第三支柱</a> <span class="sep">›</span>
+  第17号 信用评级
+</div>
+
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II &middot; 监管规则第 17 号 &middot; Pillar III</div>
+  <h1>第17号：保险公司信用评级 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 市场约束的外部评估机制</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Credit Rating of Insurance Companies</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(24,95,165,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(24,95,165,0.4);color:var(--c-blue-light);">Pillar III &middot; 第三支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">评级机构</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">行为规范</span>
+  </div>
+</div>
+
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="methodology" onclick="switchTab('methodology')">评级规范 Standards</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">案例 Case Study</button>
+</div>
+
+<!-- TAB 1: Overview -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+  <div class="section">
+    <h2>信用评级的定义 Definition</h2>
+    <p><strong>保险公司信用评级</strong>是专业信用评级机构对保险公司偿债能力和信用风险进行的综合评价。作为第三支柱的组成，信用评级提供了独立于公司自评估和监管评估之外的"第三方视角"，是市场约束机制的重要补充。</p>
+
+    <div class="callout info">
+      <div class="title">第17号的核心关注点</div>
+      <p>第17号规则<strong>不直接对保险公司评级</strong>（这是评级机构的工作），而是对<strong>评级机构的行为进行规范</strong>——确保评级过程的独立性、客观性、一致性和透明性，使评级结果能够真正服务于市场约束。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>评级的双重作用 Dual Role</h2>
+    <table>
+      <thead>
+        <tr><th>作用</th><th>机制</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>市场信号</strong></td><td>评级变化向市场传递公司风险变化的信号，影响投保人选择和投资者决策</td></tr>
+        <tr><td><strong>监管参考</strong></td><td>监管机构将评级结果作为IRR评估的参考输入之一，评级下降可能触发监管关注</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>评级体系 Rating System</h2>
+    <table>
+      <thead>
+        <tr><th>评级符号</th><th>含义</th><th>偿债能力</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AAA</td><td>最高等级</td><td>极强</td></tr>
+        <tr><td>AA/A</td><td>高等级</td><td>很强</td></tr>
+        <tr><td>BBB</td><td>投资级</td><td>较强</td></tr>
+        <tr><td>BB/B</td><td>投机级</td><td>一般</td></tr>
+        <tr><td>CCC及以下</td><td>低等级</td><td>弱</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--c-text-muted);">注：不同评级机构（如中诚信、联合资信、大公国际等）使用类似但不完全相同的符号体系。</p>
+  </div>
+</div>
+
+<!-- TAB 2: Standards -->
+<div class="tab-content" id="tab-methodology" style="display:none;">
+  <div class="section">
+    <h2>评级机构行为规范 Rating Agency Code of Conduct</h2>
+    <table>
+      <thead>
+        <tr><th>规范维度</th><th>要求</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>独立性</strong></td><td>评级机构与被评保险公司应保持利益独立性，不得存在股权关联或利益输送。评级人员不得参与被评公司的咨询服务。</td></tr>
+        <tr><td><strong>客观性</strong></td><td>评级应基于公开信息和客观数据，评级方法公开透明，评级结论可追溯至定量和定性分析依据。</td></tr>
+        <tr><td><strong>一致性</strong></td><td>同一评级机构对不同公司的评级标准应保持一致，不同时期对同一公司的评级方法应保持稳定，避免随意调整。</td></tr>
+        <tr><td><strong>透明性</strong></td><td>评级方法、评级流程和评级结果应公开发布，评级变更需同时公布变更理由。</td></tr>
+        <tr><td><strong>保密义务</strong></td><td>评级过程中获取的非公开信息不得用于评级以外的目的，不得提前泄露评级结果。</td></tr>
+        <tr><td><strong>利益冲突管理</strong></td><td>评级机构应建立利益冲突识别和管理制度，建立"防火墙"机制。</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>评级方法 Rating Methodology</h2>
+    <p>保险公司的信用评级通常综合以下维度：</p>
+    <table>
+      <thead>
+        <tr><th>维度</th><th>权重</th><th>核心指标</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>偿付能力</td><td>30%</td><td>核心/综合充足率、IRR评级、资本结构</td></tr>
+        <tr><td>经营实力</td><td>25%</td><td>市场份额、保费规模、产品多元化</td></tr>
+        <tr><td>盈利能力</td><td>15%</td><td>ROE、承保利润率、投资收益率</td></tr>
+        <tr><td>资产质量</td><td>15%</td><td>资产配置、信用质量、集中度</td></tr>
+        <tr><td>再保险安排</td><td>10%</td><td>分保比例、再保险人信用质量</td></tr>
+        <tr><td>公司治理</td><td>5%</td><td>股权结构、管理层稳定性</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TAB 3: Phase II Changes -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+  <div class="section">
+    <h2>二期核心变化 Key Changes</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>偿付能力权重提升</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">二期要求评级方法中偿付能力维度权重不低于30%，强化偿付能力在评级中的核心地位。</p>
+      </div>
+      <div class="compare-card">
+        <h4>IRR纳入评级参考</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">二期要求评级机构将IRR评级结果作为评级输入之一，增强监管评估与市场评估的一致性。</p>
+      </div>
+      <div class="compare-card">
+        <h4>穿透式计量纳入</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">二期要求评级分析中纳入穿透式计量结果，识别多层嵌套资产的真实风险。</p>
+      </div>
+      <div class="compare-card">
+        <h4>评级变更披露</h4>
+        <p style="font-size:12px;color:var(--c-text-secondary);">二期要求评级变更（上调/下调/列入观察名单）需在变更后3个工作日内公开发布变更理由。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4: Case Study -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+  <div class="section">
+    <h2>西红人寿信用评级案例 <span class="en">Xihong Life Rating Case</span></h2>
+    <p>以<strong>西红人寿保险公司</strong>为例，展示信用评级过程和结果。</p>
+
+    <div class="callout success">
+      <div class="title">西红人寿信用评级报告（摘要）</div>
+      <p><strong>评级机构：</strong>中诚信国际信用评级有限公司<br>
+      <strong>主体信用等级：AAA</strong>（最高等级，展望稳定）</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>评级维度</th><th>权重</th><th>得分</th><th>评价</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>偿付能力</td><td>30%</td><td>95/100</td><td>核心充足率233%，综合284%，IRR A类</td></tr>
+        <tr><td>经营实力</td><td>25%</td><td>82/100</td><td>区域性寿险公司，市场份额中等</td></tr>
+        <tr><td>盈利能力</td><td>15%</td><td>85/100</td><td>ROE 12%，承保利润率3.5%</td></tr>
+        <tr><td>资产质量</td><td>15%</td><td>88/100</td><td>AA+以上债券85%，穿透计量合规</td></tr>
+        <tr><td>再保险安排</td><td>10%</td><td>80/100</td><td>分出比例15%，再保险人均AA级</td></tr>
+        <tr><td>公司治理</td><td>5%</td><td>85/100</td><td>国有背景，管理层稳定</td></tr>
+        <tr style="background:var(--c-green-light);">
+          <td colspan="2" style="font-weight:700;text-align:right;">综合得分</td>
+          <td style="font-weight:700;color:var(--c-green);">88.5/100</td>
+          <td><strong>AAA 级</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">评级与偿付能力的关系</div>
+      <p>西红人寿的偿付能力维度得分最高（95分），反映了核心充足率233%、综合充足率284%和IRR A类评级的优势。偿付能力是评级中权重最大的维度（30%），也是与监管体系衔接最紧密的维度。IRR A类、SARMRA 83分、压力测试均通过等偿付能力监管结果直接支撑了AAA评级。</p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">评级关注事项</div>
+      <p>评级报告同时提示关注：① 股票配置21,667万元，市场波动时存在减值风险；② 区域性公司，业务集中度较高；③ 建议持续优化资产负债久期匹配。这些关注事项与压力测试（第10号）的风险敏感性分析一致。</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 &middot; 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局《保险公司偿付能力监管规则（&Iota;）》银保监发〔2021〕51号 第17号：保险公司信用评级<br>
+  参考：IOSCO CRA Principles、IAIS ICP 20 (Public Disclosure)</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('[id^="tab-"]');
+  for (var i = 0; i < contents.length; i++) contents[i].style.display = 'none';
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) buttons[j].classList.remove('active');
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule17';
+  if (visited.indexOf(currentPage) === -1) { visited.push(currentPage); localStorage.setItem(key, JSON.stringify(visited)); }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+</body>
+</html>
