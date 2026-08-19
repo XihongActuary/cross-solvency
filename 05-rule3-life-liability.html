@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3号：寿险合同负债评估 Life Insurance Contract Liability | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger active">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html" class="active">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html">数据看板</a>
+<a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a>
+  <span class="sep">›</span>
+  <a href="02-three-pillars.html">第一支柱</a>
+  <span class="sep">›</span>
+  第3号 寿险合同负债评估
+</div>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<!-- Rule Hero -->
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II · 监管规则第 3 号 · Pillar I</div>
+  <h1>第3号：寿险合同负债评估 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 认可负债的核心组成部分</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Life Insurance Contract Liability Assessment</div>
+  <div class="hero-tags">
+    <span class="rule-pillar" style="display:inline-block;background:rgba(200,152,60,0.25);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(200,152,60,0.4);color:#fdf5e6;">Pillar I · 第一支柱</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">BEL + RM + 折现率曲线</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">750日移动平均国债收益率</span>
+    <span class="rule-pillar" style="display:inline-block;background:rgba(255,255,255,0.12);padding:3px 12px;border-radius:12px;font-size:11px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);">情景法风险边际</span>
+  </div>
+</div>
+
+<!-- Rule Tabs -->
+<div class="rule-tabs" id="ruleTabs">
+  <button class="active" data-tab="overview" onclick="switchTab('overview')">概述 Overview</button>
+  <button data-tab="curve" onclick="switchTab('curve')">折现率曲线 Discount Rate Curve</button>
+  <button data-tab="phase2" onclick="switchTab('phase2')">二期变化 Phase II Changes</button>
+  <button data-tab="calc" onclick="switchTab('calc')">计算案例 Calculation Example</button>
+</div>
+
+<!-- ============== TAB 1: 概述 Overview ============== -->
+<div class="tab-content" id="tab-overview" style="display:block;">
+
+  <div class="section">
+    <h2>寿险合同负债的定义 Definition <span class="en">Life Insurance Contract Liability</span></h2>
+    <p><strong>寿险合同负债</strong>是指保险公司为履行寿险合同项下未来保险责任而计提的准备金。它是认可负债的最主要组成部分，直接决定第1号规则中认可负债的大小，进而影响实际资本（偿付能力充足率的分子）。</p>
+
+    <div class="formula">
+      <span class="label">寿险合同负债基本公式 Life Insurance Contract Liability Formula</span>
+      <span class="eq">寿险合同负债</span> = <span class="var">未到期责任准备金</span> + <span class="var">未决赔款准备金</span><br>
+      <span class="comment">Life Insurance Contract Liability = Unearned Premium Reserve + Outstanding Claims Reserve</span><br><br>
+      <span class="eq">未到期责任准备金</span> = <span class="var">最优估计准备金(BEL)</span> + <span class="var">风险边际(RM)</span><br>
+      <span class="comment">Unearned Premium Reserve = Best Estimate Liability (BEL) + Risk Margin (RM)</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">核心逻辑：BEL + RM 双层结构</div>
+      <p>寿险合同负债采用<strong>双层计量</strong>框架：<strong>最优估计准备金（BEL）</strong>反映对未来现金流的无偏预期现值，<strong>风险边际（RM）</strong>覆盖最优估计之外的不确定性。两者之和构成未到期责任准备金，再加上已发生但尚未结算的未决赔款准备金，即为完整的寿险合同负债。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>最优估计准备金 (BEL) Best Estimate Liability <span class="en">Unbiased Present Value of Future Cash Flows</span></h2>
+    <p><strong>最优估计准备金</strong>（Best Estimate Liability, BEL）是寿险合同负债的核心组成部分。它使用<strong>最优估计假设</strong>（非保守/非乐观），对未来现金流出和流入进行折现，得出净值。</p>
+
+    <div class="formula">
+      <span class="label">最优估计准备金公式 BEL Formula</span>
+      <span class="eq">BEL</span> = <span class="var">PV(未来现金流出)</span> - <span class="var">PV(未来现金流入)</span><br>
+      <span class="comment">BEL = PV(Future Cash Outflows) - PV(Future Cash Inflows)</span><br><br>
+      <span class="comment">未来现金流出包括：保险赔付、退保金、费用支出、红利支付等</span><br>
+      <span class="comment">Future Cash Outflows: claims, surrender benefits, expenses, bonuses</span><br><br>
+      <span class="comment">未来现金流入包括：保费收入、再保摊回等</span><br>
+      <span class="comment">Future Cash Inflows: premiums, reinsurance recoveries</span><br><br>
+      <span class="comment">使用特定折现率曲线对未来现金流进行折现（详见"折现率曲线"标签页）</span>
+    </div>
+
+    <h3>最优估计假设 Best Estimate Assumptions <span class="en">Unbiased Inputs</span></h3>
+    <p>BEL 计算基于以下最优估计假设（均为无偏估计，不含审慎边际，审慎性通过 RM 体现）：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">假设类别 Assumption</th>
+          <th style="width:25%">英文 English</th>
+          <th>说明 Explanation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>死亡率 / 长寿率</td>
+          <td class="en-text">Mortality / Longevity</td>
+          <td>基于行业经验生命表（如CL5），结合公司自身经验调整</td>
+        </tr>
+        <tr>
+          <td>退保率</td>
+          <td class="en-text">Lapse & Surrender Rates</td>
+          <td>基于产品特点和公司历史退保经验的最优估计</td>
+        </tr>
+        <tr>
+          <td>费用率</td>
+          <td class="en-text">Expense Assumptions</td>
+          <td>包括获取费用（佣金、核保等）和维护费用（保单管理、理赔等）</td>
+        </tr>
+        <tr>
+          <td>投资收益率</td>
+          <td class="en-text">Investment Return</td>
+          <td>用于预测未来资产收益和分红水平</td>
+        </tr>
+        <tr>
+          <td>发病率</td>
+          <td class="en-text">Morbidity</td>
+          <td>基于行业疾病发生率表的最优估计（二期新增重疾恶化因子）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout success">
+      <div class="title">BEL 与 IFRS17 的对应</div>
+      <p>BEL 的概念与 IFRS17 中的 <strong>履约现金流（Fulfillment Cash Flows）</strong>高度一致：预估未来现金流现值的无偏加权平均（概率加权）。不同的是，IFRS17 额外要求加上非金融风险的风险调整（相当于RM），而 C-ROSS 的 RM 通过情景法计算。</p>
+      <p style="margin-top:4px;">参考：<a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">IFRS17 姊妹站 — BBA通用模型 &#8599;</a></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>风险边际 (RM) Risk Margin <span class="en">Scenario-Based Approach</span></h2>
+    <p><strong>风险边际</strong>（Risk Margin, RM）用于覆盖最优估计假设之外的不确定性。C-ROSS II 采用<strong>情景法</strong>（Scenario Approach）计算 RM，而非简单的因子法或百分位法。</p>
+
+    <div class="formula">
+      <span class="label">风险边际公式 Risk Margin Formula (情景法 Scenario Approach)</span>
+      <span class="eq">RM</span> = <span class="var">max(不利情景负债 - 最优估计负债, 0)</span><br>
+      <span class="comment">RM = max(Adverse Scenario Liability - Best Estimate Liability, 0)</span><br><br>
+      <span class="comment">不利情景：对关键假设施加不利偏差（死亡率 ×1.15, 退保率 ×1.2, 费用率 ×1.1 等）</span><br>
+      <span class="comment">Adverse Scenario: apply adverse shocks to key assumptions (mortality×1.15, lapse×1.2, expense×1.1)</span><br><br>
+      <span class="comment">不利情景负债 = 在不利假设下重新计算得到的 BEL</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">情景法 vs. 分位点法 vs. CoC法</div>
+      <table style="margin-top:8px;">
+        <thead>
+          <tr>
+            <th style="width:18%">方法</th>
+            <th style="width:15%">采用方</th>
+            <th>特点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>情景法 Scenario</strong></td>
+            <td><span class="cat-badge pillar1">C-ROSS II</span></td>
+            <td>直接设定不利假设情景，计算方便透明，监管可控性强</td>
+          </tr>
+          <tr>
+            <td><strong>分位点法 VaR</strong></td>
+            <td>Swiss SST</td>
+            <td>设定目标置信水平（99.5%），需要完整概率分布模型</td>
+          </tr>
+          <tr>
+            <td><strong>资本成本法 CoC</strong></td>
+            <td>Solvency II</td>
+            <td>RM = 未来各年SCR × 资本成本率(6%) 折现求和，理论更完备但计算复杂</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:8px;">C-ROSS II 选择情景法的原因：<strong>简单透明、监管可控、与中国保险业发展阶段相适应</strong>。相比 Solvency II 的资本成本法（需逐期计算SCR），情景法大幅降低了中小公司的计算负担。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>未决赔款准备金 Outstanding Claims Reserve <span class="en">Claims Already Incurred</span></h2>
+    <p><strong>未决赔款准备金</strong>是指对截至评估日<strong>已发生但尚未结案</strong>的保险事故计提的准备金。包括已报告未决赔款（Case Reserve）和已发生未报告未决赔款（IBNR）。</p>
+
+    <div class="formula">
+      <span class="label">未决赔款准备金公式</span>
+      <span class="eq">未决赔款准备金</span> = <span class="var">已报告未决(Case Reserve)</span> + <span class="var">已发生未报告(IBNR)</span><br>
+      <span class="comment">Outstanding Claims Reserve = Case Reserve + IBNR (Incurred But Not Reported)</span>
+    </div>
+
+    <p>对于寿险公司，未决赔款准备金通常<strong>规模较小</strong>（相比未到期责任准备金），因为寿险赔付以死亡和满期为主，IBNR 相对有限。相比之下，非寿险的未决赔款准备金（特别是长尾业务如责任险）占负债的比例显著更高。</p>
+  </div>
+
+  <div class="section">
+    <h2>链接到第1号和第2号规则 Connection to Rules 1 &amp; 2 <span class="en">Solvency Ratio Chain</span></h2>
+    <p>第3号"寿险合同负债评估"处于 C-ROSS II 偿付能力计量链条的<strong>中间环节</strong>，上接实际资本（第1号），下接最低资本（第2号）：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:15%">规则</th>
+          <th style="width:28%">内容</th>
+          <th style="width:12%">在公式中的角色</th>
+          <th>第3号的连接作用</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>第1号</strong></td>
+          <td>实际资本 Actual Capital</td>
+          <td style="text-align:center;"><strong>分子</strong></td>
+          <td>寿险合同负债是<strong>认可负债</strong>的最大组成部分 → 决定实际资本大小</td>
+        </tr>
+        <tr>
+          <td><strong>第2号</strong></td>
+          <td>最低资本 Minimum Capital</td>
+          <td style="text-align:center;"><strong>分母</strong></td>
+          <td>寿险合同负债规模影响保险风险最低资本（如退保风险、长寿风险等）</td>
+        </tr>
+        <tr>
+          <td><strong>第3号</strong></td>
+          <td>寿险合同负债 Assessment</td>
+          <td style="text-align:center;"><strong>桥梁</strong></td>
+          <td><strong>← 本规则 →</strong> 同时影响偿付能力充足率的分子和分母</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      <span class="label">偿付能力充足率计算链 Solvency Ratio Chain</span>
+      <span class="eq">偿付能力充足率</span> = <span class="var">(认可资产 - 认可负债)</span> / <span class="var">最低资本</span> × 100%<br>
+      <span class="comment">= 实际资本 / 最低资本 × 100%</span><br><br>
+      <span class="comment">其中认可负债 ≈ </span><span class="var">寿险合同负债(第3号)</span> + 其他负债<br>
+      <span class="comment">最低资本含保险风险最低资本，保险风险最低资本受寿险合同负债规模影响(第2号)</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">一条完整的链条</div>
+      <p>第3号负债评估 → 第1号实际资本（分子）→ 第2号最低资本（分母）→ 偿付能力充足率。三道规则构成一个闭环，每一个环节的准确计量都至关重要。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============== TAB 2: 折现率曲线 Discount Rate Curve ============== -->
+<div class="tab-content" id="tab-curve" style="display:none;">
+
+  <div class="section">
+    <h2>折现率曲线总览 Discount Rate Curve Overview <span class="en">Three-Segment Structure</span></h2>
+    <p>C-ROSS II 对寿险合同负债的现金流折现采用<strong>特定的折现率曲线</strong>，该曲线为<strong>三段式结构</strong>，综合了市场信息与长期终极利率。折现率 = 基础利率曲线 + 综合溢价。</p>
+
+    <div class="formula">
+      <span class="label">折现率公式 Discount Rate Formula</span>
+      <span class="eq">折现率(t)</span> = <span class="var">基础利率曲线(t)</span> + <span class="var">综合溢价</span><br>
+      <span class="comment">Discount Rate(t) = Base Rate Curve(t) + Comprehensive Spread</span>
+    </div>
+
+    <h3>三段式基础利率曲线 Three-Segment Base Rate Curve</h3>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:12%">期限 t</th>
+          <th style="width:22%">曲线段</th>
+          <th style="width:22%">确定方法</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>t ≤ 20年</strong></td>
+          <td>短期/中期段</td>
+          <td><span class="cat-badge pillar1">750日移动平均国债收益率曲线</span></td>
+          <td>基于过去750个交易日的国债收益率移动平均值构建</td>
+        </tr>
+        <tr>
+          <td><strong>20 &lt; t ≤ 40年</strong></td>
+          <td>过渡段</td>
+          <td><span class="cat-badge comparison">终极利率过渡曲线（二次插值）</span></td>
+          <td>从20年期750日MA值平滑过渡至40年期的终极利率</td>
+        </tr>
+        <tr>
+          <td><strong>t &gt; 40年</strong></td>
+          <td>终极段</td>
+          <td><span class="cat-badge accounting">终极利率 UFR = 4.5%</span></td>
+          <td>固定终极远期利率（Ultimate Forward Rate）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">为什么要用 750 日移动平均？ Why 750-Day Moving Average?</div>
+      <p style="margin-bottom:6px;">C-ROSS II 对寿险负债计量采用 <strong>750 个交易日移动平均国债收益率曲线</strong>，而非即期曲线，主要原因：</p>
+      <ul>
+        <li><strong>平滑市场波动：</strong>保险负债是长期负债，折现率不应随短期市场剧烈波动而上下跳跃。750日移动平均（约3个日历年）消除了短期噪音</li>
+        <li><strong>避免顺周期效应：</strong>即期曲线在市场恐慌（利率暴跌）时会导致负债大幅膨胀，保险公司被迫补充资本——此时正是市场最缺资本的时候（"卖出资产→价格下跌→卖更多"的死亡螺旋）</li>
+        <li><strong>与国际监管趋同：</strong>Solvency II 的波动率调整（Volatility Adjuster, VA）有类似意图，但机制不同（VA = 代表公司组合的信誉利差补偿）</li>
+        <li><strong>兼顾时效性：</strong>3年窗口保证利率曲线仍能反映中长期市场趋势，不会脱离现实</li>
+      </ul>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">750日MA 的"滞后性"问题</div>
+      <p>750日移动平均在<strong>利率急剧转向时存在滞后性</strong>：在利率快速上行周期，MA 曲线低于实际市场利率，负债可能被高估；在利率快速下行周期，MA 曲线高于实际市场利率，负债可能被低估。这是平滑的代价，监管通过压力测试等方式弥补。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>终极利率过渡曲线 UFR Extrapolation <span class="en">Quadratic Interpolation 20y→40y</span></h2>
+    <p>20年至40年的<strong>过渡段</strong>使用二次插值方法，将20年期750日MA值平滑外推至40年期终极利率4.5%。</p>
+
+    <div class="formula">
+      <span class="label">过渡段二次插值公式 Quadratic Interpolation Formula</span>
+      <span class="eq">r(t)</span> = <span class="var">r<sub>20</sub></span> + (<span class="var">r<sub>UFR</sub></span> - <span class="var">r<sub>20</sub></span>) × [ (t - 20) / (40 - 20) ]<sup>2</sup><br>
+      <span class="comment">where: r<sub>20</sub> = 20年期750日MA即期利率</span><br>
+      <span class="comment">r<sub>UFR</sub> = 4.5% (终极远期利率 Ultimate Forward Rate)</span><br>
+      <span class="comment">t ∈ (20, 40], 单位：年</span><br><br>
+      <span class="comment">二次插值（而非线性插值）使得过渡前期变化较慢，避免20年处突变</span><br>
+      <span class="comment">Quadratic (not linear) interpolation ensures smooth transition at t=20</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>综合溢价 Comprehensive Spread <span class="en">Additional Premium Over Base Curve</span></h2>
+    <p><strong>综合溢价</strong>是在基础利率曲线之上附加的利差，反映保险公司投资组合可以获得的高于国债收益率的额外回报。它基于保险公司实际持仓的加权平均信用利差确定。</p>
+
+    <div class="formula">
+      <span class="label">综合溢价公式 Comprehensive Spread Formula</span>
+      <span class="eq">综合溢价</span> = <span class="var">Σ(资产权重<sub>i</sub> × 信用利差<sub>i</sub>)</span><br>
+      <span class="comment">Comprehensive Spread = Σ(Weight<sub>i</sub> × Credit Spread<sub>i</sub>)</span><br><br>
+      <span class="comment">典型值约 0.5%~1.5%，取决于公司实际投资组合结构</span>
+      <span class="comment">Typical range: 0.5%-1.5%, depending on actual portfolio mix</span>
+    </div>
+
+    <div class="callout success">
+      <div class="title">折现率曲线与负债的关系</div>
+      <p>折现率越高 → 未来现金流现值越小 → 负债越低 → 实际资本越高。<br>折现率越低 → 未来现金流现值越大 → 负债越高 → 实际资本越低。</p>
+      <p style="margin-top:4px;">对于<strong>长期保障型产品</strong>（如终身寿险，现金流集中在远期），终极利率的影响远大于短期利率。对于<strong>短期储蓄型产品</strong>，20年以内的750日MA曲线是主导因素。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>与 Solvency II 折现率曲线的比较 Comparison with Solvency II <span class="en">Risk-Free Rate Structure</span></h2>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h4>C-ROSS II (中国)</h4>
+        <div class="cc-item">
+          <span class="cc-label">基础曲线</span>
+          <span class="cc-val-cn">750日MA国债收益率曲线</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">过渡期</span>
+          <span class="cc-val-cn">20年至40年二次插值</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">终极利率 UFR</span>
+          <span class="cc-val-cn">4.5%</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">附加调整</span>
+          <span class="cc-val-cn">综合溢价</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">UFR 到达点</span>
+          <span class="cc-val-cn">40年 (LLP)</span>
+        </div>
+      </div>
+      <div class="compare-card">
+        <h4>Solvency II (欧盟)</h4>
+        <div class="cc-item">
+          <span class="cc-label">基础曲线</span>
+          <span class="cc-val-eu">EIOPA RFR (基于市场swap利率)</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">过渡期</span>
+          <span class="cc-val-eu">20年至60年 Smith-Wilson 外推</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">终极利率 UFR</span>
+          <span class="cc-val-eu">3.65% (2024年)</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">附加调整</span>
+          <span class="cc-val-eu">波动率调整 VA + 匹配调整 MA</span>
+        </div>
+        <div class="cc-item">
+          <span class="cc-label">UFR 到达点</span>
+          <span class="cc-val-eu">60年 (LLP)</span>
+        </div>
+      </div>
+    </div>
+
+    <table style="margin-top:14px;">
+      <thead>
+        <tr>
+          <th style="width:22%">对比维度</th>
+          <th style="width:36%">C-ROSS II</th>
+          <th>Solvency II</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>基础数据</td>
+          <td>中国国债收益率（750日MA）</td>
+          <td>欧元区swap利率（Smith-Wilson插值）</td>
+        </tr>
+        <tr>
+          <td>LLP</td>
+          <td>20年</td>
+          <td>20年</td>
+        </tr>
+        <tr>
+          <td>UFR收敛点</td>
+          <td>40年</td>
+          <td>60年</td>
+        </tr>
+        <tr>
+          <td>收敛速度</td>
+          <td>较快（20年内完成过渡）</td>
+          <td>较慢（40年内完成过渡）</td>
+        </tr>
+        <tr>
+          <td>UFR 水平</td>
+          <td>4.5%（固定）</td>
+          <td>逐年校准（2024年约3.65%）</td>
+        </tr>
+        <tr>
+          <td>利差调整</td>
+          <td>综合溢价（按实际持仓）</td>
+          <td>VA + MA（复杂资格审核）</td>
+        </tr>
+        <tr>
+          <td>评估频率</td>
+          <td>每季度更新MA</td>
+          <td>每月发布RFR</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <div class="title">为什么中国 UFR 更高？4.5% vs 3.65%</div>
+      <p>中国终极利率 4.5% 高于 Solvency II 的约 3.65%，反映了两大经济体长期增长潜力和利率水平的差异：</p>
+      <ul>
+        <li>中国经济增速长期高于欧元区，长期均衡利率相应更高</li>
+        <li>4.5% 参考了中国人身保险业传统定价利率上限的历史水平</li>
+        <li>更高的 UFR 使得中国长期寿险负债估值相对更"轻"（现值更小）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>利率风险最低资本用 60 日 MA 60-Day MA for Interest Rate Risk <span class="en">Rule No.8 Distinction</span></h2>
+    <div class="callout warning">
+      <div class="title">重要区分：负债折现用750日MA，利率风险最低资本用60日MA</div>
+      <p style="margin-bottom:6px;">C-ROSS II 中折现率曲线存在<strong>两种用途、两条曲线</strong>，不可混淆：</p>
+      <ul>
+        <li><strong>寿险合同负债计量（第3号）：</strong>使用 <strong>750 日 MA 国债收益率曲线</strong> + 综合溢价。目的是平滑负债估值，避免顺周期。</li>
+        <li><strong>利率风险最低资本（第8号）：</strong>使用 <strong>60 日 MA 国债收益率曲线</strong>。目的是对近期利率变化更敏感，及时反映利率风险。</li>
+      </ul>
+    </div>
+    <p>这种设计体现了"审慎的负债估值 + 灵敏的风险计量"的监管思路：负债用长窗口平滑，避免短期波动干扰；风险计量用短窗口灵敏，及时捕捉风险变化。</p>
+  </div>
+
+</div>
+
+<!-- ============== TAB 3: 二期变化 Phase II Changes ============== -->
+<div class="tab-content" id="tab-phase2" style="display:none;">
+
+  <div class="section">
+    <h2>二期变化概览 Phase II Changes <span class="en">Life Liability Assessment Reforms</span></h2>
+    <p>与一期相比，C-ROSS 二期在寿险合同负债评估方面的变化相对较小——<strong>整体框架</strong>（BEL + RM + 折现率曲线 + 情景法）保持不变，但二期对若干细节进行了<strong>完善和审慎化</strong>：</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">变化领域</th>
+          <th style="width:32%">一期做法</th>
+          <th style="width:32%">二期改革</th>
+          <th>影响</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>折现率曲线</strong></td>
+          <td>750日移动平均国债收益率曲线</td>
+          <td>750日MA <strong>保持不变</strong>，<br>但完善了终极利率过渡曲线方法</td>
+          <td>中期评估</td>
+        </tr>
+        <tr>
+          <td><strong>利率风险曲线</strong></td>
+          <td>与负债折现共用同一曲线</td>
+          <td><strong>新增60日MA</strong>用于利率风险最低资本（第8号）</td>
+          <td>较高</td>
+        </tr>
+        <tr>
+          <td><strong>重疾恶化因子</strong></td>
+          <td>未专项考虑恶化趋势</td>
+          <td><strong>新增重疾恶化因子</strong>影响现金流假设</td>
+          <td>中高</td>
+        </tr>
+        <tr>
+          <td><strong>最优估计假设</strong></td>
+          <td>基本审慎要求</td>
+          <td>要求<strong>更加审慎</strong>，需定期回顾验证</td>
+          <td>中等</td>
+        </tr>
+        <tr>
+          <td><strong>过渡曲线</strong></td>
+          <td>方法较简化</td>
+          <td><strong>完善二次插值方法</strong>，明确UFR外推路径</td>
+          <td>中等</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>变化1：折现率曲线结构基本一致 Discount Rate Curve <span class="en">Core Framework Unchanged</span></h2>
+    <p>二期的折现率曲线<strong>基本延续一期框架</strong>：750日MA + 终极利率过渡 + 终极利率4.5%。一期与二期的核心差异在于<strong>过渡方法的完善</strong>——二期更明确地规定了从20年到40年的二次插值路径，使过渡更加平滑和规范。</p>
+
+    <div class="callout info">
+      <div class="title">一期 vs 二期：过渡方法的对比</div>
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>一期</th>
+            <th>二期</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>20年以内</td>
+            <td>750日MA ✓</td>
+            <td>750日MA ✓（不变）</td>
+          </tr>
+          <tr>
+            <td>过渡段 20-40年</td>
+            <td>方法较简化</td>
+            <td>二次插值 r(t)=r<sub>20</sub>+(UFR-r<sub>20</sub>)×[(t-20)/20]²</td>
+          </tr>
+          <tr>
+            <td>40年以上</td>
+            <td>UFR 4.5% ✓</td>
+            <td>UFR 4.5% ✓（不变）</td>
+          </tr>
+          <tr>
+            <td>综合溢价</td>
+            <td>有</td>
+            <td>有（参数更明确）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化2：新增 60 日 MA 用于利率风险最低资本 60-Day MA for IR Risk <span class="en">Rule No.8 — Dual-Curve System</span></h2>
+    <div class="callout success">
+      <div class="title">重大创新：双曲线体系</div>
+      <p>二期最重要的变化之一是引入<strong>双曲线体系</strong>：负债评估用 750 日 MA（长窗口、平滑），利率风险计量用 60 日 MA（短窗口、灵敏）。这解决了单一曲线"既要平滑（避免负值波动）又要灵敏（反映风险变化）"的内在矛盾。</p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:20%">用途</th>
+          <th style="width:18%">曲线</th>
+          <th style="width:12%">规则</th>
+          <th>目的</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>寿险负债评估</td>
+          <td><strong>750日MA</strong></td>
+          <td>第3号</td>
+          <td>平滑负债估值，避免顺周期效应</td>
+        </tr>
+        <tr>
+          <td>利率风险最低资本</td>
+          <td><strong>60日MA</strong></td>
+          <td>第8号</td>
+          <td>对利率变化及时反映，捕捉风险</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warning">
+      <div class="title">双曲线的实际影响</div>
+      <p>在利率快速下行周期（如2020-2024年），750日MA负债折现率可能仍处于历史较高水平（有滞后），导致负债变轻、实际资本偏大；但60日MA风险曲线已经及时反映利率市场下降，导致利率风险最低资本上升。两者共同作用 → 偿付能力充足率面临双重压力。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化3：新增重疾恶化因子 Critical Illness Deterioration Factor <span class="en">CI Trend in Cash Flow Projections</span></h2>
+    <div class="callout danger">
+      <div class="title">改革背景</div>
+      <p>中国重大疾病发生率在过去十年中呈现<strong>持续上升趋势</strong>（受诊断技术进步、环境污染、生活方式变化等因素影响）。一期最优估计假设基于静态发生率表，未能反映这一恶化趋势，导致重疾险 BEL 被系统性低估。</p>
+    </div>
+    <div class="callout success">
+      <div class="title">二期改革</div>
+      <p>二期要求保险公司在<strong>现金流预测中纳入重疾恶化因子</strong>：对未来各年的重疾发生率施加逐年递增的恶化调整，使BEL更审慎地反映重疾风险的趋势性上升。同时在第2号规则（最低资本）的疾病风险中增加相应的恶化因子，实现负债评估与风险计量的"双保险"。</p>
+    </div>
+
+    <div class="formula">
+      <span class="label">重疾恶化因子示意 CI Deterioration Factor Illustration</span>
+      <span class="eq">发生率<sub>t</sub></span> = <span class="var">发生率<sub>基准</sub></span> × (1 + <span class="var">恶化因子</span>)<sup>t</sup><br>
+      <span class="comment">q<sub>t</sub> = q<sub>base</sub> × (1 + d)<sup>t</sup></span><br>
+      <span class="comment">where d = 恶化因子（年化，监管根据行业统计定期更新）</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>变化4：最优估计假设要求更审慎 More Prudent BE Assumptions <span class="en">Enhanced Prudence Requirements</span></h2>
+    <div class="callout info">
+      <div class="title">审慎性强化措施</div>
+      <ul>
+        <li><strong>假设回顾验证：</strong>保险公司须定期（至少每年一次）<strong>回顾并验证</strong>最优估计假设与实际经验的偏差</li>
+        <li><strong>偏差分析：</strong>对假设与实际发生值的偏差进行<strong>系统分析</strong>，超出阈值的须调整假设并报备</li>
+        <li><strong>文档化要求：</strong>假设的选取依据、调整过程和验证结果须<strong>完整记录</strong></li>
+        <li><strong>监管审查权：</strong>监管机构保留对假设审慎性进行<strong>独立评估和调整</strong>的权力</li>
+      </ul>
+    </div>
+    <p>这些措施的核心理念：最优估计假设虽然应力求"无偏"，但在实际运营中保险公司可能存在<strong>系统性乐观偏差</strong>（低估费用、高估退保率从而低估退保损失、高估投资收益等），二期通过强化回溯验证和监管审查，减少这种偏差。</p>
+  </div>
+
+</div>
+
+<!-- ============== TAB 4: 计算案例 Calculation Example ============== -->
+<div class="tab-content" id="tab-calc" style="display:none;">
+
+  <div class="section">
+    <h2>计算案例：西红人寿 — 终身寿险负债评估 Worked Example <span class="en">Anxin Life — Whole Life Insurance Liability</span></h2>
+
+    <div class="callout info">
+      <div class="title">案例背景 Case Background</div>
+      <p><strong>西红人寿保险公司</strong>（Anxin Life Insurance Co., Ltd.），继续前两个案例的分析。<br>
+      评估日期：<strong>2024年12月31日</strong> &nbsp;|&nbsp; 单位：<strong>万元（除特别说明外）</strong><br>
+      <span style="color:var(--c-text-muted);">本案例计算结果（寿险合同负债 = 4,950万）将对接第1号案例的认可负债计算。</span></p>
+    </div>
+
+    <div class="callout warning">
+      <div class="title">教学说明 Educational Note</div>
+      <p><strong>本案例为简化的教学示例</strong>，仅演示核心计算逻辑。实际评估中需逐保单/逐模型点计算未来各期现金流，并严格按监管规定的折现率曲线和方法执行。对于现金流预测，此处仅列出关键年份以说明逻辑。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>产品信息 Product Information <span class="en">Anxin Whole Life (Participating)</span></h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:28%">参数 Parameter</th>
+          <th style="width:28%">数值 Value</th>
+          <th>说明 Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>产品名称</td>
+          <td><strong>西红终身寿险（分红型）</strong></td>
+          <td class="en-text">Xihong Whole Life (Participating)</td>
+        </tr>
+        <tr>
+          <td>保单数</td>
+          <td style="text-align:right;"><strong>10,000 件</strong></td>
+          <td>假设均匀分布</td>
+        </tr>
+        <tr>
+          <td>平均保额</td>
+          <td style="text-align:right;"><strong>100,000 元/件</strong></td>
+          <td>每件死亡赔付</td>
+        </tr>
+        <tr>
+          <td>总保额</td>
+          <td style="text-align:right;font-weight:700;color:var(--c-primary);"><strong>10 亿元</strong></td>
+          <td>10,000 × 100,000</td>
+        </tr>
+        <tr>
+          <td>被保险人平均年龄</td>
+          <td style="text-align:right;"><strong>45 岁</strong></td>
+          <td>剩余生命期望约35-40年</td>
+        </tr>
+        <tr>
+          <td>剩余缴费期</td>
+          <td style="text-align:right;"><strong>15 年</strong></td>
+          <td>45岁→缴费至60岁</td>
+        </tr>
+        <tr>
+          <td>年缴保费</td>
+          <td style="text-align:right;"><strong>3,000 元/件</strong></td>
+          <td>年缴总保费 = 3,000 × 10,000 = 3,000万</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">1</span>
+      <span class="cs-title">未来现金流预测 Future Cash Flow Projection</span>
+    </div>
+    <p style="font-size:13px;">基于最优估计假设，预测未来各年的现金流。以下列出关键年龄点的假设和计算结果（简化版，仅以关键年份示意）。</p>
+
+    <h4 style="margin-top:14px;">关键假设 Key Assumptions</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">假设类别</th>
+          <th style="width:22%">参数</th>
+          <th style="width:20%">取值</th>
+          <th>来源/说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="3"><strong>死亡率 Mortality</strong></td>
+          <td>45岁</td>
+          <td style="font-family:var(--font-mono);">q = 0.002</td>
+          <td rowspan="3">中国人身保险业经验生命表 CL5</td>
+        </tr>
+        <tr>
+          <td>60岁</td>
+          <td style="font-family:var(--font-mono);">q = 0.007</td>
+        </tr>
+        <tr>
+          <td>80岁</td>
+          <td style="font-family:var(--font-mono);">q = 0.045</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><strong>退保率 Lapse</strong></td>
+          <td>前5年</td>
+          <td style="font-family:var(--font-mono);">5%</td>
+          <td rowspan="3">基于公司历史经验，前端退保率高</td>
+        </tr>
+        <tr>
+          <td>6-10年</td>
+          <td style="font-family:var(--font-mono);">3%</td>
+        </tr>
+        <tr>
+          <td>11年以后</td>
+          <td style="font-family:var(--font-mono);">2%</td>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>费用率 Expense</strong></td>
+          <td>首年</td>
+          <td style="font-family:var(--font-mono);">保费 × 50%</td>
+          <td>含佣金、体检、出单等获取费用</td>
+        </tr>
+        <tr>
+          <td>续年</td>
+          <td style="font-family:var(--font-mono);">保费 × 5%</td>
+          <td>保单维护费用</td>
+        </tr>
+        <tr>
+          <td><strong>投资收益率</strong></td>
+          <td>长期平均</td>
+          <td style="font-family:var(--font-mono);">4.5%</td>
+          <td>用于分红预测，折现率单独确定</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top:16px;">关键年份净现金流示意（简化）</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:12%">年 t</th>
+          <th style="width:12%">年龄 Age</th>
+          <th style="width:18%">保费收入流入</th>
+          <th style="width:18%">赔付+退保+费用流出</th>
+          <th style="width:18%">净现金流 CF<sub>t</sub></th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:center;">45</td>
+          <td style="text-align:right;">+1,425万</td>
+          <td style="text-align:right;">-200万</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-green);">+1,225万</td>
+          <td>净流入（缴费期）</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">5</td>
+          <td style="text-align:center;">49</td>
+          <td style="text-align:right;">+2,700万</td>
+          <td style="text-align:right;">-380万</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-green);">+2,320万</td>
+          <td>净流入（退保率下降后收入增加）</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">10</td>
+          <td style="text-align:center;">54</td>
+          <td style="text-align:right;">+2,850万</td>
+          <td style="text-align:right;">-650万</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-green);">+2,200万</td>
+          <td>净流入</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">16</td>
+          <td style="text-align:center;">60</td>
+          <td style="text-align:right;">0</td>
+          <td style="text-align:right;">-1,100万</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-red);">-1,100万</td>
+          <td>净流出（缴费期结束）</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">25</td>
+          <td style="text-align:center;">69</td>
+          <td style="text-align:right;">0</td>
+          <td style="text-align:right;">-2,400万</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-red);">-2,400万</td>
+          <td>净流出（死亡率上升）</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">40</td>
+          <td style="text-align:center;">84</td>
+          <td style="text-align:right;">0</td>
+          <td style="text-align:right;">-5,000万</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-red);">-5,000万</td>
+          <td>净流出（死亡高峰）</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top:14px;">t=1 年现金流详细计算</h4>
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">[t=1 现金流入 — 保费收入]</span><br>
+      保费收入 = 3,000 × 10,000 = 3,000万<br>
+      退保扣除 = 3,000万 × 5%(退保率) = 150万<br>
+      首年费用 = 3,000万 × 50%(费用率) = 1,500万<br>
+      净现金流入 = 3,000 × (1 - 5%) × (1 - 50%) = <strong>1,425万</strong><br><br>
+      <span style="color:var(--c-accent);">[t=1 现金流出 — 赔付]</span><br>
+      赔付支出 = 10,000件 × 0.002(死亡概率) × 100,000 = <strong>200万</strong><br><br>
+      <span style="color:var(--c-accent);">[t=1 净现金流]</span><br>
+      CF<sub>1</sub> = 1,425 - 200 = <strong style="color:var(--c-green);">+1,225万</strong> （净流入 / Net Inflow）
+    </div>
+    <div class="cs-note">注：实际BEL计算需要逐年预测所有未来的现金流（通常预测至120岁），此处仅展示关键年份作为示意。</div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">2</span>
+      <span class="cs-title">折现率曲线 Discount Rate Curve</span>
+    </div>
+    <p style="font-size:13px;">基准日：2024年12月31日。基于750日移动平均国债收益率（假设值）+ 综合溢价 1.0% 构建折现率曲线。</p>
+
+    <h4 style="margin-top:14px;">折现率曲线（分段）</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:10%">期限 t</th>
+          <th style="width:15%">区间</th>
+          <th style="width:18%">750日MA基础</th>
+          <th style="width:12%">综合溢价</th>
+          <th style="width:18%">折现率 r(t)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;">1年</td>
+          <td rowspan="4">t ≤ 20年<br>750日MA</td>
+          <td style="text-align:right;">2.15%</td>
+          <td style="text-align:center;">1.0%</td>
+          <td style="text-align:right;font-weight:600;">3.15%</td>
+          <td>短端</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">5年</td>
+          <td style="text-align:right;">2.50%</td>
+          <td style="text-align:center;">1.0%</td>
+          <td style="text-align:right;font-weight:600;">3.50%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">10年</td>
+          <td style="text-align:right;">2.80%</td>
+          <td style="text-align:center;">1.0%</td>
+          <td style="text-align:right;font-weight:600;">3.80%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">20年</td>
+          <td style="text-align:right;">3.20%</td>
+          <td style="text-align:center;">1.0%</td>
+          <td style="text-align:right;font-weight:600;">4.20%</td>
+          <td>LLP (Last Liquid Point)</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">25年</td>
+          <td>过渡段<br>20&lt;t≤40</td>
+          <td style="text-align:right;">3.85%</td>
+          <td style="text-align:center;">1.0%</td>
+          <td style="text-align:right;font-weight:600;">4.85%</td>
+          <td>二次插值：r(t) = 4.20% + (5.50%-4.20%)×((25-20)/20)²</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">40年</td>
+          <td rowspan="2">t &gt; 40年<br>UFR</td>
+          <td style="text-align:right;">4.50%</td>
+          <td style="text-align:center;">1.0%</td>
+          <td style="text-align:right;font-weight:600;">5.50%</td>
+          <td>到达UFR</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">60年</td>
+          <td style="text-align:right;">4.50%</td>
+          <td style="text-align:center;">1.0%</td>
+          <td style="text-align:right;font-weight:600;">5.50%</td>
+          <td>UFR段 = 终极利率 + 综合溢价</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info" style="margin-top:10px;">
+      <div class="title">折现率曲线的含义</div>
+      <p>对于中短期现金流（缴费期保费收入，前15年），使用3.15%-4.20%的折现率；对于长期现金流（死亡赔付，可能延伸至40-60年），使用4.20%-5.50%的折现率。折现率随期限增加而上升，反映了正常的利率期限结构。</p>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">3</span>
+      <span class="cs-title">最优估计准备金 BEL 计算 Best Estimate Liability Calculation</span>
+    </div>
+    <p style="font-size:13px;">将未来各年净现金流按对应的折现率折现到评估日（2024-12-31），再按现值汇总。</p>
+
+    <div class="formula">
+      <span class="label">BEL 通用公式 General BEL Formula</span>
+      <span class="eq">BEL</span> = <span class="var">Σ CF<sub>t</sub> / (1 + r<sub>t</sub>)<sup>t</sup></span><br>
+      <span class="comment">= PV(未来现金流出) - PV(未来现金流入)</span><br>
+      <span class="comment">= PV(赔付 + 费用 + 退保金 + 分红) - PV(保费)</span>
+    </div>
+
+    <h4 style="margin-top:14px;">关键现金流现值计算（简化示意）</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:8%">t</th>
+          <th style="width:14%">净现金流 CF<sub>t</sub></th>
+          <th style="width:12%">r(t)</th>
+          <th style="width:18%">折现因子 1/(1+r)<sup>t</sup></th>
+          <th style="width:18%">现值 PV(CF<sub>t</sub>)</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:right;color:var(--c-green);">+1,225万</td>
+          <td style="text-align:center;">3.15%</td>
+          <td style="text-align:right;font-family:var(--font-mono);">0.9694</td>
+          <td style="text-align:right;color:var(--c-green);">+1,187万</td>
+          <td>缴费期净流入</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">5</td>
+          <td style="text-align:right;color:var(--c-green);">+2,320万</td>
+          <td style="text-align:center;">3.50%</td>
+          <td style="text-align:right;font-family:var(--font-mono);">0.8419</td>
+          <td style="text-align:right;color:var(--c-green);">+1,953万</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">10</td>
+          <td style="text-align:right;color:var(--c-green);">+2,200万</td>
+          <td style="text-align:center;">3.80%</td>
+          <td style="text-align:right;font-family:var(--font-mono);">0.6887</td>
+          <td style="text-align:right;color:var(--c-green);">+1,515万</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">16</td>
+          <td style="text-align:right;color:var(--c-red);">-1,100万</td>
+          <td style="text-align:center;">4.20%</td>
+          <td style="text-align:right;font-family:var(--font-mono);">0.5168</td>
+          <td style="text-align:right;color:var(--c-red);">-568万</td>
+          <td>缴费期结束，开始净流出</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">25</td>
+          <td style="text-align:right;color:var(--c-red);">-2,400万</td>
+          <td style="text-align:center;">4.85%</td>
+          <td style="text-align:right;font-family:var(--font-mono);">0.3060</td>
+          <td style="text-align:right;color:var(--c-red);">-734万</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">40</td>
+          <td style="text-align:right;color:var(--c-red);">-5,000万</td>
+          <td style="text-align:center;">5.50%</td>
+          <td style="text-align:right;font-family:var(--font-mono);">0.1169</td>
+          <td style="text-align:right;color:var(--c-red);">-584万</td>
+          <td>死亡高峰但远期折现因子很小</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cs-formula" style="margin-top:14px;">
+      <span style="color:var(--c-accent);">[全部年份汇总（简化，取整数）]</span><br>
+      PV(未来现金流出) --- 赔付 + 退保 + 费用 + 分红的现值 = <strong>6,800 万</strong><br>
+      PV(未来现金流入) --- 保费收入的现值 = <strong>2,600 万</strong><br><br>
+      <span style="color:var(--c-accent);">BEL = PV(流出) - PV(流入)</span><br>
+      BEL = 6,800 - 2,600 = <strong style="color:#4caf50;font-size:16px;">4,200 万</strong>
+    </div>
+
+    <div class="callout success">
+      <div class="title">BEL = 4,200 万 的含义分析</div>
+      <p style="margin-bottom:6px;">BEL 为正（4,200万），说明未来现金<strong>流出大于流入</strong>——这是典型的终身寿险特征：</p>
+      <ul>
+        <li>前15年（缴费期）：保费持续流入，但扣除费用和少量赔付后仍为净流入</li>
+        <li>第16年起（缴费期结束）：保费为零，但死亡赔付和费用持续流出，且死亡率随年龄递增</li>
+        <li>整体上流入现值（2,600万）< 流出现值（6,800万），BEL = 4,200万</li>
+      </ul>
+      <p style="margin-top:4px;">这是<strong>盈利合同</strong>吗？从 BEL 角度看是的（保费设计覆盖了未来赔付），但盈利通过 BEL 中的利润边际体现。</p>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="calc-step">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num">4</span>
+      <span class="cs-title">风险边际 RM 计算（情景法） Risk Margin (Scenario Approach)</span>
+    </div>
+    <p style="font-size:13px;">按 C-ROSS II 要求，使用情景法计算风险边际。对关键假设施加不利偏差，重新计算 BEL（不利情景负债），RM = max(不利情景负债 - 最优估计负债, 0)。</p>
+
+    <h4 style="margin-top:14px;">不利情景假设 Adverse Scenario Assumptions</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">假设 Assumption</th>
+          <th style="width:16%">不利冲击</th>
+          <th style="width:22%">最优估计值</th>
+          <th style="width:22%">不利情景值</th>
+          <th>影响方向</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>死亡率 Mortality</td>
+          <td style="text-align:center;color:var(--c-red);font-weight:600;">× 1.15</td>
+          <td>见 Step 1</td>
+          <td>各年龄 q 均 × 1.15</td>
+          <td>赔付增加 → 负债上升</td>
+        </tr>
+        <tr>
+          <td>退保率 Lapse</td>
+          <td style="text-align:center;color:var(--c-red);font-weight:600;">× 1.2</td>
+          <td>5%/3%/2%</td>
+          <td>6%/3.6%/2.4%</td>
+          <td>退保增加 → 现金价值支出增加</td>
+        </tr>
+        <tr>
+          <td>费用率 Expense</td>
+          <td style="text-align:center;color:var(--c-red);font-weight:600;">× 1.1</td>
+          <td>首年50%/续年5%</td>
+          <td>首年55%/续年5.5%</td>
+          <td>费用增加 → 净现金流入减少</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top:16px;">不利情景下重新计算 BEL</h4>
+    <p style="font-size:13px;">在不利情景假设下，重新运行现金流预测模型，得到不利情景下的 BEL：</p>
+
+    <div class="cs-formula">
+      <span style="color:var(--c-accent);">不利情景下的变化分析：</span><br>
+      <br>
+      1. 死亡率 × 1.15：各年赔付支出增加约 15%，PV(流出) ↑<br>
+      &nbsp;&nbsp;&nbsp;PV(流出) 新增 ≈ 约 350万<br><br>
+      2. 退保率 × 1.2：前5年退保从 5% → 6%，退保金支出增加<br>
+      &nbsp;&nbsp;&nbsp;同时退保后的保单减少使远期死亡赔付略降<br>
+      &nbsp;&nbsp;&nbsp;净效应 ≈ 约 150万<br><br>
+      3. 费用率 × 1.1：费用增加使净现金流减少<br>
+      &nbsp;&nbsp;&nbsp;PV(流出) 新增 ≈ 约 100万<br><br>
+      <span style="color:var(--c-accent);">汇总：</span><br>
+      不利情景 BEL ≈ 4,200万 + 350万 + 150万 + 100万 = <strong>4,800 万</strong>
+    </div>
+
+    <div class="formula" style="margin-top:10px;">
+      <span class="label">风险边际计算 RM Calculation</span>
+      <span class="eq">RM</span> = <span class="var">max(不利情景负债 - 最优估计负债, 0)</span><br>
+      = max(4,800 - 4,200, 0)<br>
+      = <strong style="color:#4caf50;font-size:16px;">600 万</strong><br><br>
+      <span class="comment">RM 占 BEL 的比例 = 600 / 4,200 = 14.3%</span>
+    </div>
+
+    <div class="callout info">
+      <div class="title">情景法的含义</div>
+      <p>RM = 600万意味着：在最优化估计假设（BEL = 4,200万）基础上，额外计提 600万 的风险边际，覆盖假设不利偏差可能带来的负债增加。RM 不为零说明在最优化估计下负债仍有不确定性——不利情景使负债增加 14.3%。</p>
+    </div>
+  </div>
+
+  <!-- Step 5 -->
+  <div class="calc-step" style="border:2px solid var(--c-accent);">
+    <div style="display:flex;align-items:center;margin-bottom:10px;">
+      <span class="cs-num" style="background:var(--c-accent);">5</span>
+      <span class="cs-title">寿险合同负债汇总 Life Insurance Contract Liability Total</span>
+    </div>
+
+    <h4 style="margin-top:14px;">未决赔款准备金</h4>
+    <p style="font-size:13px;">假设截至评估日，有少量已发生但尚未结案的死亡赔付案件：</p>
+    <div class="cs-formula">
+      未决赔款准备金 = 已报告未决 90万 + IBNR 60万 = <strong>150 万</strong><br>
+      <span class="comment">Outstanding Claims Reserve = Case Reserve 90 + IBNR 60 = 150</span>
+    </div>
+
+    <h4 style="margin-top:16px;">汇总表 Summary Table</h4>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:30%">项目 Item</th>
+          <th style="width:18%">金额（万元）</th>
+          <th style="width:20%">公式</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>最优估计准备金 BEL</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-primary);">4,200</td>
+          <td>PV(流出)-PV(流入)</td>
+          <td>基础层</td>
+        </tr>
+        <tr>
+          <td>风险边际 RM</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-amber);">600</td>
+          <td>max(不利情景BEL-最优BEL, 0)</td>
+          <td>覆盖不确定性</td>
+        </tr>
+        <tr>
+          <td><strong>未到期责任准备金</strong></td>
+          <td style="text-align:right;font-weight:700;color:var(--c-primary-dark);"><strong>4,800</strong></td>
+          <td>BEL + RM</td>
+          <td>小计</td>
+        </tr>
+        <tr>
+          <td>未决赔款准备金</td>
+          <td style="text-align:right;font-weight:600;color:var(--c-teal);">150</td>
+          <td>Case + IBNR</td>
+          <td>已发生未结案</td>
+        </tr>
+        <tr style="background:var(--c-accent-light);">
+          <td><strong>寿险合同负债</strong></td>
+          <td style="text-align:right;font-weight:700;font-size:16px;color:var(--c-primary-dark);"><strong>4,950</strong></td>
+          <td>4,800 + 150</td>
+          <td><strong>最终结果</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cs-result" style="font-size:16px;margin-top:10px;">
+      寿险合同负债 = 4,200(BEL) + 600(RM) + 150(未决赔款) = <strong style="color:var(--c-teal);">4,950 万元</strong>
+    </div>
+  </div>
+
+  <!-- 链接到第1号案例 -->
+  <div class="section" style="border:2px solid var(--c-teal);">
+    <h2>对接第1号案例：融入认可负债 Connect to Rule 1 <span class="en">Admitted Liability Calculation</span></h2>
+
+    <div class="callout info">
+      <div class="title">回顾：第1号案例中西红人寿的负债结构</div>
+      <p>第1号案例中，西红人寿 2024年末的认可负债总额为 <strong>183,000 万元</strong>。其中寿险合同负债（4,950万 = 第3号计算结果）是认可负债的重要组成部分，其余负债包括：非寿险准备金、应付债券、次级债、递延所得税负债、其他负债等。</p>
+    </div>
+
+    <div class="formula">
+      <span class="label">认可负债中包含寿险合同负债</span>
+      <span class="eq">认可负债</span> = <span class="var">寿险合同负债(第3号)</span> + 其他负债<br>
+      = 4,950 + 178,050 = <strong>183,000 万</strong><br><br>
+      <span class="eq">实际资本</span> = <span class="var">认可资产</span> - <span class="var">认可负债</span> = 240,000 - 183,000 = 57,000 万
+    </div>
+
+    <div class="callout success">
+      <div class="title">闭环验证：三道规则的数值关系</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:15%">规则</th>
+            <th style="width:28%">计算内容</th>
+            <th style="width:22%">结果</th>
+            <th>在充足率中的位置</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>第1号</strong></td>
+            <td>实际资本 = 认可资产 - 认可负债</td>
+            <td style="text-align:right;font-weight:600;">57,000万</td>
+            <td><strong>分子</strong></td>
+          </tr>
+          <tr>
+            <td><strong>第3号</strong></td>
+            <td>寿险合同负债 = BEL + RM + 未决赔款</td>
+            <td style="text-align:right;font-weight:600;">4,950万</td>
+            <td>分子中认可负债的子项</td>
+          </tr>
+          <tr>
+            <td><strong>第2号</strong></td>
+            <td>最低资本 = MC<sub>可资本化</sub> + MC<sub>控制</sub></td>
+            <td style="text-align:right;font-weight:600;">20,081万</td>
+            <td><strong>分母</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;">
+        <strong>综合偿付能力充足率</strong> = 57,000 / 20,081 = <strong>284%</strong> &nbsp;|&nbsp;
+        <strong>核心偿付能力充足率</strong> = 46,800 / 20,081 = <strong>233%</strong>
+      </p>
+      <p style="margin-top:4px;font-size:12px;color:var(--c-text-muted);">
+        三条规则构成完整闭环：第3号评估负债 → 第1号计算实际资本 → 第2号确定最低资本 → 偿付能力充足率。
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 · 知识矩阵</p>
+  <p>信息来源：国家金融监督管理总局（原银保监会）《保险公司偿付能力监管规则（Ⅱ）》银保监发〔2021〕51号 第3号：寿险合同负债评估<br>
+  参考：EIOPA Solvency II Technical Provisions、中国人身保险业经验生命表CL5</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+// Tab Switching
+function switchTab(tabId) {
+  var contents = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].style.display = 'none';
+  }
+  document.getElementById('tab-' + tabId).style.display = 'block';
+  var buttons = document.querySelectorAll('#ruleTabs button');
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].classList.remove('active');
+  }
+  document.querySelector('#ruleTabs button[data-tab="' + tabId + '"]').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Save last active tab
+  localStorage.setItem('cross_rule3_activeTab', tabId);
+}
+
+// Progress Tracking
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'rule3';
+  if (visited.indexOf(currentPage) === -1) {
+    visited.push(currentPage);
+    localStorage.setItem(key, JSON.stringify(visited));
+  }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+
+  // Restore last active tab
+  var savedTab = localStorage.getItem('cross_rule3_activeTab');
+  if (savedTab && document.getElementById('tab-' + savedTab)) {
+    switchTab(savedTab);
+  }
+})();
+</script>
+
+</body>
+</html>
