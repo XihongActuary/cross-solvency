@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据看板 Data Dashboard | C-ROSS II 偿付能力知识库</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.dash-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 20px; }
+.dash-card { background: var(--c-surface); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+.dash-card h3 { font-size: 15px; color: var(--c-primary); margin-bottom: 14px; border-bottom: 2px solid var(--c-border); padding-bottom: 8px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.kpi-item { text-align: center; padding: 14px 8px; border-radius: 8px; background: var(--c-bg); }
+.kpi-value { font-size: 28px; font-weight: 700; color: var(--c-primary); }
+.kpi-label { font-size: 12px; color: var(--c-text-secondary); margin-top: 4px; }
+.kpi-min { font-size: 11px; color: var(--c-text-muted); }
+.bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 200px; padding: 10px 0; border-bottom: 2px solid var(--c-border); }
+.bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.bar-fill { width: 100%; border-radius: 4px 4px 0 0; transition: height 0.5s; position: relative; min-height: 2px; }
+.bar-label { font-size: 11px; color: var(--c-text-secondary); text-align: center; white-space: nowrap; }
+.bar-value { font-size: 12px; font-weight: 600; }
+.donut-container { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.donut-legend { display: flex; flex-direction: column; gap: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.trend-chart { width: 100%; height: 220px; }
+.trend-line { fill: none; stroke-width: 2.5; }
+.trend-point { r: 4; }
+.threshold-line { stroke-dasharray: 5 3; stroke-width: 1.5; }
+.threshold-label { font-size: 11px; fill: var(--c-text-muted); }
+.compare-table th, .compare-table td { text-align: center; padding: 8px; }
+.compare-table .pass { color: var(--c-green); font-weight: 600; }
+.compare-table .fail { color: var(--c-red); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- Top Nav -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="brand">C-ROSS <span>偿付能力知识库</span></div>
+    <a href="https://xihongactuary-ifrs17.netlify.app" class="sister-site" target="_blank">IFRS17 姊妹站 &#8599;</a>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">首页</a>
+    <a href="01-glossary.html">术语词典</a>
+    <a href="02-three-pillars.html">三支柱</a>
+    <div class="nav-dropdown">
+      <a class="dd-trigger">规则精读</a>
+      <div class="dd-menu">
+        <a href="03-rule1-actual-capital.html">第1号 实际资本</a>
+        <a href="04-rule2-minimum-capital.html">第2号 最低资本</a>
+        <a href="05-rule3-life-liability.html">第3号 寿险负债评估</a>
+        <div class="dd-sep"></div>
+        <a href="07-rule4-nonlife-insurance-risk.html">第4号 非寿险保险风险</a>
+        <a href="08-rule5-life-insurance-risk.html">第5号 寿险保险风险</a>
+        <a href="09-rule6-reinsurance-risk.html">第6号 再保险风险</a>
+        <a href="10-rule7-look-through.html">第7号 穿透计量</a>
+        <a href="11-rule8-market-risk.html">第8号 市场风险</a>
+        <a href="12-rule9-credit-risk.html">第9号 信用风险</a>
+        <a href="13-rule10-stress-testing.html">第10号 压力测试</a>
+        <div class="dd-sep"></div>
+        <a href="15-rule11-irr.html">第11号 风险综合评级</a>
+        <a href="16-rule12-sarmra.html">第12号 SARMRA</a>
+        <a href="17-rule13-liquidity-risk.html">第13号 流动性风险</a>
+        <a href="18-rule14-capital-planning.html">第14号 资本规划</a>
+        <a href="19-rule15-information-disclosure.html">第15号 信息披露</a>
+        <a href="20-rule16-information-exchange.html">第16号 信息交流</a>
+        <a href="21-rule17-credit-rating.html">第17号 信用评级</a>
+        <a href="22-rule18-solvency-report.html">第18号 偿付能力报告</a>
+        <a href="23-rule19-group-supervision.html">第19号 保险集团</a>
+        <a href="24-rule20-lloyds.html">第20号 劳合社</a>
+      </div>
+    </div>
+    <a href="14-calculator-workshop.html">计算工坊</a>
+    <a href="25-interactive-quiz.html">互动测验</a>
+    <a href="26-data-dashboard.html" class="active">数据看板</a>
+    <a href="06-compare-solvency2.html">对比研究</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">C-ROSS Home</a> <span class="sep">›</span>
+  数据看板
+</div>
+
+<div class="progress-tracker">
+  <span class="pt-label">学习进度 Learning Progress</span>
+  <div class="pt-bar"><div class="pt-fill" id="ptFill" style="width:0%"></div></div>
+  <span class="pt-pct" id="ptPct">0%</span>
+</div>
+
+<div class="container">
+
+<div class="rule-hero">
+  <div class="rule-num">C-ROSS Phase II &middot; 数据可视化</div>
+  <h1>数据看板 <span style="font-size:14px;font-weight:400;opacity:0.7;">—— 行业偿付能力全景可视化</span></h1>
+  <div class="en-title" style="margin-top:4px;font-size:13px;opacity:0.65;">Industry Solvency Data Dashboard</div>
+  <div class="hero-tags">
+    <span class="tag">行业KPI</span>
+    <span class="tag">IRR分布</span>
+    <span class="tag">风险构成</span>
+    <span class="tag">充足率趋势</span>
+    <span class="tag">监管达标</span>
+  </div>
+</div>
+
+<div class="callout info" style="margin-bottom:20px;">
+  <div class="title">数据说明</div>
+  <p>以下数据为<strong>示意性数据</strong>，基于C-ROSS II实施后行业实际偿付能力水平的合理估计。数据用于教学演示，不构成任何投资或监管判断依据。实际行业数据请参阅国家金融监督管理总局官方网站发布的季度偿付能力公告。</p>
+</div>
+
+<!-- KPI Cards -->
+<div class="dash-grid">
+  <div class="dash-card">
+    <h3>行业核心KPI <span class="en" style="font-size:12px;font-weight:400;">Industry KPIs</span></h3>
+    <div class="kpi-grid">
+      <div class="kpi-item">
+        <div class="kpi-value" style="color:var(--c-green);">227%</div>
+        <div class="kpi-label">综合偿付能力充足率</div>
+        <div class="kpi-min">监管底线 &ge; 100%</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-value" style="color:var(--c-green);">212%</div>
+        <div class="kpi-label">核心偿付能力充足率</div>
+        <div class="kpi-min">监管底线 &ge; 50%</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-value">A</div>
+        <div class="kpi-label">行业平均IRR评级</div>
+        <div class="kpi-min">最高 A / 最低 D</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-value">185</div>
+        <div class="kpi-label">纳入监管保险公司数</div>
+        <div class="kpi-min">含寿险/财险/再保</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IRR Distribution Donut -->
+  <div class="dash-card">
+    <h3>IRR风险综合评级分布 <span class="en" style="font-size:12px;font-weight:400;">Rating Distribution</span></h3>
+    <div class="donut-container">
+      <svg width="160" height="160" viewBox="0 0 160 160">
+        <!-- A: 62% -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="var(--c-green)" stroke-width="30"
+          stroke-dasharray="233.7 377" stroke-dashoffset="0" transform="rotate(-90 80 80)" />
+        <!-- B: 28% -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="var(--c-blue)" stroke-width="30"
+          stroke-dasharray="105.6 377" stroke-dashoffset="-233.7" transform="rotate(-90 80 80)" />
+        <!-- C: 7% -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="var(--c-amber)" stroke-width="30"
+          stroke-dasharray="26.4 377" stroke-dashoffset="-339.3" transform="rotate(-90 80 80)" />
+        <!-- D: 3% -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="var(--c-red)" stroke-width="30"
+          stroke-dasharray="11.3 377" stroke-dashoffset="-365.7" transform="rotate(-90 80 80)" />
+        <text x="80" y="76" text-anchor="middle" font-size="24" font-weight="700" fill="var(--c-primary)">90%</text>
+        <text x="80" y="94" text-anchor="middle" font-size="11" fill="var(--c-text-secondary)">A+B类</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-green);"></div>A类 62%（115家）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-blue);"></div>B类 28%（52家）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-amber);"></div>C类 7%（13家）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--c-red);"></div>D类 3%（5家）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bar Chart: Risk Module MC Distribution -->
+<div class="dash-card" style="margin-bottom:20px;">
+  <h3>最低资本风险模块构成 <span class="en" style="font-size:12px;font-weight:400;">MC by Risk Module</span></h3>
+  <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:10px;">行业平均最低资本构成比例（示意性数据）</p>
+  <div class="bar-chart">
+    <div class="bar-col">
+      <div class="bar-value" style="color:var(--c-amber);">43%</div>
+      <div class="bar-fill" style="height:86px;background:linear-gradient(to top, var(--c-amber), #b87515);"></div>
+      <div class="bar-label">保险风险</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar-value" style="color:var(--c-blue);">39%</div>
+      <div class="bar-fill" style="height:78px;background:linear-gradient(to top, var(--c-blue), #0d3a6b);"></div>
+      <div class="bar-label">市场风险</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar-value" style="color:var(--c-red);">15%</div>
+      <div class="bar-fill" style="height:30px;background:linear-gradient(to top, var(--c-red), #6b1e1e);"></div>
+      <div class="bar-label">信用风险</div>
+    </div>
+    <div class="bar-col">
+      <div class="bar-value" style="color:var(--c-purple);">3%</div>
+      <div class="bar-fill" style="height:6px;background:linear-gradient(to top, var(--c-purple), #2d2680);"></div>
+      <div class="bar-label">控制风险</div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--c-text-muted);margin-top:8px;">注：保险风险占比最高（43%），反映保险主业的风险集中度。市场风险次之（39%），信用风险15%，控制风险仅3%（多数公司SARMRA达标不额外加征）。</p>
+</div>
+
+<!-- Trend Chart: Solvency Ratio Over Time -->
+<div class="dash-card" style="margin-bottom:20px;">
+  <h3>偿付能力充足率趋势 <span class="en" style="font-size:12px;font-weight:400;">Solvency Ratio Trend (2022Q1 - 2025Q4)</span></h3>
+  <svg class="trend-chart" viewBox="0 0 680 220">
+    <!-- Grid lines -->
+    <line x1="40" y1="20" x2="660" y2="20" stroke="var(--c-border)" stroke-width="1" />
+    <line x1="40" y1="60" x2="660" y2="60" stroke="var(--c-border)" stroke-width="1" />
+    <line x1="40" y1="100" x2="660" y2="100" stroke="var(--c-border)" stroke-width="1" />
+    <line x1="40" y1="140" x2="660" y2="140" stroke="var(--c-border)" stroke-width="1" />
+    <line x1="40" y1="180" x2="660" y2="180" stroke="var(--c-border)" stroke-width="1" />
+
+    <!-- Y-axis labels -->
+    <text x="35" y="24" text-anchor="end" font-size="10" fill="var(--c-text-muted)">300%</text>
+    <text x="35" y="64" text-anchor="end" font-size="10" fill="var(--c-text-muted)">250%</text>
+    <text x="35" y="104" text-anchor="end" font-size="10" fill="var(--c-text-muted)">200%</text>
+    <text x="35" y="144" text-anchor="end" font-size="10" fill="var(--c-text-muted)">150%</text>
+    <text x="35" y="184" text-anchor="end" font-size="10" fill="var(--c-text-muted)">100%</text>
+
+    <!-- Threshold lines -->
+    <line x1="40" y1="180" x2="660" y2="180" class="threshold-line" stroke="var(--c-red)" />
+    <text x="655" y="175" text-anchor="end" class="threshold-label" fill="var(--c-red)">综合底线 100%</text>
+    <line x1="40" y1="140" x2="660" y2="140" class="threshold-line" stroke="var(--c-amber)" />
+    <text x="655" y="135" text-anchor="end" class="threshold-label" fill="var(--c-amber)">核心底线 50% (实际位置150%)</text>
+
+    <!-- Comprehensive ratio line -->
+    <polyline points="60,52 100,48 140,46 180,44 220,40 260,38 300,36 340,38 380,42 420,44 460,46 500,44 540,42 580,44 620,46 655,48"
+      class="trend-line" stroke="var(--c-primary)" />
+    <!-- Core ratio line -->
+    <polyline points="60,68 100,64 140,62 180,60 220,58 260,56 300,54 340,56 380,60 420,62 460,64 500,62 540,60 580,62 620,64 655,66"
+      class="trend-line" stroke="var(--c-accent)" />
+
+    <!-- Points (every 4 quarters) -->
+    <g fill="var(--c-primary)">
+      <circle cx="60" cy="52" r="4" /><circle cx="220" cy="40" r="4" /><circle cx="380" cy="42" r="4" /><circle cx="540" cy="42" r="4" />
+    </g>
+    <g fill="var(--c-accent)">
+      <circle cx="60" cy="68" r="4" /><circle cx="220" cy="58" r="4" /><circle cx="380" cy="60" r="4" /><circle cx="540" cy="60" r="4" />
+    </g>
+
+    <!-- X-axis labels -->
+    <text x="60" y="200" text-anchor="middle" font-size="10" fill="var(--c-text-muted)">22Q1</text>
+    <text x="180" y="200" text-anchor="middle" font-size="10" fill="var(--c-text-muted)">22Q4</text>
+    <text x="300" y="200" text-anchor="middle" font-size="10" fill="var(--c-text-muted)">23Q4</text>
+    <text x="420" y="200" text-anchor="middle" font-size="10" fill="var(--c-text-muted)">24Q4</text>
+    <text x="540" y="200" text-anchor="middle" font-size="10" fill="var(--c-text-muted)">25Q4</text>
+
+    <!-- Legend -->
+    <rect x="450" y="10" width="12" height="3" fill="var(--c-primary)" />
+    <text x="468" y="14" font-size="11" fill="var(--c-text-secondary)">综合充足率</text>
+    <rect x="545" y="10" width="12" height="3" fill="var(--c-accent)" />
+    <text x="563" y="14" font-size="11" fill="var(--c-text-secondary)">核心充足率</text>
+  </svg>
+  <p style="font-size:12px;color:var(--c-text-muted);margin-top:8px;">注：行业综合偿付能力充足率从2022Q1约240%逐步下降至约225%，主要受资本市场波动和保费增长推动MC上升影响。核心充足率约205-215%。均远高于监管底线。</p>
+</div>
+
+<!-- Solvency by Company Type -->
+<div class="dash-grid">
+  <div class="dash-card">
+    <h3>分类型偿付能力对比 <span class="en" style="font-size:12px;font-weight:400;">By Company Type</span></h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>类型</th><th>综合充足率</th><th>核心充足率</th><th>监管达标</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>寿险公司</td><td>235%</td><td>218%</td><td class="pass">达标</td></tr>
+        <tr><td>财险公司</td><td>245%</td><td>228%</td><td class="pass">达标</td></tr>
+        <tr><td>再保险公司</td><td>280%</td><td>265%</td><td class="pass">达标</td></tr>
+        <tr><td>健康险公司</td><td>195%</td><td>182%</td><td class="pass">达标</td></tr>
+        <tr><td>养老险公司</td><td>310%</td><td>295%</td><td class="pass">达标</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--c-text-muted);margin-top:8px;">再保和养老险公司充足率最高（长期资本充裕），健康险公司相对较低（业务增长快，MC上升快）。</p>
+  </div>
+
+  <div class="dash-card">
+    <h3>西红人寿 vs 行业对比 <span class="en" style="font-size:12px;font-weight:400;">Xihong vs Industry</span></h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>指标</th><th>西红人寿</th><th>行业均值</th><th>结论</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>综合充足率</td><td><strong>284%</strong></td><td>227%</td><td class="pass">优于行业</td></tr>
+        <tr><td>核心充足率</td><td><strong>233%</strong></td><td>212%</td><td class="pass">优于行业</td></tr>
+        <tr><td>IRR评级</td><td><strong>A</strong></td><td>A</td><td>持平行业</td></tr>
+        <tr><td>SARMRA得分</td><td><strong>83</strong></td><td>75</td><td class="pass">优于行业</td></tr>
+        <tr><td>流动性指标</td><td><strong>158%</strong></td><td>145%</td><td class="pass">优于行业</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--c-text-muted);margin-top:8px;">西红人寿各项指标均优于行业均值，反映在资本充足性、风险管理质量和流动性管理方面的综合优势。</p>
+  </div>
+</div>
+
+<!-- Risk Composition by Company Type -->
+<div class="dash-card" style="margin-bottom:20px;">
+  <h3>不同类型公司风险构成 <span class="en" style="font-size:12px;font-weight:400;">Risk Composition by Type</span></h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:10px;">
+    <!-- Life -->
+    <div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px;">寿险公司</div>
+      <div style="display:flex;height:24px;border-radius:4px;overflow:hidden;">
+        <div style="width:45%;background:var(--c-amber);"></div>
+        <div style="width:40%;background:var(--c-blue);"></div>
+        <div style="width:12%;background:var(--c-red);"></div>
+        <div style="width:3%;background:var(--c-purple);"></div>
+      </div>
+      <div style="font-size:11px;color:var(--c-text-muted);margin-top:4px;">保险45% | 市场40% | 信用12% | 控制3%</div>
+    </div>
+    <!-- P&C -->
+    <div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px;">财险公司</div>
+      <div style="display:flex;height:24px;border-radius:4px;overflow:hidden;">
+        <div style="width:58%;background:var(--c-amber);"></div>
+        <div style="width:22%;background:var(--c-blue);"></div>
+        <div style="width:17%;background:var(--c-red);"></div>
+        <div style="width:3%;background:var(--c-purple);"></div>
+      </div>
+      <div style="font-size:11px;color:var(--c-text-muted);margin-top:4px;">保险58% | 市场22% | 信用17% | 控制3%</div>
+    </div>
+    <!-- Reins -->
+    <div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px;">再保险公司</div>
+      <div style="display:flex;height:24px;border-radius:4px;overflow:hidden;">
+        <div style="width:68%;background:var(--c-amber);"></div>
+        <div style="width:18%;background:var(--c-blue);"></div>
+        <div style="width:11%;background:var(--c-red);"></div>
+        <div style="width:3%;background:var(--c-purple);"></div>
+      </div>
+      <div style="font-size:11px;color:var(--c-text-muted);margin-top:4px;">保险68% | 市场18% | 信用11% | 控制3%</div>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--c-text-muted);margin-top:10px;">寿险公司市场风险占比高（利率风险+权益风险），财险和再保公司保险风险占比更高（保费/准备金/巨灾风险）。</p>
+</div>
+
+<!-- Key Observations -->
+<div class="section">
+  <h2>关键观察 Key Observations</h2>
+  <div class="callout success">
+    <div class="title">行业整体状况良好</div>
+    <p>C-ROSS II实施以来，行业偿付能力整体保持充足。综合充足率均值约227%，远高于100%监管底线。90%的公司评级为A/B类，行业整体风险可控。</p>
+  </div>
+  <div class="callout info">
+    <div class="title">结构性特征</div>
+    <p>① <strong>寿险vs财险：</strong>寿险公司市场风险敞口大（利率风险+权益风险），财险公司保险风险敞口大（巨灾风险）。② <strong>资本来源：</strong>核心一级资本占主要部分（约70%），附属资本占比适度。③ <strong>趋势：</strong>充足率呈缓慢下降趋势，主要因保费增长推动MC上升和资本市场波动。</p>
+  </div>
+  <div class="callout warning">
+    <div class="title">关注事项</div>
+    <p>① 少数C/D类公司（10%）需关注分类监管措施的执行效果；② 寿险公司利率风险敏感度高，利率上行时可能面临MC上升压力；③ 保单未来盈余分级对部分高度依赖盈余的中小公司影响较大。</p>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>C-ROSS II Solvency Knowledge Base &copy; 2026 &nbsp;|&nbsp; 西红精算 &middot; 知识矩阵</p>
+  <p>数据为示意性教学数据，实际行业数据请参阅国家金融监督管理总局官方网站<br>
+  参考：国家金融监督管理总局季度偿付能力公告、中国保险行业协会统计数据</p>
+    <div class="footer-author">
+    <img src="assets/author-qrcode.jpg" alt="西红精算公众号" class="fa-qr" title="扫码关注西红精算公众号">
+    <div class="fa-info">
+      <div class="fa-name">西红精算 · 公众号</div>
+      <div class="fa-tag">扫码关注 · 获取每日精算干货</div>
+      <div class="fa-tip">⌨ 鼠标悬停二维码可放大</div>
+    </div>
+  </div>
+  <p class="sister-link"><a href="https://xihongactuary-ifrs17.netlify.app" target="_blank">&#8599; IFRS17 双语知识库（姊妹站）</a></p>
+</div>
+
+</div>
+
+<script>
+(function() {
+  var key = 'cross_solvency_progress';
+  var visited = JSON.parse(localStorage.getItem(key) || '[]');
+  var totalPages = 27;
+  var currentPage = 'dashboard';
+  if (visited.indexOf(currentPage) === -1) { visited.push(currentPage); localStorage.setItem(key, JSON.stringify(visited)); }
+  var pct = Math.round((visited.length / totalPages) * 100);
+  document.getElementById('ptFill').style.width = pct + '%';
+  document.getElementById('ptPct').textContent = pct + '%';
+})();
+</script>
+
+</body>
+</html>
